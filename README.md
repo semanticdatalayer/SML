@@ -48,6 +48,22 @@ The following graphic illustrates the key SML objects and their relationships:
 
 ![SML Model Hierarchy](images/SML-Object-Hierarchy.png)
 
+
+## SML Object Documentation
+
+The following sections describe the different SML object types as well
+as the properties available for each:
+
+- [Catalog](sml-reference/catalog.md)
+- [Package](sml-reference/package.md)
+- [Calculations](sml-reference/calculations.md)
+- [Connections](sml-reference/connections.md)
+- [Datasets](sml-reference/datasets.md)
+- [Dimensions](sml-reference/dimensions.md)
+- [Metrics](sml-reference/metrics.md)
+- [Models](sml-reference/models.md)
+- [Row Security](sml-reference/row-security.md)
+
 ## What's in this repository?
 
 Open-sourcing SML aims to promote the building of reusable models and semantic objects. We are making the SML specification available for public consumption and collaboration. Soon, we will add software tools to make serializations and translations from various semantic dialects easier.
