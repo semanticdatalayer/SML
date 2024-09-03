@@ -58,12 +58,12 @@ classDiagram
     perspective ..> Metric : Depends
     perspective ..> Dimension : Depends
     drillthrough ..> Metric : Depends
-    drillthrough ..> Level_Attribute : Depends
+    drillthrough ..> LevelAttribute : Depends
     aggregate ..> Metric : Depends
-    aggregate ..> Level_Attribute : Depends
+    aggregate ..> LevelAttribute : Depends
     aggregate ..> Connection : Depends
     partition ..> Dimension : Depends
-    partition ..> Level_Attribute : Depends
+    partition ..> LevelAttribute : Depends
     Model *-- dimension : Contains
     Model *-- metric : Contains
     Model *-- relationship : Contains
@@ -83,8 +83,28 @@ classDiagram
     semi_additive ..> Level : Depends
     Dimension *-- Hierarchy : Contains
     Hierarchy *-- Level : Contains
-    Dimension *-- Level_Attribute : Contains
-    Level ..> Level_Attribute : Depends
+    Dimension *-- LevelAttribute : Contains
+    Dimension *-- relationship : Contains
+    Dimension ..> CalculationGroup : Contains
+    Level ..> LevelAttribute : Depends
+    LevelAttribte ..> Column : Depends
+    LevelAttribte ..> MetricCalc : Depends
+    Level ..> LevelAttribute : Contains
+    Level ..> MetricalAttributes : Contains
+    Level ..> Alias : Contains
+    CalculationGroup ..> MetricCalc : Depends
+    Dimension ..> SecondaryAttribute : Contains
+    SecondaryAttribute ..> Dataset : Depends
+    SecondaryAttribute ..> Column : Depends
+    SecondaryAttribte ..> MetricCalc : Depends
+    CustomEmptyMember ..> SecondaryAttribute : Contains
+    CustomEmptyMember ..> Column : Depends
+    Alias ..> Dataset : Depends
+    Alias ..> Column : Depends
+    Alias ..> CustomEmptyMember : Contains
+    MetricalAttribute ..> CustomEmptyMember : Contains
+    MetricalAttribute ..> Dataset : Depends
+    MetricalAttribute ..> Column : Depends
 namespace Models{
     class Model{
       String unique_name
@@ -183,7 +203,7 @@ namespace Metrics{
       int compression
       String named_quantiles
       String format
-      String unrelated_dimensions_handling
+      enum unrelated_dimensions_handling
       Boolean is_hidden
     }
     class semi_additive{
@@ -192,15 +212,112 @@ namespace Metrics{
       String hierarchy
       String level
     }
+    class MetricCalc{
+      String unique_name
+      String label
+      const object_type
+      String format
+      String expression
+    }
 }
 namespace Dimensions{
         class Dimension{
+          String unique_name
+          String label
+          const object_type
+          String description
+          enum type
+          Array~Hierarchy~ hierarchies
+          Array~LevelAttribute~ level_attributes
+          Array~relationship~ relationships
+          Array~CalculationGroup~ calculation_groups
         }
         class Hierarchy{
+          String unique_name
+          String label
+          Array~Level~ levels
         }
         class Level{
+          String unique_name
+          String description
+          String folder
+          Array~SecondaryAttribute~ secondary_attributes
+          Array~Alias~ aliases
+          Array~MetricalAttribute~ metrics
+          String filter_empty
+          String default_member
         }
-        class Level_Attribute{
+        class Alias{
+          String unique_name
+          String description
+          String label
+          String dataset
+          String name_column
+          String sort_column
+          Boolean is_hidden
+          Boolean exclude_from_dim_agg
+          Boolean exclude_from_fact_agg
+          Array~CustomEmptyMember~ custom_empty_member
+
+        }
+        class MetricalAttribute{
+          String unique_name
+          String label
+          String description
+          String folder
+          String format
+          String calculation_method
+          String dataset
+          String column
+          Boolean is_hidden
+          Boolean exclude_from_dim_agg
+          Boolean exclude_from_fact_agg
+          CustomEmptyMember custom_empty_member
+        }
+        class LevelAttribute{
+          String unique_name
+          String label
+          String description
+          String dataset
+          String name_column
+          Array~Column~ key_columns
+          Boolean is_hidden
+          Boolean is_unique_key
+          Boolean contains_unique_names
+          Boolean exclude_from_dim_agg
+          Boolean exclude_from_fact_agg
+          String sort_column
+          Array~MetricCalc~ allowed_calcs_for_dma
+          String folder
+          String time_unit
+        }
+        class SecondaryAttribute{
+          String unique_name
+          String label
+          String dataset
+          String name_column
+          Array~Column~ key_columns
+          String sort_column
+          Array~MetricCalc~ allowed_calcs_for_dma
+          Boolean exclude_from_dim_agg
+          Boolean exclude_from_fact_agg
+          Array~CustomEmptyMember~ custom_empty_member
+        }
+        class CustomEmptyMember{
+          Array~Column~ key
+          String name
+          String sort
+          String description
+          String folder
+          String format
+          Boolean is_hidden
+          Boolean contains_unique_names
+        }
+        class CalculationGroup{
+          String unique_name
+          String description
+          String folder
+          Array~MetricCalc~ calculated_members
         }
 }
 ```
