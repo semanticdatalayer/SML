@@ -48,8 +48,6 @@ metrics:
 ## SML Object Hierarchy
 The following graphic illustrates the key SML objects and their relationships:
 
-![SML Model Hierarchy](images/SML-Object-Hierarchy.png)
-
 ```mermaid
 classDiagram
     relationship ..> Dataset : Depends
