@@ -50,6 +50,162 @@ The following graphic illustrates the key SML objects and their relationships:
 
 ![SML Model Hierarchy](images/SML-Object-Hierarchy.png)
 
+```mermaid
+classDiagram
+    relationship ..> Dataset : Depends
+    relationship ..> from : Contains
+    from ..> Dataset : Depends
+    relationship ..> to : Contains
+    to ..> Dimension : Depends
+    perspective ..> Metric : Depends
+    perspective ..> Dimension : Depends
+    drillthrough ..> Metric : Depends
+    drillthrough ..> Level_Attribute : Depends
+    aggregate ..> Metric : Depends
+    aggregate ..> Level_Attribute : Depends
+    aggregate ..> Connection : Depends
+    partition ..> Dimension : Depends
+    partition ..> Level_Attribute : Depends
+    Model *-- dimension : Contains
+    Model *-- metric : Contains
+    Model *-- relationship : Contains
+    Model *-- perspective : Contains
+    Model *-- aggregate : Contains
+    Model *-- partition : Contains
+    Model *-- drillthrough : Contains
+    dimension ..> Dimension : Depends
+    metric ..> Metric : Depends
+    Dataset ..> Connection : Depends
+    Dataset ..> Column : Depends
+    Metric ..> Dataset : Depends
+    Metric ..> Column : Depends
+    Metric ..> semi_additive : Depends
+    semi_additive ..> Dimension : Depends
+    semi_additive ..> Hierarchy : Depends
+    semi_additive ..> Level : Depends
+    Dimension *-- Hierarchy : Contains
+    Hierarchy *-- Level : Contains
+    Dimension *-- Level_Attribute : Contains
+    Level ..> Level_Attribute : Depends
+namespace Models{
+    class Model{
+      String unique_name
+      const object_type
+      String label
+      Array~relationship~ relationships
+      Array~dimension~ dimensions
+      Array~metric~ metrics
+      Array~aggregate~ aggregates
+      Array~perspective~ perspectives
+      Array~drillthrough~ drillthroughs
+      Array~partition~ partition
+    }
+    class relationship{
+      String unique_name
+      Object from
+      Object to
+      String role_play
+    }
+    class from{
+      String dataset
+      Array~Column~ columns
+    }
+    class to{
+      String dimension
+      String level
+      String row_security
+    }
+    class aggregate{
+      String unique_name
+      String label
+      String target_connection
+      Array~Metric~ metrics
+      Array~Attribute~ attributes
+    }
+    class drillthrough{
+      String unique_name
+      String notes
+      Array~Metric~ metrics
+      Array~Attribute~ attributes
+    }
+    class partition{
+      String unique_name
+      String dimension
+      String attribute
+      String type
+    }
+    class perspective{
+      String unique_name
+      Array~Metric~ metrics
+      Array~Dimension~ dimensions
+    }
+    class metric{
+      String unique_name
+      String folder
+    }
+    class dimension{
+      String unique_name
+    }
+}
+namespace Datasets{    
+    class Dataset{
+      String unique_name
+      const object_type
+      String label
+      String connection_id
+      String sql
+      String table
+      Array~Column~ columns
+    }
+    class Column{
+      String name
+      const data_type
+      String sql
+      Array~Dialect~ dialects
+    }
+}
+    class Connection{
+      String unique_name
+      String label
+      const object_type
+      String as_connection
+      String database
+      String schema
+    }
+namespace Metrics{
+    class Metric{
+      String unique_name
+      String label
+      const object_type
+      String description
+      String calculation_method
+      String dataset
+      String column
+      Object semi_additive
+      int compression
+      String named_quantiles
+      String format
+      String unrelated_dimensions_handling
+      Boolean is_hidden
+    }
+    class semi_additive{
+      String position
+      String dimension
+      String hierarchy
+      String level
+    }
+}
+namespace Dimensions{
+        class Dimension{
+        }
+        class Hierarchy{
+        }
+        class Level{
+        }
+        class Level_Attribute{
+        }
+}
+```
 
 ## SML Object Documentation
 
