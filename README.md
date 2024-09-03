@@ -87,8 +87,8 @@ classDiagram
     Dimension *-- relationship : Contains
     Dimension ..> CalculationGroup : Contains
     Level ..> LevelAttribute : Depends
-    LevelAttribte ..> Column : Depends
-    LevelAttribte ..> MetricCalc : Depends
+    LevelAttribute ..> Column : Depends
+    LevelAttribute ..> MetricCalc : Depends
     Level ..> LevelAttribute : Contains
     Level ..> MetricalAttribute : Contains
     Level ..> Alias : Contains
