@@ -90,13 +90,13 @@ classDiagram
     LevelAttribte ..> Column : Depends
     LevelAttribte ..> MetricCalc : Depends
     Level ..> LevelAttribute : Contains
-    Level ..> MetricalAttributes : Contains
+    Level ..> MetricalAttribute : Contains
     Level ..> Alias : Contains
     CalculationGroup ..> MetricCalc : Depends
     Dimension ..> SecondaryAttribute : Contains
     SecondaryAttribute ..> Dataset : Depends
     SecondaryAttribute ..> Column : Depends
-    SecondaryAttribte ..> MetricCalc : Depends
+    SecondaryAttribute ..> MetricCalc : Depends
     CustomEmptyMember ..> SecondaryAttribute : Contains
     CustomEmptyMember ..> Column : Depends
     Alias ..> Dataset : Depends
