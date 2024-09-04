@@ -37,7 +37,7 @@ and subrepositories.
 - **Type:** const
 - **Required:** Y
 
-The type of object defined by the file. For `atscale.yml`, this must be
+The type of object defined by the file. For `catalog.yml`, this must be
 `catalog`.
 
 ## label
@@ -92,10 +92,6 @@ Supported values:
 - `true`
 - `false`
 
-For more information on speculative aggregates, see [Types of Aggregate
-Tables in
-AtScale](../../c-managing-atscale/managing-aggregates/about-aggregates/types-of-aggregate-tables-in-atscale.md).
-
 ## dataset_properties
 
 - **Type:** object
@@ -121,7 +117,7 @@ values you want to set for it at the repository level. For example:
 
 :::note
 *Note:* Datasets are typically defined at the repository level, in
-`atscale.yml`; however, datasets used by a specific model (typically
+`catalog.yml`; however, datasets used by a specific model (typically
 fact datasets) can be defined within the model itself. For more
 information, see
 [Models](../../c-creating-and-sharing-cubes/sml-reference/models.md).
