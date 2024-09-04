@@ -10,6 +10,15 @@ In SML, calculation files are a subset of metrics. The separation of
 calculation metrics from other types enables you to easily create
 boilerplate calculations that can be used across multiple metrics.
 
+Sample `calculation` file:
+
+```
+unique_name: Average Catalog Unit Net Profit
+object_type: metric_calc
+label: Average Catalog Unit Net Profit
+expression: "[Measures].[m_cs_net_profit_sum]/[Measures].[m_cs_quantity_sum]"
+```
+
 Calculation files support the following properties.
 
 ## unique_name
