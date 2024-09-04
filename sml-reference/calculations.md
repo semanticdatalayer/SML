@@ -19,7 +19,7 @@ label: Average Catalog Unit Net Profit
 expression: "[Measures].[m_cs_net_profit_sum]/[Measures].[m_cs_quantity_sum]"
 ```
 
-Calculation files support the following properties.
+# Calculation Properties
 
 ## unique_name
 
