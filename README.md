@@ -50,79 +50,108 @@ The following graphic illustrates the key SML objects and their relationships:
 
 ```mermaid
 classDiagram
-    relationship ..> Dataset : Depends
-    relationship ..> from : Contains
+    relationship --* from : Contains
     from ..> Dataset : Depends
-    relationship ..> to : Contains
+    from ..> Column : Depends
+    relationship --* to : Contains
     to ..> Dimension : Depends
+    to ..> Level : Depends
+    to ..> RowSecurity : Depends
     perspective ..> Metric : Depends
+    perspective ..> MetricCalc : Depends
     perspective ..> Dimension : Depends
+    perspective ..> Hierarchy : Depends
+    perspective ..> LevelAttribute : Depends
+    perspective ..> SecondaryAttribute : Depends
+    perspective ..> Alias : Depends
+    perspective ..> MetricalAttribute : Depends
     drillthrough ..> Metric : Depends
+    drillthrough ..> MetricCalc : Depends
     drillthrough ..> LevelAttribute : Depends
-    aggregate ..> Metric : Depends
-    aggregate ..> LevelAttribute : Depends
+    drillthrough ..> SecondaryAttribute : Depends
+    drillthrough ..> Alias : Depends
+    drillthrough ..> MetricalAttribute : Depends
     aggregate ..> Connection : Depends
+    aggregate ..> Metric : Depends
+    aggregate ..> MetricCalc : Depends
+    aggregate ..> LevelAttribute : Depends
+    aggregate ..> SecondaryAttribute : Depends
+    aggregate ..> Alias : Depends
+    aggregate ..> MetricalAttribute : Depends
     partition ..> Dimension : Depends
     partition ..> LevelAttribute : Depends
-    Model *-- dimension : Contains
-    Model *-- metric : Contains
+    partition ..> SecondaryAttribute : Depends
+    partition ..> Alias : Depends
+    Model ..> Dimension : Depends
+    Model ..> Metric : Depends
     Model *-- relationship : Contains
     Model *-- perspective : Contains
     Model *-- aggregate : Contains
     Model *-- partition : Contains
     Model *-- drillthrough : Contains
-    dimension ..> Dimension : Depends
-    metric ..> Metric : Depends
     Dataset ..> Connection : Depends
-    Dataset ..> Column : Depends
+    Dataset *-- Column : Contains
+    Dataset *-- Alternate : Contains
+    Dataset *-- Incremental : Contains
+    Alternate ..> Connection : Depends
+    Incremental ..> Column : Depends
+    Column *-- MapColumn : Contains
     Metric ..> Dataset : Depends
     Metric ..> Column : Depends
-    Metric ..> semi_additive : Depends
-    semi_additive ..> Dimension : Depends
-    semi_additive ..> Hierarchy : Depends
-    semi_additive ..> Level : Depends
+    Metric *-- SemiAdditive : Contains
+    SemiAdditive ..> relationship : Depends
     Dimension *-- Hierarchy : Contains
-    Hierarchy *-- Level : Contains
     Dimension *-- LevelAttribute : Contains
     Dimension *-- relationship : Contains
-    Dimension ..> CalculationGroup : Contains
+    Dimension *-- CalculationGroup : Contains
+    Hierarchy *-- Level : Contains
     Level ..> LevelAttribute : Depends
+    LevelAttribute ..> Dataset : Depends
     LevelAttribute ..> Column : Depends
-    LevelAttribute ..> MetricCalc : Depends
-    Level ..> LevelAttribute : Contains
-    Level ..> MetricalAttribute : Contains
-    Level ..> Alias : Contains
-    CalculationGroup ..> MetricCalc : Depends
-    Dimension ..> SecondaryAttribute : Contains
+    LevelAttribute *-- CustomEmptyMember : Contains
+    Level ..> LevelAttribute : Depends
+    Level *-- SecondaryAttribute : Contains
+    Level *-- MetricalAttribute : Contains
+    Level *-- Alias : Contains
+    CalculationGroup *-- DimensionMetricCalc : Contains
     SecondaryAttribute ..> Dataset : Depends
     SecondaryAttribute ..> Column : Depends
-    SecondaryAttribute ..> MetricCalc : Depends
-    CustomEmptyMember ..> SecondaryAttribute : Contains
-    CustomEmptyMember ..> Column : Depends
+    SecondaryAttribute *-- CustomEmptyMember : Contains
     Alias ..> Dataset : Depends
     Alias ..> Column : Depends
-    Alias ..> CustomEmptyMember : Contains
-    MetricalAttribute ..> CustomEmptyMember : Contains
+    Alias *-- CustomEmptyMember : Contains
     MetricalAttribute ..> Dataset : Depends
     MetricalAttribute ..> Column : Depends
+    MetricalAttribute *-- CustomEmptyMember : Contains    
+    MetricCalc ..> MetricCalc : Depends
+    MetricCalc ..> Metric : Depends
+    MetricCalc ..> Hierarchy : Depends
+    MetricCalc ..> Level : Depends
+    MetricCalc ..> SecondaryAttribute : Depends
+    RowSecurity ..> Dataset : Depends
+    RowSecurity ..> Column : Depends    
 namespace Models{
     class Model{
       String unique_name
       const object_type
       String label
+      String description
       Array~relationship~ relationships
-      Array~dimension~ dimensions
-      Array~metric~ metrics
+      Array~String~ dimensions
+      Array~metric_reference~ metrics
       Array~aggregate~ aggregates
       Array~perspective~ perspectives
       Array~drillthrough~ drillthroughs
       Array~partition~ partition
+      Boolean include_default_drillthrough
     }
     class relationship{
       String unique_name
       Object from
       Object to
       String role_play
+      String type
+      Boolean m2m
     }
     class from{
       String dataset
@@ -137,14 +166,20 @@ namespace Models{
       String unique_name
       String label
       String target_connection
-      Array~Metric~ metrics
-      Array~Attribute~ attributes
+      Array~String~ metrics
+      Array~attribute_reference~ attributes
     }
     class drillthrough{
       String unique_name
       String notes
-      Array~Metric~ metrics
-      Array~Attribute~ attributes
+      Array~String~ metrics
+      Array~attribute_reference~ attributes
+    }
+    class attribute_reference{
+      String name
+      String dimension
+      String partition
+      String distribution
     }
     class partition{
       String unique_name
@@ -154,15 +189,24 @@ namespace Models{
     }
     class perspective{
       String unique_name
-      Array~Metric~ metrics
-      Array~Dimension~ dimensions
+      Array~String~ metrics
+      Array~perspective_dimension~ dimensions
     }
-    class metric{
+    class metric_reference{
       String unique_name
       String folder
     }
-    class dimension{
-      String unique_name
+    class perspective_dimension{
+      String name
+      Boolean visible
+      Array~perspective_hierarchy~ hierarchies
+      Array~String~ secondaryattributes
+      Array~String~ metrics
+    }
+    class perspective_hierarchy{
+      String name
+      Boolean visible
+      Array~String~ levels
     }
 }
 namespace Datasets{    
@@ -170,18 +214,46 @@ namespace Datasets{
       String unique_name
       const object_type
       String label
+      String description
       String connection_id
       String sql
       String table
       Array~Column~ columns
+      Array~Dialect~ dialects
+      Boolean immutable
+      Alternate alternate
+      Incremental incremental
     }
     class Column{
       String name
       const data_type
       String sql
       Array~Dialect~ dialects
+      MapColumn map
+    }
+    class Dialect{
+      String dialect
+      String sql
+    }
+    class Alternate{
+      String type
+      String connection_id
+      String table
+      String sql      
+    }
+    class Incremental{
+      String column
+      String grace_period
+    }
+    class MapColumn{
+      String field_terminator
+      String key_terminator
+      String key_type
+      String value_type
+      Boolean is_prefixed
     }
 }
+namespace Connections{
     class Connection{
       String unique_name
       String label
@@ -190,6 +262,7 @@ namespace Datasets{
       String database
       String schema
     }
+}
 namespace Metrics{
     class Metric{
       String unique_name
@@ -199,126 +272,153 @@ namespace Metrics{
       String calculation_method
       String dataset
       String column
-      Object semi_additive
+      SemiAdditive semi_additive
       int compression
       String named_quantiles
+      Array~double~ custom_quantiles
       String format
       enum unrelated_dimensions_handling
       Boolean is_hidden
     }
-    class semi_additive{
+    class SemiAdditive{
       String position
-      String dimension
-      String hierarchy
-      String level
+      Array~Array~String~~ relationships
     }
     class MetricCalc{
       String unique_name
       String label
+      String description
       const object_type
       String format
       String expression
+      String default_aggregation
     }
 }
 namespace Dimensions{
-        class Dimension{
-          String unique_name
-          String label
-          const object_type
-          String description
-          enum type
-          Array~Hierarchy~ hierarchies
-          Array~LevelAttribute~ level_attributes
-          Array~relationship~ relationships
-          Array~CalculationGroup~ calculation_groups
-        }
-        class Hierarchy{
-          String unique_name
-          String label
-          Array~Level~ levels
-        }
-        class Level{
-          String unique_name
-          String description
-          String folder
-          Array~SecondaryAttribute~ secondary_attributes
-          Array~Alias~ aliases
-          Array~MetricalAttribute~ metrics
-          String filter_empty
-          String default_member
-        }
-        class Alias{
-          String unique_name
-          String description
-          String label
-          String dataset
-          String name_column
-          String sort_column
-          Boolean is_hidden
-          Boolean exclude_from_dim_agg
-          Boolean exclude_from_fact_agg
-          Array~CustomEmptyMember~ custom_empty_member
-
-        }
-        class MetricalAttribute{
-          String unique_name
-          String label
-          String description
-          String folder
-          String format
-          String calculation_method
-          String dataset
-          String column
-          Boolean is_hidden
-          Boolean exclude_from_dim_agg
-          Boolean exclude_from_fact_agg
-          CustomEmptyMember custom_empty_member
-        }
-        class LevelAttribute{
-          String unique_name
-          String label
-          String description
-          String dataset
-          String name_column
-          Array~Column~ key_columns
-          Boolean is_hidden
-          Boolean is_unique_key
-          Boolean contains_unique_names
-          Boolean exclude_from_dim_agg
-          Boolean exclude_from_fact_agg
-          String sort_column
-          Array~MetricCalc~ allowed_calcs_for_dma
-          String folder
-          String time_unit
-        }
-        class SecondaryAttribute{
-          String unique_name
-          String label
-          String dataset
-          String name_column
-          Array~Column~ key_columns
-          String sort_column
-          Array~MetricCalc~ allowed_calcs_for_dma
-          Boolean exclude_from_dim_agg
-          Boolean exclude_from_fact_agg
-          Array~CustomEmptyMember~ custom_empty_member
-        }
-        class CustomEmptyMember{
-          Array~Column~ key
-          String name
-          String sort
-          String description
-          String folder
-          String format
-          Boolean is_hidden
-          Boolean contains_unique_names
-        }
-        class CalculationGroup{
-          String unique_name
-          String description
-          String folder
-          Array~MetricCalc~ calculated_members
-        }
+    class Dimension{
+      String unique_name
+      String label
+      const object_type
+      String description
+      enum type
+      Boolean is_degenerate
+      Array~Hierarchy~ hierarchies
+      Array~LevelAttribute~ level_attributes
+      Array~relationship~ relationships
+      Array~CalculationGroup~ calculation_groups
+    }
+    class Hierarchy{
+      String unique_name
+      String label
+      String folder
+      enum filter_empty
+      Array~Level~ levels
+    }
+    class Level{
+      String unique_name
+      String description
+      Array~SecondaryAttribute~ secondary_attributes
+      Array~Alias~ aliases
+      Array~MetricalAttribute~ metrics
+      String default_member
+      Boolean is_hidden
+    }
+    class Alias{
+      String unique_name
+      String label
+      String description
+      String dataset
+      String name_column
+      String sort_column
+      String folder
+      Boolean is_hidden
+      Boolean exclude_from_dim_agg
+      Boolean exclude_from_fact_agg
+      Array~CustomEmptyMember~ custom_empty_member
+      Array~String~ allowed_calcs_for_dma
+      Object role
+    }
+    class MetricalAttribute{
+      String unique_name
+      String label
+      String description
+      String folder
+      String format
+      String calculation_method
+      String dataset
+      String column
+      Boolean is_hidden
+      Boolean exclude_from_dim_agg
+      Boolean exclude_from_fact_agg
+      CustomEmptyMember custom_empty_member
+      enum unrelated_dimensions_handling
+      Array~String~ allowed_calcs_for_dma
+    }
+    class LevelAttribute{
+      String unique_name
+      String label
+      String description
+      String dataset
+      String name_column
+      String sort_column
+      Array~String~ key_columns
+      Boolean contains_unique_names
+      Boolean is_hidden
+      Boolean is_unique_key
+      Boolean exclude_from_dim_agg
+      Boolean exclude_from_fact_agg
+      String time_unit
+      Array~String~ allowed_calcs_for_dma
+    }
+    class SecondaryAttribute{
+      String unique_name
+      String label
+      String description
+      String folder
+      String dataset
+      String name_column
+      String sort_column
+      Array~String~ key_columns
+      Boolean exclude_from_dim_agg
+      Boolean exclude_from_fact_agg
+      Array~String~ allowed_calcs_for_dma
+      Array~CustomEmptyMember~ custom_empty_member
+    }
+    class CustomEmptyMember{
+      Array~String~ key
+      String name
+      String sort_name
+    }
+    class CalculationGroup{
+      String unique_name
+      String label
+      String description
+      String folder
+      Array~DimensionMetricCalc~ calculated_members
+    }
+    class DimensionMetricCalc{
+      String name
+      String description
+      String format
+      String expression
+      Boolean is_default
+      Boolean use_input_measure_format
+    }
+}
+namespace Row_Security{
+    class RowSecurity{
+      String unique_name
+      String label
+      const object_type
+      String description
+      String dataset
+      String filter_key_column
+      Boolean use_filter_key
+      String ids_column
+      String id_type
+      String scope
+      Boolean secure_totals
+    }
 }
 ```
 
