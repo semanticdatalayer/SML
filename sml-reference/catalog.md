@@ -5,13 +5,6 @@ repository. It contains all repository-level definitions, such as the
 repository name and settings for building aggregates. Each repository
 must contain a file called `catalog.yml` at the root level.
 
-:::note
-*Note:* Some properties can appear in both `catalog.yml` and [model
-files](../../c-creating-and-sharing-cubes/sml-reference/models.md).
-Those defined in model files override their counterparts in
-`catalog.yml`.
-:::
-
 Sample `catalog` file:
 ```
 unique_name: sml-models
@@ -22,7 +15,7 @@ aggressive_agg_promotion: false
 build_speculative_aggs: false
 ```
 
-`catalog.yml` supports the following properties.
+# Catalog Properties
 
 ## unique_name
 
