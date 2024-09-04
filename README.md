@@ -420,7 +420,8 @@ namespace Row_Security{
       String scope
       Boolean secure_totals
     }
-}```
+}
+```
 
 ## SML Object Documentation
 
