@@ -19,7 +19,7 @@ Sample `row_security` file:
 Need a sample
 ```
 
-Row security files support the following properties.
+# Row Security Properties
 
 ## unique_name
 
