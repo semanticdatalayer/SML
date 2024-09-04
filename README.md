@@ -15,7 +15,8 @@ Open: SML is Apache open-sourced to support community innovation and is free to 
 ## SML Example
 The following is an example of an SML `model` object:
 
-```unique_name: Internet Sales
+```
+unique_name: Internet Sales
 object_type: model
 label: Internet Sales
 visible: true
@@ -50,45 +51,45 @@ The following graphic illustrates the key SML objects and their relationships:
 
 ```mermaid
 classDiagram
-    relationship --* from : Contains
-    from ..> Dataset : Depends
-    from ..> Column : Depends
-    relationship --* to : Contains
-    to ..> Dimension : Depends
-    to ..> Level : Depends
-    to ..> RowSecurity : Depends
-    perspective ..> Metric : Depends
-    perspective ..> MetricCalc : Depends
-    perspective ..> Dimension : Depends
-    perspective ..> Hierarchy : Depends
-    perspective ..> LevelAttribute : Depends
-    perspective ..> SecondaryAttribute : Depends
-    perspective ..> Alias : Depends
-    perspective ..> MetricalAttribute : Depends
-    drillthrough ..> Metric : Depends
-    drillthrough ..> MetricCalc : Depends
-    drillthrough ..> LevelAttribute : Depends
-    drillthrough ..> SecondaryAttribute : Depends
-    drillthrough ..> Alias : Depends
-    drillthrough ..> MetricalAttribute : Depends
-    aggregate ..> Connection : Depends
-    aggregate ..> Metric : Depends
-    aggregate ..> MetricCalc : Depends
-    aggregate ..> LevelAttribute : Depends
-    aggregate ..> SecondaryAttribute : Depends
-    aggregate ..> Alias : Depends
-    aggregate ..> MetricalAttribute : Depends
-    partition ..> Dimension : Depends
-    partition ..> LevelAttribute : Depends
-    partition ..> SecondaryAttribute : Depends
-    partition ..> Alias : Depends
+    Relationship *-- From : Contains
+    From ..> Dataset : Depends
+    From ..> Column : Depends
+    Relationship *-- To : Contains
+    To ..> Dimension : Depends
+    To ..> Level : Depends
+    To ..> RowSecurity : Depends
+    Perspective ..> Metric : Depends
+    Perspective ..> MetricCalc : Depends
+    Perspective ..> Dimension : Depends
+    Perspective ..> Hierarchy : Depends
+    Perspective ..> LevelAttribute : Depends
+    Perspective ..> SecondaryAttribute : Depends
+    Perspective ..> Alias : Depends
+    Perspective ..> MetricalAttribute : Depends
+    Drillthrough ..> Metric : Depends
+    Drillthrough ..> MetricCalc : Depends
+    Drillthrough ..> LevelAttribute : Depends
+    Drillthrough ..> SecondaryAttribute : Depends
+    Drillthrough ..> Alias : Depends
+    Drillthrough ..> MetricalAttribute : Depends
+    Aggregate ..> Connection : Depends
+    Aggregate ..> Metric : Depends
+    Aggregate ..> MetricCalc : Depends
+    Aggregate ..> LevelAttribute : Depends
+    Aggregate ..> SecondaryAttribute : Depends
+    Aggregate ..> Alias : Depends
+    Aggregate ..> MetricalAttribute : Depends
+    Partition ..> Dimension : Depends
+    Partition ..> LevelAttribute : Depends
+    Partition ..> SecondaryAttribute : Depends
+    Partition ..> Alias : Depends
     Model ..> Dimension : Depends
     Model ..> Metric : Depends
-    Model *-- relationship : Contains
-    Model *-- perspective : Contains
-    Model *-- aggregate : Contains
-    Model *-- partition : Contains
-    Model *-- drillthrough : Contains
+    Model *-- Relationship : Contains
+    Model *-- Perspective : Contains
+    Model *-- Aggregate : Contains
+    Model *-- Partition : Contains
+    Model *-- Drillthrough : Contains
     Dataset ..> Connection : Depends
     Dataset *-- Column : Contains
     Dataset *-- Alternate : Contains
@@ -99,10 +100,10 @@ classDiagram
     Metric ..> Dataset : Depends
     Metric ..> Column : Depends
     Metric *-- SemiAdditive : Contains
-    SemiAdditive ..> relationship : Depends
+    SemiAdditive ..> Relationship : Depends
     Dimension *-- Hierarchy : Contains
     Dimension *-- LevelAttribute : Contains
-    Dimension *-- relationship : Contains
+    Dimension *-- Relationship : Contains
     Dimension *-- CalculationGroup : Contains
     Hierarchy *-- Level : Contains
     Level ..> LevelAttribute : Depends
@@ -136,16 +137,16 @@ namespace Models{
       const object_type
       String label
       String description
-      Array~relationship~ relationships
+      Array~Relationship~ relationships
       Array~String~ dimensions
-      Array~metric_reference~ metrics
-      Array~aggregate~ aggregates
-      Array~perspective~ perspectives
-      Array~drillthrough~ drillthroughs
-      Array~partition~ partition
+      Array~MetricReference~ metrics
+      Array~Aggregate~ aggregates
+      Array~Perspective~ perspectives
+      Array~Drillthrough~ drillthroughs
+      Array~Partition~ partition
       Boolean include_default_drillthrough
     }
-    class relationship{
+    class Relationship{
       String unique_name
       Object from
       Object to
@@ -153,57 +154,57 @@ namespace Models{
       String type
       Boolean m2m
     }
-    class from{
+    class From{
       String dataset
       Array~Column~ columns
     }
-    class to{
+    class To{
       String dimension
       String level
       String row_security
     }
-    class aggregate{
+    class Aggregate{
       String unique_name
       String label
       String target_connection
       Array~String~ metrics
-      Array~attribute_reference~ attributes
+      Array~AttributeReference~ attributes
     }
-    class drillthrough{
+    class Drillthrough{
       String unique_name
       String notes
       Array~String~ metrics
-      Array~attribute_reference~ attributes
+      Array~AttributeReference~ attributes
     }
-    class attribute_reference{
+    class AttributeReference{
       String name
       String dimension
       String partition
       String distribution
     }
-    class partition{
+    class Partition{
       String unique_name
       String dimension
       String attribute
       String type
     }
-    class perspective{
+    class Perspective{
       String unique_name
       Array~String~ metrics
-      Array~perspective_dimension~ dimensions
+      Array~PerspectiveDimension~ dimensions
     }
-    class metric_reference{
+    class MetricReference{
       String unique_name
       String folder
     }
-    class perspective_dimension{
+    class PerspectiveDimension{
       String name
       Boolean visible
-      Array~perspective_hierarchy~ hierarchies
+      Array~PerspectiveHierarchy~ hierarchies
       Array~String~ secondaryattributes
       Array~String~ metrics
     }
-    class perspective_hierarchy{
+    class PerspectiveHierarchy{
       String name
       Boolean visible
       Array~String~ levels
@@ -304,7 +305,7 @@ namespace Dimensions{
       Boolean is_degenerate
       Array~Hierarchy~ hierarchies
       Array~LevelAttribute~ level_attributes
-      Array~relationship~ relationships
+      Array~Relationship~ relationships
       Array~CalculationGroup~ calculation_groups
     }
     class Hierarchy{
@@ -419,8 +420,7 @@ namespace Row_Security{
       String scope
       Boolean secure_totals
     }
-}
-```
+}```
 
 ## SML Object Documentation
 
