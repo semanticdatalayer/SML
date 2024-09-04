@@ -12,7 +12,7 @@ Those defined in model files override their counterparts in
 `catalog.yml`.
 :::
 
-Sample `catalog.yml` file:
+Sample `catalog` file:
 ```
 unique_name: sml-models
 object_type: catalog
