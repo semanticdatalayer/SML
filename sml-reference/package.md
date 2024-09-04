@@ -6,6 +6,17 @@ individual objects (such as dimensions) across multiple models.
 
 Sample `package.yml` file:
 
+```
+packages:
+  - name: shared
+    url: https://github.com/company/shared
+    branch: main
+    version: 'latest' # 'commit:f35ce2d975cee7c8d95f9e4c93ef4946089950fd', 'tag:v2024.01'
+  - name: shared2
+    url: https://github.com/company/shared2
+    branch: main
+    version: 'latest' # 'commit:f35ce2d975cee7c8d95f9e4c93ef4946089950fd', 'tag:v2024.01'   ```
+
 Package files support the following properties.
 
 ## version
