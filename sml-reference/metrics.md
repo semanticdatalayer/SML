@@ -28,6 +28,17 @@ For more information on how metrics are used within AtScale, see
 [Modeling
 Metrics](../../c-creating-and-sharing-cubes/creating-cubes/modeling-cube-measures/index.md).
 
+Sample `metric` file:
+
+```
+unique_name: m_catalog_sales_coupon_amount_avg
+object_type: metric
+label: Catalog Sales  Average Coupon Amount
+calculation_method: average
+dataset: catalog_sales
+column: cs_sales_price
+```
+
 Metric files support the following properties.
 
 ## unique_name
