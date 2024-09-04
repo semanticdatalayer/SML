@@ -140,7 +140,7 @@ columns:
             ELSE ' 50 and Less' END"
 ```
 
-Dataset files support the following properties.
+# Dataset Properties
 
 ## unique_name
 
