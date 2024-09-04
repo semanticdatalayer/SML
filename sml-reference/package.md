@@ -4,8 +4,7 @@ Package files enable you to define additional Git repositories whose
 objects can be used in the current repository. This enables you to share
 individual objects (such as dimensions) across multiple models.
 
-For more information on working with packages, see [Working with
-Packages](../../c-creating-and-sharing-cubes/working-with-git/working-with-packages.md).
+Sample `package.yml` file:
 
 Package files support the following properties.
 
