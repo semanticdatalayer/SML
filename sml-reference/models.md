@@ -1382,7 +1382,7 @@ partitions:
        - store_sales_Date_Dimension_Sold
 ```
 
-Model files support the following properties.
+# Model Properties
 
 ## unique_name
 
