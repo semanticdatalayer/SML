@@ -9,7 +9,7 @@ must contain a file called `catalog.yml` at the root level.
 *Note:* Some properties can appear in both `catalog.yml` and [model
 files](../../c-creating-and-sharing-cubes/sml-reference/models.md).
 Those defined in model files override their counterparts in
-`atscale.yml`.
+`catalog.yml`.
 :::
 
 Sample `catalog.yml` file:
