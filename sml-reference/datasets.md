@@ -10,6 +10,136 @@ they reference, and can therefore be quite large. Because of this,
 AtScale recommends sharing these files across repositories.
 :::
 
+Sample `dataset` file:
+
+```
+unique_name: store_sales
+object_type: dataset
+label: store_sales
+connection_id: Connection - TPCDS
+table: store_sales
+
+columns:
+  - name: Net Profit Tier
+    data_type: string
+    sql: "CASE WHEN \"ss_net_profit\" > 25000 THEN 'More than 25000' 
+        WHEN \"ss_net_profit\" BETWEEN 3000 AND 25000 THEN '3000-25000'
+        WHEN \"ss_net_profit\" BETWEEN 2000 AND 3000 THEN '2000-3000'  
+        WHEN \"ss_net_profit\" BETWEEN 300 AND 2000 THEN '300-2000'  
+        WHEN \"ss_net_profit\" BETWEEN 250 AND 300 THEN '250-300'  
+        WHEN \"ss_net_profit\" BETWEEN 200 AND 250 THEN '200-250'
+        WHEN \"ss_net_profit\" BETWEEN 150 AND 200 THEN '150-200'
+        WHEN \"ss_net_profit\" BETWEEN 100 AND 150 THEN '100-150' 
+        WHEN \"ss_net_profit\" BETWEEN 50 AND 100 THEN ' 50-100'
+        WHEN \"ss_net_profit\" BETWEEN 0 AND 50 THEN '  0- 50' 
+        ELSE ' 50 or Less'
+        END"
+    dialects:
+      - dialect: DatabricksSQL
+        sql: "CASE WHEN ss_net_profit > 25000 THEN 'More than 25000' 
+            WHEN ss_net_profit BETWEEN 3000 AND 25000 THEN '3000-25000'
+            WHEN ss_net_profit BETWEEN 2000 AND 3000 THEN '2000-3000'  
+            WHEN ss_net_profit BETWEEN 300 AND 2000 THEN '300-2000'  
+            WHEN ss_net_profit BETWEEN 250 AND 300 THEN '250-300'  
+            WHEN ss_net_profit BETWEEN 200 AND 250 THEN '200-250'
+            WHEN ss_net_profit BETWEEN 150 AND 200 THEN '150-200'
+            WHEN ss_net_profit BETWEEN 100 AND 150 THEN '100-150' 
+            WHEN ss_net_profit BETWEEN 50 AND 100 THEN ' 50-100'
+            WHEN ss_net_profit BETWEEN 0 AND 50 THEN '  0- 50' 
+            ELSE ' 50 or Less'
+            END"
+      - dialect: BigQuery
+        sql: "CASE WHEN ss_net_profit > 25000 THEN 'More than 25000' 
+            WHEN ss_net_profit BETWEEN 3000 AND 25000 THEN '3000-25000'
+            WHEN ss_net_profit BETWEEN 2000 AND 3000 THEN '2000-3000'  
+            WHEN ss_net_profit BETWEEN 300 AND 2000 THEN '300-2000'  
+            WHEN ss_net_profit BETWEEN 250 AND 300 THEN '250-300'  
+            WHEN ss_net_profit BETWEEN 200 AND 250 THEN '200-250'
+            WHEN ss_net_profit BETWEEN 150 AND 200 THEN '150-200'
+            WHEN ss_net_profit BETWEEN 100 AND 150 THEN '100-150' 
+            WHEN ss_net_profit BETWEEN 50 AND 100 THEN ' 50-100'
+            WHEN ss_net_profit BETWEEN 0 AND 50 THEN '  0- 50' 
+            ELSE ' 50 or Less'
+            END"
+  - name: Purchased Amount in Store
+    data_type: "decimal(16,8)"
+    sql: "((\"ss_ext_list_price\"-\"ss_ext_wholesale_cost\"-\"ss_ext_discount_amt\")+\"ss_ext_sales_price\")/2"
+    dialects:
+      - dialect: DatabricksSQL
+        sql: "((ss_ext_list_price-ss_ext_wholesale_cost-ss_ext_discount_amt)+ss_ext_sales_price)/2"
+      - dialect: BigQuery
+        sql: "((ss_ext_list_price-ss_ext_wholesale_cost-ss_ext_discount_amt)+ss_ext_sales_price)/2"
+  - name: ss row counter
+    data_type: int
+    sql: "1"
+  - name: ss_addr_sk
+    data_type: long
+  - name: ss_cdemo_sk
+    data_type: long
+  - name: ss_coupon_amt
+    data_type: "decimal(7,2)"
+  - name: ss_customer_sk
+    data_type: long
+  - name: ss_ext_discount_amt
+    data_type: "decimal(7,2)"
+  - name: ss_ext_list_price
+    data_type: "decimal(7,2)"
+  - name: ss_ext_sales_price
+    data_type: "decimal(7,2)"
+  - name: ss_ext_tax
+    data_type: "decimal(7,2)"
+  - name: ss_ext_wholesale_cost
+    data_type: "decimal(7,2)"
+  - name: ss_hdemo_sk
+    data_type: long
+  - name: ss_item_sk
+    data_type: long
+  - name: ss_list_price
+    data_type: "decimal(7,2)"
+  - name: ss_net_paid
+    data_type: "decimal(7,2)"
+  - name: ss_net_paid_inc_tax
+    data_type: "decimal(7,2)"
+  - name: ss_net_profit
+    data_type: "decimal(7,2)"
+  - name: ss_promo_sk
+    data_type: long
+  - name: ss_quantity
+    data_type: long
+  - name: ss_sales_price
+    data_type: "decimal(7,2)"
+  - name: ss_sold_date_sk
+    data_type: long
+  - name: ss_sold_time_sk
+    data_type: long
+  - name: ss_store_sk
+    data_type: long
+  - name: ss_ticket_number
+    data_type: long
+  - name: ss_wholesale_cost
+    data_type: "decimal(7,2)"
+  - name: sales price tier
+    data_type: string
+    sql: "CASE WHEN \"ss_sales_price\" > 200 THEN '200 and More' 
+        WHEN \"ss_sales_price\" BETWEEN 150 AND 200 THEN '150-200' 
+        WHEN \"ss_sales_price\" BETWEEN 100 AND 150 THEN '100-150' 
+        WHEN \"ss_sales_price\" BETWEEN 50 AND 100 THEN ' 50-100'
+        ELSE ' 50 and Less' END"
+    dialects:
+      - dialect: DatabricksSQL
+        sql: "CASE WHEN ss_sales_price > 200 THEN '200 and More' 
+            WHEN ss_sales_price BETWEEN 150 AND 200 THEN '150-200' 
+            WHEN ss_sales_price BETWEEN 100 AND 150 THEN '100-150' 
+            WHEN ss_sales_price BETWEEN 50 AND 100 THEN ' 50-100'
+            ELSE ' 50 and Less' END"
+      - dialect: BigQuery
+        sql: "CASE WHEN ss_sales_price > 200 THEN '200 and More' 
+            WHEN ss_sales_price BETWEEN 150 AND 200 THEN '150-200' 
+            WHEN ss_sales_price BETWEEN 100 AND 150 THEN '100-150' 
+            WHEN ss_sales_price BETWEEN 50 AND 100 THEN ' 50-100'
+            ELSE ' 50 and Less' END"
+```
+
 Dataset files support the following properties.
 
 ## unique_name
