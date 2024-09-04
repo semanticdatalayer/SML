@@ -12,13 +12,12 @@ restrict a user's access to rows relating to specific countries only.
 
 Once you create a security row object, you can use it to secure other
 dimensions and datasets in a model by creating a relationship from the
-dataset/dimension you want secured to the security row file. For more
-information, see
-[Models](../../c-creating-and-sharing-cubes/sml-reference/models.md).
+dataset/dimension you want secured to the security row file.
 
-For more information on how security dimensions function in AtScale, see
-[Modeling Row Security
-Objects](../../c-creating-and-sharing-cubes/creating-cubes/modeling-row-security-objects/index.md).
+Sample `row_security` file:
+```
+Need a sample
+```
 
 Row security files support the following properties.
 
