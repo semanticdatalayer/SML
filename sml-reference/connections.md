@@ -19,7 +19,7 @@ database: tutorial_data
 schema: tpcds
 ```
 
-Connection files support the following properties.
+# Connection Properties
 
 ## unique_name
 
