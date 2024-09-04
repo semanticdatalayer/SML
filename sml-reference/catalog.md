@@ -1,18 +1,28 @@
 # Catalog
 
-`atscale.yml` (the catalog file) is the control file for an AtScale
+`catalog.yml` (the catalog file) is the control file for a SML
 repository. It contains all repository-level definitions, such as the
 repository name and settings for building aggregates. Each repository
-must contain a file called `atscale.yml` at the root level.
+must contain a file called `catalog.yml` at the root level.
 
 :::note
-*Note:* Some properties can appear in both `atscale.yml` and [model
+*Note:* Some properties can appear in both `catalog.yml` and [model
 files](../../c-creating-and-sharing-cubes/sml-reference/models.md).
 Those defined in model files override their counterparts in
 `atscale.yml`.
 :::
 
-`atscale.yml` supports the following properties.
+Sample `catalog.yml` file:
+```
+unique_name: sml-models
+object_type: catalog
+label: SML Model Library
+as_version: 1.0
+aggressive_agg_promotion: false
+build_speculative_aggs: false
+```
+
+`catalog.yml` supports the following properties.
 
 ## unique_name
 
