@@ -8,6 +8,17 @@ Each connection file should define a single database connection *and*
 its schema. If you need to use additional schemas for the same database,
 each must be defined in a separate connection file.
 
+Sample `connection` file:
+
+```
+unique_name: Connection - TPCDS
+label: Connection - TPCDS
+object_type: connection
+as_connection: Snowflake
+database: tutorial_data
+schema: tpcds
+```
+
 Connection files support the following properties.
 
 ## unique_name
