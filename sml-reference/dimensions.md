@@ -5,6 +5,186 @@ is a logical collection of attributes that are bound to specific columns
 in a source dataset. These attributes are in turn used to group and
 filter metric data at query time.
 
+Sample `dimension` file:
+
+```
+unique_name: Store Dimension
+object_type: dimension
+label: Store Dimension
+type: standard
+
+hierarchies:
+
+  - unique_name: Store Dimension
+    label: Store Dimension
+    folder: Store Attributes
+    filter_empty: "yes"
+
+    levels:
+
+      - unique_name: d_store_country
+
+      - unique_name: d_store_state
+
+      - unique_name: d_store_county
+
+      - unique_name: d_store_city
+
+      - unique_name: Store Dimension
+
+        secondary_attributes:
+
+          - unique_name: d_s_floor_space
+            label: Store Floor Space
+            folder: Store Attributes
+            dataset: store
+            name_column: s_floor_space
+            key_columns:
+              - s_floor_space
+            sort_column: s_floor_space
+
+          - unique_name: d_s_hours
+            label: Store Hours
+            folder: Store Attributes
+            dataset: store
+            name_column: s_hours
+            key_columns:
+              - s_hours
+            sort_column: s_hours
+
+          - unique_name: d_s_manager
+            label: Store Manager
+            folder: Store Attributes
+            dataset: store
+            name_column: s_manager
+            key_columns:
+              - s_manager
+            sort_column: s_manager
+
+          - unique_name: d_s_number_employees
+            label: Store Number of Employees
+            folder: Store Attributes
+            dataset: store
+            name_column: s_number_employees
+            key_columns:
+              - s_number_employees
+            sort_column: s_number_employees
+
+          - unique_name: d_store_company_id
+            label: Store Company ID
+            folder: Store Attributes
+            dataset: store
+            name_column: s_company_id
+            key_columns:
+              - s_company_id
+            sort_column: s_company_id
+
+          - unique_name: d_store_gmt_offset
+            label: Store GMT Offset
+            folder: Store Attributes
+            dataset: store
+            name_column: s_gmt_offset
+            key_columns:
+              - s_gmt_offset
+            sort_column: s_gmt_offset
+
+          - unique_name: d_store_name
+            label: Store Name
+            folder: Store Attributes
+            dataset: store
+            name_column: s_store_name
+            key_columns:
+              - s_store_name
+            sort_column: s_store_name
+
+          - unique_name: d_store_street_name
+            label: Store Street Name
+            folder: Store Attributes
+            dataset: store
+            name_column: s_street_name
+            key_columns:
+              - s_street_name
+            sort_column: s_street_name
+
+          - unique_name: d_store_street_number
+            label: Store Street Number
+            folder: Store Attributes
+            dataset: store
+            name_column: s_street_number
+            key_columns:
+              - s_street_number
+            sort_column: s_street_number
+
+          - unique_name: d_store_street_type
+            label: Store Street Type
+            folder: store attributes
+            dataset: store
+            name_column: s_street_type
+            key_columns:
+              - s_street_type
+            sort_column: s_street_type
+
+          - unique_name: d_store_suite_number
+            label: Store Suite Number
+            folder: Store Attributes
+            dataset: store
+            name_column: s_suite_number
+            key_columns:
+              - s_suite_number
+            sort_column: s_suite_number
+
+          - unique_name: d_store_zip_code
+            label: Store Zip Code
+            folder: Store Attributes
+            dataset: store
+            name_column: s_zip
+            key_columns:
+              - s_zip
+            sort_column: s_zip
+
+level_attributes:
+
+  - unique_name: d_store_city
+    label: Store City
+    dataset: store
+    name_column: s_city
+    key_columns:
+      - s_country
+      - s_state
+      - s_city
+
+  - unique_name: d_store_country
+    label: Store Country
+    dataset: store
+    name_column: s_country
+    key_columns:
+      - s_country
+
+  - unique_name: d_store_county
+    label: Store County
+    dataset: store
+    name_column: s_county
+    key_columns:
+      - s_state
+      - s_county
+
+  - unique_name: d_store_state
+    label: Store State
+    dataset: store
+    name_column: s_state
+    key_columns:
+      - s_country
+      - s_state
+
+  - unique_name: Store Dimension
+    label: Store Number
+    is_unique_key: true
+    dataset: store
+    name_column: s_store_sk
+    key_columns:
+      - s_store_sk
+```
+
 AtScale supports the following types of dimensions:
 
 - **Normal:** Dimensions that are based on a dataset. All data for a
