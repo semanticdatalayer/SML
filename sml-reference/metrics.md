@@ -18,16 +18,6 @@ AtScale supports the following types of metrics:
   dimensions in a model, but not all. Ratios such as average are also
   considered semi-additive metrics.
 
-:::note
-**Note:** AtScale also supports calculated metrics, which in SML are
-defined in calculation files. For more information, see
-[Calculations](%7B%7BcurrentVersion%7D%7D/c-creating-and-sharing-cubes/sml-reference/calculations).
-:::
-
-For more information on how metrics are used within AtScale, see
-[Modeling
-Metrics](../../c-creating-and-sharing-cubes/creating-cubes/modeling-cube-measures/index.md).
-
 Sample `metric` file:
 
 ```
@@ -39,7 +29,7 @@ dataset: catalog_sales
 column: cs_sales_price
 ```
 
-Metric files support the following properties.
+# Metric Properties
 
 ## unique_name
 
