@@ -6,7 +6,7 @@ such as the sum of sales or average order quantity. Metrics always
 result from an aggregate calculation applied to one or more columns of a
 fact dataset.
 
-AtScale supports the following types of metrics:
+SML supports the following types of metrics:
 
 - **Additive:** Metrics whose values can be summarized for any dimension
   attribute of the model and then combined consistently.
@@ -52,7 +52,7 @@ property must be `metric`.
 - **Type:** string
 - **Required** Y
 
-The name of the metric, as it appears in AtScale. This value does not
+The name of the metric, as it appears in the consunmption tool. This value does not
 need to be unique.
 
 ## calculation_method
@@ -152,7 +152,7 @@ The level with which the semi-additive metric is associated.
 - **Required:** N
 
 Only for non-additive metrics using a `calulation_method` of
-`percentile`. Defines the compression score the AtScale engine uses when
+`percentile`. Defines the compression score the semantic engine uses when
 estimating percentile values for query results.
 
 You can specify a value 1 - 50,000.
@@ -188,7 +188,7 @@ Supported values:
 - **Required:** N
 
 The format in which query results are returned. You can use one of
-AtScale's built-in named formats or a custom format string.
+SML's built-in named formats or a custom format string.
 
 Supported named formats:
 
@@ -209,7 +209,7 @@ Strings](../../c-creating-and-sharing-cubes/creating-cubes/formats-for-data-valu
 - **Type:** string
 - **Required:** N
 
-Determines how the AtScale engine behaves when all of the following
+Determines how the semantic engine behaves when all of the following
 conditions are true:
 
 - A client queries a model that contains multiple fact datasets.
@@ -220,9 +220,9 @@ conditions are true:
 
 Supported values:
 
-- `error`: AtScale rejects the query and returns an error message.
-- `empty`: AtScale displays empty cells in the query results.
-- `repeat`: In the query results, AtScale repeats the values for the
+- `error`: Query Engine rejects the query and returns an error message.
+- `empty`: Query Engine displays empty cells in the query results.
+- `repeat`: In the query results, Query Engine repeats the values for the
   metric at a level of aggregation that is determined from the shared
   dimensions in the query.
 

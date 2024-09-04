@@ -42,7 +42,7 @@ must be `connection`.
 - **Type:** string
 - **Required:** Y
 
-The name of the database connection as it appears in AtScale. This value
+The name of the database connection as it appears in the consumption tool. This value
 does not need to be unique.
 
 ## as_connection

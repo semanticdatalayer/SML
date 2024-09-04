@@ -7,7 +7,7 @@ in your database, or the results of a `SELECT` statement.
 :::note
 *Note:* Dataset files must define *all* columns in the physical tables
 they reference, and can therefore be quite large. Because of this,
-AtScale recommends sharing these files across repositories.
+we recommend sharing these files across repositories.
 :::
 
 Sample `dataset` file:
@@ -163,7 +163,7 @@ property must be `dataset`.
 - **Type:** string
 - **Required:** Y
 
-The name of the dataset, as it appears in AtScale. This value does not
+The name of the dataset, as it appears in the consumption tool. This value does not
 need to be unique.
 
 ## connection_id
@@ -300,9 +300,6 @@ Supported properties:
 The mapped columns are defined as separate columns within the dataset
 file. Each of these must have the `parent_column` property.
 
-For more information on maps in AtScale, see [Extract Values From A
-Map](../../c-creating-and-sharing-cubes/creating-cubes/working-with-datasets/adding-calculated-columns-to-datasets-for-simple-data-transformations/extract-values-from-a-map.md).
-
 ### parent_column
 
 - **Type:** string
@@ -326,8 +323,7 @@ A description of the dataset.
 Enables incremental builds for the dataset. When the engine performs an
 incremental rebuild of an aggregate table, it appends new rows and
 updates existing rows that fall within a specified period of time
-(called the grace period). For more information, see [About Incremental
-Rebuilds](../../c-managing-atscale/managing-aggregates/about-aggregates/about-incremental-rebuilds.md).
+(called the grace period).
 
 The `incremental` property supports the following properties.
 
@@ -339,7 +335,7 @@ The `incremental` property supports the following properties.
 The name of the dataset column to use as an incremental indicator. This
 column must have values that increase monotonically, such as a numeric
 UNIX timestamp showing seconds since epoch, or a Timestamp/DateTime. The
-values in this column enable the AtScale engine both to append rows to
+values in this column enable the query engine both to append rows to
 an aggregate table and update rows during an incremental rebuild.
 
 The values of this column should be of one of the following data types:
@@ -354,7 +350,7 @@ the right data type.
 - **Type:** string
 - **Required:** Y
 
-When the AtScale engine starts an incremental build, the `grace_period`
+When the semantic engine starts an incremental build, the `grace_period`
 determines how far back in time the engine looks for updates to rows in
 the dataset; for example, one week or 15 days.
 
@@ -370,6 +366,6 @@ seconds. Setting it to `'1w'` sets the grace period to one week.
 - **Type:** boolean
 - **Required:** N
 
-Determines whether the dataset changes often or not. The AtScale engine
+Determines whether the dataset changes often or not. The semantic engine
 uses this information when running incremental builds of aggregates that
 use joins on dimensions that do not change often.

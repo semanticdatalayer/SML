@@ -1,7 +1,7 @@
 # Calculations
 
 Calculation files define custom MDX expressions for creating calculated
-metrics in AtScale. They can be used to combine, evaluate, or manipulate
+metrics in SML. They can be used to combine, evaluate, or manipulate
 other metrics defined in the model. For example, you can do simple math
 operations to combine metrics, or simple comparison operations to return
 a given metric value when certain conditions are met.
@@ -42,7 +42,7 @@ this property must be `metric_calc`.
 - **Type:** string
 - **Required:** Y
 
-The name of the calculation as it appears in AtScale. This value does
+The name of the calculation as it appears in SML. This value does
 not need to be unique.
 
 ## expression
@@ -55,12 +55,6 @@ The MDX expression to use for the calculation.
 This expression must be written in MDX syntax, surrounded by quotes (").
 Additionally, it can only operate on existing metrics in the model, and
 must return a numeric value.
-
-:::note
-*Note:* AtScale only supports a small subset of MDX functions and
-operators. For more information, see [MDX
-Reference](../../c-creating-and-sharing-cubes/creating-cubes/modeling-cube-measures/add-calculated-measures/mdx-reference/index.md).
-:::
 
 ## description
 
@@ -75,7 +69,7 @@ A description of the calculation.
 - **Required:** N
 
 The format of the values returned by the calculation. You can use one of
-AtScale's built-in named formats, or a custom string format.
+SML's built-in named formats, or a custom string format.
 
 Supported named formats:
 
@@ -107,20 +101,6 @@ Supported values:
 
 - **Type:** string
 - **Required:** N
-
-The aggregation function to use when this calculation is referenced via
-the [Aggregate MDX
-function](../../c-creating-and-sharing-cubes/creating-cubes/modeling-cube-measures/add-calculated-measures/mdx-reference/aggregate.md).
-
-:::note
-*Note:* AtScale recommends including this property if you plan on
-referencing the calculation from calculation groups. Otherwise, you may
-encounter errors at query time. For more information on calculation
-groups, see [Using Calculation
-Groups](../../c-creating-and-sharing-cubes/creating-cubes/modeling-cube-dimensions/using-calculation-groups/index.md)
-and
-[Dimensions](../../c-creating-and-sharing-cubes/sml-reference/dimensions.md#calculation-groups).
-:::
 
 Supported values:
 

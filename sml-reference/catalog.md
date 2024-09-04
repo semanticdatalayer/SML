@@ -38,7 +38,7 @@ The type of object defined by the file. For `catalog.yml`, this must be
 - **Type:** string
 - **Required:** Y
 
-The name of the repository, as it appears in AtScale. This value does
+The name of the repository, as it appears in the consumption tool. This value does
 not need to be unique.
 
 ## as_version
@@ -70,7 +70,7 @@ Supported values:
 
 Enables/disables speculative aggregates for the repository.
 
-When enabled, the AtScale engine automatically creates aggregate tables
+When enabled, the query engine automatically creates aggregate tables
 that it anticipates being useful based on your models. These are
 intended to improve the performance of queries from client BI tools
 faster than with demand-defined aggregates alone.
@@ -94,7 +94,7 @@ Defines dataset properties to use within the repository.
 
 Supported properties:
 
-- `allow_aggregates`: Boolean, optional. Enables the AtScale engine to
+- `allow_aggregates`: Boolean, optional. Enables the query engine to
   create aggregates for datasets in the repository.
 - `allow_local_aggs`: Boolean, optional. Enables local aggregation for
   datasets in the repository.

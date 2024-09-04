@@ -24,7 +24,7 @@ SML supports the following types of dimensions:
 
 - **Many-to-many:** Also called multi-valued. This is when a fact
   dataset row refers to more than one row in a dimension dataset. In
-  AtScale, this is modeled by defining a dimensional bridge or junction
+  SML, this is modeled by defining a dimensional bridge or junction
   table to resolve the many-to-many relationship.
 
 Sample `dimension` file:
@@ -230,7 +230,7 @@ be `dimension`.
 - **Type:** string
 - **Required:** Y
 
-The name of the dimension, as it appears in AtScale. This value does not
+The name of the dimension, as it appears in the consunmption tool. This value does not
 need to be unique.
 
 ## description
@@ -398,10 +398,6 @@ marks):
 For example, if you wanted to use the prefix **Order**, you would set
 `role_play` to `"Order {0}"`.
 
-For more information on role-playing relationships in AtScale, see
-[Role-Playing
-Relationships](../../c-creating-and-sharing-cubes/creating-cubes/modeling-relationships/types-of-relationships-in-an-atscale-cube/role-playing-relationships.md).
-
 # Calculation Group Properties
 
 ## unique_name
@@ -545,7 +541,7 @@ Specifies the unique name of the level. This must be unique within the dimension
 
 Defines secondary attributes for the dimension level. Secondary attributes are dimensional attributes that are not the dimension's key, and are not part of a hierarchy.
 
-AtScale supports the following types of secondary attributes:
+SML supports the following types of secondary attributes:
 
 - **Dimensional:** Provides an independent "dimensional" attribute for
   grouping metric data. This is the default type of secondary attribute.
@@ -696,7 +692,7 @@ The unique name of the alias. This must be unique within the dimension.
 - **Type:** String
 - **Required:** Y
 
-The name of the alias as it appears in AtScale and BI tools. This value does not need to be unique.
+The name of the alias as it appears in the consunmption tool and BI tools. This value does not need to be unique.
 
 ## description
 
@@ -808,7 +804,7 @@ The unique name of the metrical attribute. This must be unique within the dimens
 - **Type:** String
 - **Required:** Y
 
-The name of the metrical attribute as it appears in AtScale and BI tools. This value does not need to be unique.
+The name of the metrical attribute as it appears in the consunmption tool. This value does not need to be unique.
 
 ## description
 
@@ -924,9 +920,9 @@ Determines how the query engine behaves when all of the following conditions are
 
 Supported values:
 
-> - `error`: AtScale rejects the query and returns an error message.
-> - `empty`: AtScale displays empty cells in the query results.
-> - `repeat`: In the query results, AtScale repeats the values for
+> - `error`: Query Engine rejects the query and returns an error message.
+> - `empty`: Query Engine displays empty cells in the query results.
+> - `repeat`: In the query results, Query Engine repeats the values for
 >   the secondary metrical attribute at a level of aggregation that
 >   is determined from the shared dimensions in the query.
 
@@ -945,7 +941,7 @@ dimension.
 - **Type:** string
 - **Required:** Y
 
-The name of the level attribute, as it appears in AtScale. This value
+The name of the level attribute, as it appears in the consunmption tool. This value
 does not need to be unique.
 
 ## dataset
@@ -1009,12 +1005,6 @@ Supported values:
   behavior considers the first matching row at query runtime.
 - `false`: The key column values are multi-valued. The join behavior
   considers all matching rows at query runtime.
-
-:::note
-*Note:* Setting this value to `true` is equivalent to declaring the key
-to be a primary key. The AtScale engine uses this property as input when
-joining rows from this dimension level to other datasets in the model.
-:::
 
 ## contains\_unique\_names
 

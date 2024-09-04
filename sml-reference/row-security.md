@@ -3,7 +3,7 @@
 Row security files enable you to define security objects, which restrict
 access to data in a model. These restrictions can be configured at
 either the user or the group level. When users run queries against a
-model, AtScale uses the `row_security` object as a runtime constraint.
+model, the semantic engine uses the `row_security` object as a runtime constraint.
 
 Row security requires a separate dataset that maps user or group IDs to
 specific rows in a dimension or fact dataset. Each user or group can
@@ -42,7 +42,7 @@ value of this property must be `row_security`.
 - **Type:** string
 - **Required:** Y
 
-The name of the security object, as it appears in AtScale. This value
+The name of the security object, as it appears in the consunmption tool. This value
 does not need to be unique.
 
 ## dataset
@@ -66,7 +66,7 @@ has access to.
 - **Type:** string
 - **Required:** Y
 
-The column of the security dataset that contains AtScale user/group IDs.
+The column of the security dataset that contains user/group IDs.
 
 ## id_type
 
@@ -118,7 +118,7 @@ A description of the security object.
 - **Type:** boolean
 - **Required:** N
 
-Determines how AtScale enforces security.
+Determines how SML enforces security.
 
 Supported values:
 
