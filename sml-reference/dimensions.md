@@ -5,6 +5,28 @@ is a logical collection of attributes that are bound to specific columns
 in a source dataset. These attributes are in turn used to group and
 filter metric data at query time.
 
+SML supports the following types of dimensions:
+
+- **Normal:** Dimensions that are based on a dataset. All data for a
+  normal dimension is normalized into a single table or view. There are
+  two types of normal dimensions:
+- **Standard:** Can have any type of hierarchy.
+- **Time:** Must have a time hierarchy.
+
+- **Degenerate:** A dimension that is based on one or more columns in a
+  fact dataset.
+
+- **Shared degenerate:** A dimension that is based on one or more
+  columns that are common to two or more fact datasets.
+
+- **Snowflake:** A logical dimension that is composed of multiple
+  underlying physical datasets.
+
+- **Many-to-many:** Also called multi-valued. This is when a fact
+  dataset row refers to more than one row in a dimension dataset. In
+  AtScale, this is modeled by defining a dimensional bridge or junction
+  table to resolve the many-to-many relationship.
+
 Sample `dimension` file:
 
 ```
@@ -184,31 +206,6 @@ level_attributes:
     key_columns:
       - s_store_sk
 ```
-
-AtScale supports the following types of dimensions:
-
-- **Normal:** Dimensions that are based on a dataset. All data for a
-  normal dimension is normalized into a single table or view. There are
-  two types of normal dimensions:
-- **Standard:** Can have any type of hierarchy.
-- **Time:** Must have a time hierarchy.
-
-- **Degenerate:** A dimension that is based on one or more columns in a
-  fact dataset.
-
-- **Shared degenerate:** A dimension that is based on one or more
-  columns that are common to two or more fact datasets.
-
-- **Snowflake:** A logical dimension that is composed of multiple
-  underlying physical datasets.
-
-- **Many-to-many:** Also called multi-valued. This is when a fact
-  dataset row refers to more than one row in a dimension dataset. In
-  AtScale, this is modeled by defining a dimensional bridge or junction
-  table to resolve the many-to-many relationship.
-
-For more information on using dimensions in AtScale, see [Modeling
-Dimensions](../../c-creating-and-sharing-cubes/creating-cubes/modeling-cube-dimensions/index.md).
 
 Dimension files support the following properties.
 
