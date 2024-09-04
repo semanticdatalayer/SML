@@ -18,7 +18,7 @@ packages:
     version: 'latest' # 'commit:f35ce2d975cee7c8d95f9e4c93ef4946089950fd', 'tag:v2024.01'
 ```
 
-Package files support the following properties.
+# Package Properties
 
 ## version
 
