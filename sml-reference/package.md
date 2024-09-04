@@ -4,7 +4,7 @@ Package files enable you to define additional Git repositories whose
 objects can be used in the current repository. This enables you to share
 individual objects (such as dimensions) across multiple models.
 
-Sample `package.yml` file:
+Sample `package` file:
 
 ```
 packages:
