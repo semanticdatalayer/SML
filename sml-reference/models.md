@@ -233,6 +233,7 @@ namespace Models{
       String unique_name
       String label
       String target_connection
+      enum caching
       Array~String~ metrics
       Array~AttributeReference~ attributes
     }
@@ -615,6 +616,17 @@ need to be unique.
 - **Required:** Y
 
 The database that the semantic engine writes the aggregate table to.
+
+### caching
+
+- **Type:** enum
+- **Required:** N
+
+This setting will control whether the aggregate is pinned in local cache.
+
+Supported values:
+
+- `engine-memory`
 
 ### metrics
 

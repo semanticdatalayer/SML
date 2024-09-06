@@ -159,7 +159,7 @@ classDiagram
     Level *-- SecondaryAttribute
     Level *-- MetricalAttribute
     Level *-- Alias
-    CalculationGroup *-- DimensionMetricCalc
+    CalculationGroup *-- CalculatedMember
     SecondaryAttribute *-- CustomEmptyMember
     Alias *-- CustomEmptyMember
     MetricalAttribute *-- CustomEmptyMember    
@@ -280,9 +280,9 @@ namespace Dimensions{
       String label
       String description
       String folder
-      Array~DimensionMetricCalc~ calculated_members
+      Array~CalculatedMember~ calculated_members
     }
-    class DimensionMetricCalc{
+    class CalculatedMember{
       String name
       String description
       String format
@@ -876,7 +876,7 @@ Supported values:
 Defines custom empty member values for the alias. This feature allows fact data with missing or invalid foreign key values to be isolated and independently aggregated from those with valid foreign key values. Because fact records with invalid foreign keys are aggregated separately from records referencing valid dimension members, analysts can easily spot data integrity problems and further investigate them. Use this feature to ensure that un-joinable values are included in query results and aggregated under a specially designated dimension member called the Custom Empty Member.
 
 
-# Metric Properties
+# Metrical Attribute Properties
 
 ## unique_name
 
