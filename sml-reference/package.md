@@ -36,7 +36,7 @@ The schema version for the file. The value of this property should be
 A list of the Git repositories that the current repository can use
 objects from.
 
-`packages` supports the following properties:
+`package` supports the following properties:
 
 - `name`: String, required. The name of the repository.
 - `url`: String, required. The URL for the repository.

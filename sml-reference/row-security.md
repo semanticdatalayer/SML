@@ -15,8 +15,39 @@ dimensions and datasets in a model by creating a relationship from the
 dataset/dimension you want secured to the security row file.
 
 Sample `row_security` file:
+
 ```
-Need a sample
+unique_name: Country Security Filter
+label: Country Security Filter
+object_type: row_security
+dataset: user_country_mapping
+filter_key_column: country
+use_filter_key: true
+ids_column: username
+id_type: groupname
+scope: related
+secure_totals: true
+```
+
+How to reference the above `row_security` object in a `model`:
+
+```
+  - unique_name: factinternetsales_Security_Dim
+    from:
+      dataset: factinternetsales
+      join_columns:
+        - salesordernumber
+    to:
+      row_security: Security Dim
+```
+
+How to reference the above `row_security` object in a `dimension`:
+
+```
+  - unique_name: GeographyDimension_CustomerDimSecurity
+    from:
+      hierarchy: Geography City
+      level: CountryCity
 ```
 
 # Row Security Properties
