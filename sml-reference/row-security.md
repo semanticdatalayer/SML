@@ -38,7 +38,7 @@ How to reference the above `row_security` object in a `model`:
       join_columns:
         - salesordernumber
     to:
-      row_security: Security Dim
+      row_security: Country Security Filter
 ```
 
 How to reference the above `row_security` object in a `dimension`:
@@ -48,6 +48,12 @@ How to reference the above `row_security` object in a `dimension`:
     from:
       hierarchy: Geography City
       level: CountryCity
+      dataset: dim_geo_country
+      join_columns:
+        - country
+    to:
+      row_security: Country Security Filter
+    type: embedded
 ```
 
 # Row Security Properties
