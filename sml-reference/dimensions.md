@@ -159,7 +159,7 @@ classDiagram
     Level *-- SecondaryAttribute
     Level *-- MetricalAttribute
     Level *-- Alias
-    CalculationGroup *-- CalculatedMember
+    CalculationGroup *-- Calculated Members
     SecondaryAttribute *-- CustomEmptyMember
     Alias *-- CustomEmptyMember
     MetricalAttribute *-- CustomEmptyMember    
@@ -280,9 +280,9 @@ namespace Dimensions{
       String label
       String description
       String folder
-      Array~CalculatedMember~ calculated_members
+      Array~Calculated Members~ calculated_members
     }
-    class CalculatedMember{
+    class Calculated Members{
       String name
       String description
       String format
