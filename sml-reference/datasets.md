@@ -140,6 +140,62 @@ columns:
             ELSE ' 50 and Less' END"
 ```
 
+# Entity Relationships
+
+```mermaid
+classDiagram
+    Dataset *-- Column
+    Dataset *-- Alternate
+    Dataset *-- Incremental
+    Incremental ..> Column
+    Column *-- MapColumn
+    Dataset *-- Dialect
+    Column *-- Dialect
+namespace Datasets{    
+    class Dataset{
+      String unique_name
+      const object_type
+      String label
+      String description
+      String connection_id
+      String sql
+      String table
+      Array~Column~ columns
+      Array~Dialect~ dialects
+      Boolean immutable
+      Alternate alternate
+      Incremental incremental
+    }
+    class Column{
+      String name
+      const data_type
+      String sql
+      Array~Dialect~ dialects
+      MapColumn map
+    }
+    class Dialect{
+      String dialect
+      String sql
+    }
+    class Alternate{
+      String type
+      String connection_id
+      String table
+      String sql      
+    }
+    class Incremental{
+      String column
+      String grace_period
+    }
+    class MapColumn{
+      String field_terminator
+      String key_terminator
+      String key_type
+      String value_type
+      Boolean is_prefixed
+    }
+}```
+
 # Dataset Properties
 
 ## unique_name
