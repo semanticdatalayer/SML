@@ -29,6 +29,35 @@ dataset: catalog_sales
 column: cs_sales_price
 ```
 
+# Entity Relationships
+
+```mermaid
+classDiagram
+    Metric *-- SemiAdditive
+namespace Metrics{
+    class Metric{
+      String unique_name
+      String label
+      const object_type
+      String description
+      String calculation_method
+      String dataset
+      String column
+      SemiAdditive semi_additive
+      int compression
+      String named_quantiles
+      Array~double~ custom_quantiles
+      String format
+      enum unrelated_dimensions_handling
+      Boolean is_hidden
+    }
+    class SemiAdditive{
+      String position
+      ~Array~Relationship~~ relationships
+    }
+}
+```
+
 # Metric Properties
 
 ## unique_name
