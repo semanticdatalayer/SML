@@ -148,6 +148,9 @@ level_attributes:
 
 ```mermaid
 classDiagram
+    Relationship *-- From
+    Relationship *-- To
+    Dimension *-- Relationship
     Dimension *-- Hierarchy
     Dimension *-- LevelAttribute
     Dimension *-- CalculationGroup
@@ -172,6 +175,23 @@ namespace Dimensions{
       Array~LevelAttribute~ level_attributes
       Array~Relationship~ relationships
       Array~CalculationGroup~ calculation_groups
+    }
+    class Relationship{
+      String unique_name
+      Object from
+      Object to
+      String role_play
+      String type
+      Boolean m2m
+    }
+    class From{
+      String dataset
+      Array~Column~ columns
+    }
+    class To{
+      String dimension
+      String level
+      String row_security
     }
     class Hierarchy{
       String unique_name
