@@ -65,15 +65,6 @@ hierarchies:
               - s_floor_space
             sort_column: s_floor_space
 
-          - unique_name: d_s_hours
-            label: Store Hours
-            folder: Store Attributes
-            dataset: store
-            name_column: s_hours
-            key_columns:
-              - s_hours
-            sort_column: s_hours
-
           - unique_name: d_s_manager
             label: Store Manager
             folder: Store Attributes
@@ -101,15 +92,6 @@ hierarchies:
               - s_company_id
             sort_column: s_company_id
 
-          - unique_name: d_store_gmt_offset
-            label: Store GMT Offset
-            folder: Store Attributes
-            dataset: store
-            name_column: s_gmt_offset
-            key_columns:
-              - s_gmt_offset
-            sort_column: s_gmt_offset
-
           - unique_name: d_store_name
             label: Store Name
             folder: Store Attributes
@@ -118,51 +100,6 @@ hierarchies:
             key_columns:
               - s_store_name
             sort_column: s_store_name
-
-          - unique_name: d_store_street_name
-            label: Store Street Name
-            folder: Store Attributes
-            dataset: store
-            name_column: s_street_name
-            key_columns:
-              - s_street_name
-            sort_column: s_street_name
-
-          - unique_name: d_store_street_number
-            label: Store Street Number
-            folder: Store Attributes
-            dataset: store
-            name_column: s_street_number
-            key_columns:
-              - s_street_number
-            sort_column: s_street_number
-
-          - unique_name: d_store_street_type
-            label: Store Street Type
-            folder: store attributes
-            dataset: store
-            name_column: s_street_type
-            key_columns:
-              - s_street_type
-            sort_column: s_street_type
-
-          - unique_name: d_store_suite_number
-            label: Store Suite Number
-            folder: Store Attributes
-            dataset: store
-            name_column: s_suite_number
-            key_columns:
-              - s_suite_number
-            sort_column: s_suite_number
-
-          - unique_name: d_store_zip_code
-            label: Store Zip Code
-            folder: Store Attributes
-            dataset: store
-            name_column: s_zip
-            key_columns:
-              - s_zip
-            sort_column: s_zip
 
 level_attributes:
 
@@ -205,6 +142,135 @@ level_attributes:
     name_column: s_store_sk
     key_columns:
       - s_store_sk
+```
+
+# Entitity Relationships
+
+```mermaid
+classDiagram
+    Dimension *-- Hierarchy
+    Dimension *-- LevelAttribute
+    Dimension *-- CalculationGroup
+    Hierarchy *-- Level
+    LevelAttribute *-- CustomEmptyMember
+    Level *-- SecondaryAttribute
+    Level *-- MetricalAttribute
+    Level *-- Alias
+    CalculationGroup *-- DimensionMetricCalc
+    SecondaryAttribute *-- CustomEmptyMember
+    Alias *-- CustomEmptyMember
+    MetricalAttribute *-- CustomEmptyMember    
+namespace Dimensions{
+    class Dimension{
+      String unique_name
+      String label
+      const object_type
+      String description
+      enum type
+      Boolean is_degenerate
+      Array~Hierarchy~ hierarchies
+      Array~LevelAttribute~ level_attributes
+      Array~Relationship~ relationships
+      Array~CalculationGroup~ calculation_groups
+    }
+    class Hierarchy{
+      String unique_name
+      String label
+      String folder
+      enum filter_empty
+      Array~Level~ levels
+    }
+    class Level{
+      String unique_name
+      String description
+      Array~SecondaryAttribute~ secondary_attributes
+      Array~Alias~ aliases
+      Array~MetricalAttribute~ metrics
+      String default_member
+      Boolean is_hidden
+    }
+    class Alias{
+      String unique_name
+      String label
+      String description
+      String dataset
+      String name_column
+      String sort_column
+      String folder
+      Boolean is_hidden
+      Boolean exclude_from_dim_agg
+      Boolean exclude_from_fact_agg
+      Array~CustomEmptyMember~ custom_empty_member
+      Array~String~ allowed_calcs_for_dma
+      Object role
+    }
+    class MetricalAttribute{
+      String unique_name
+      String label
+      String description
+      String folder
+      String format
+      String calculation_method
+      String dataset
+      String column
+      Boolean is_hidden
+      Boolean exclude_from_dim_agg
+      Boolean exclude_from_fact_agg
+      CustomEmptyMember custom_empty_member
+      enum unrelated_dimensions_handling
+      Array~String~ allowed_calcs_for_dma
+    }
+    class LevelAttribute{
+      String unique_name
+      String label
+      String description
+      String dataset
+      String name_column
+      String sort_column
+      Array~String~ key_columns
+      Boolean contains_unique_names
+      Boolean is_hidden
+      Boolean is_unique_key
+      Boolean exclude_from_dim_agg
+      Boolean exclude_from_fact_agg
+      String time_unit
+      Array~String~ allowed_calcs_for_dma
+    }
+    class SecondaryAttribute{
+      String unique_name
+      String label
+      String description
+      String folder
+      String dataset
+      String name_column
+      String sort_column
+      Array~String~ key_columns
+      Boolean exclude_from_dim_agg
+      Boolean exclude_from_fact_agg
+      Array~String~ allowed_calcs_for_dma
+      Array~CustomEmptyMember~ custom_empty_member
+    }
+    class CustomEmptyMember{
+      Array~String~ key
+      String name
+      String sort_name
+    }
+    class CalculationGroup{
+      String unique_name
+      String label
+      String description
+      String folder
+      Array~DimensionMetricCalc~ calculated_members
+    }
+    class DimensionMetricCalc{
+      String name
+      String description
+      String format
+      String expression
+      Boolean is_default
+      Boolean use_input_measure_format
+    }
+}
 ```
 
 # Dimension Properties
