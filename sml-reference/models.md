@@ -1382,6 +1382,106 @@ partitions:
        - store_sales_Date_Dimension_Sold
 ```
 
+# Entity Relationships
+
+```mermaid
+classDiagram
+    Relationship *-- From
+    Relationship *-- To
+    Model ..> DimensionReference
+    Model ..> MetricReference
+    Model *-- Relationship
+    Model *-- Perspective
+    Model *-- Aggregate
+    Model *-- Partition
+    Model *-- Drillthrough
+    Aggregate *-- AttributeReference
+    Perspective *-- PerspectiveDimension
+    PerspectiveDimension *-- PerspectiveHierarchy
+namespace Models{
+    class Model{
+      String unique_name
+      const object_type
+      String label
+      String description
+      Array~Relationship~ relationships
+      Array~String~ dimensions
+      Array~MetricReference~ metrics
+      Array~Aggregate~ aggregates
+      Array~Perspective~ perspectives
+      Array~Drillthrough~ drillthroughs
+      Array~Partition~ partition
+      Boolean include_default_drillthrough
+    }
+    class Relationship{
+      String unique_name
+      Object from
+      Object to
+      String role_play
+      String type
+      Boolean m2m
+    }
+    class From{
+      String dataset
+      Array~Column~ columns
+    }
+    class To{
+      String dimension
+      String level
+      String row_security
+    }
+    class Aggregate{
+      String unique_name
+      String label
+      String target_connection
+      Array~String~ metrics
+      Array~AttributeReference~ attributes
+    }
+    class Drillthrough{
+      String unique_name
+      String notes
+      Array~String~ metrics
+      Array~AttributeReference~ attributes
+    }
+    class AttributeReference{
+      String name
+      String dimension
+      String partition
+      String distribution
+    }
+    class Partition{
+      String unique_name
+      String dimension
+      String attribute
+      String type
+    }
+    class Perspective{
+      String unique_name
+      Array~String~ metrics
+      Array~PerspectiveDimension~ dimensions
+    }
+    class MetricReference{
+      String unique_name
+      String folder
+    }
+    class DimensionReference{
+      String unique_name
+    }
+    class PerspectiveDimension{
+      String name
+      Boolean visible
+      Array~PerspectiveHierarchy~ hierarchies
+      Array~String~ secondaryattributes
+      Array~String~ metrics
+    }
+    class PerspectiveHierarchy{
+      String name
+      Boolean visible
+      Array~String~ levels
+    }
+}
+```
+
 # Model Properties
 
 ## unique_name

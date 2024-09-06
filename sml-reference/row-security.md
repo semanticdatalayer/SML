@@ -29,18 +29,6 @@ scope: related
 secure_totals: true
 ```
 
-How to reference the above `row_security` object in a `model`:
-
-```
-  - unique_name: factinternetsales_Security_Dim
-    from:
-      dataset: factinternetsales
-      join_columns:
-        - salesordernumber
-    to:
-      row_security: Country Security Filter
-```
-
 How to reference the above `row_security` object in a `dimension`:
 
 ```
