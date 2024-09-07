@@ -111,7 +111,5 @@ values you want to set for it at the repository level. For example:
 :::note
 *Note:* Datasets are typically defined at the repository level, in
 `catalog.yml`; however, datasets used by a specific model (typically
-fact datasets) can be defined within the model itself. For more
-information, see
-[Models](../../c-creating-and-sharing-cubes/sml-reference/models.md).
+fact datasets) can be defined within the model itself.
 :::

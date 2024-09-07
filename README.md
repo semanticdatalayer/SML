@@ -53,17 +53,18 @@ The following graphic illustrates the key SML objects and their relationships:
 erDiagram
     CATALOG }|..|{ MODEL : has
     CATALOG }|..|{ PACKAGE : "may have"
-    MODEL ||--|{ DIMENSION : contains
-    MODEL ||--|{ METRIC : contains
-    MODEL ||--|{ METRIC_CALC : contains
+    MODEL ||--|{ DIMENSION : references
+    MODEL ||--|{ METRIC : references
+    MODEL ||--|{ METRIC_CALC : references
     MODEL ||--|{ PACKAGE : "may reference"
-    DIMENSION ||--|{ DATASET : contains
-    MODEL ||--|{ ROW_SECURITY : "may contain"
-    DIMENSION ||--|{ ROW_SECURITY : "may contain"
-    METRIC ||--|{ DATASET : contains
-    METRIC_CALC ||--|{ METRIC : "may contain"
-    METRIC_CALC ||--|{ DIMENSION : "may contain"
-    DATASET ||--|{ CONNECTION : contains
+    MODEL ||--|{ DATASET : references
+    DIMENSION ||--|{ DATASET : references
+    MODEL ||--|{ ROW_SECURITY : "may reference"
+    DIMENSION ||--|{ ROW_SECURITY : "may reference"
+    METRIC ||--|{ DATASET : references
+    METRIC_CALC ||--|{ METRIC : "may reference"
+    METRIC_CALC ||--|{ DIMENSION : "may reference"
+    DATASET ||--|{ CONNECTION : references
 ```
 
 ## SML Object Documentation
@@ -73,13 +74,13 @@ as the properties available for each:
 
 - [Catalog](sml-reference/catalog.md)
 - [Package](sml-reference/package.md)
-- [Calculations](sml-reference/calculations.md)
-- [Connections](sml-reference/connections.md)
-- [Datasets](sml-reference/datasets.md)
-- [Dimensions](sml-reference/dimensions.md)
-- [Metrics](sml-reference/metrics.md)
 - [Models](sml-reference/models.md)
+- [Dimensions](sml-reference/dimensions.md)
 - [Row Security](sml-reference/row-security.md)
+- [Metrics](sml-reference/metrics.md)
+- [Calculations](sml-reference/calculations.md)
+- [Datasets](sml-reference/datasets.md)
+- [Connections](sml-reference/connections.md)
 
 ## What's in this repository?
 
