@@ -74,13 +74,13 @@ as the properties available for each:
 
 - [Catalog](sml-reference/catalog.md)
 - [Package](sml-reference/package.md)
-- [Model](sml-reference/models.md)
-- [Dimension](sml-reference/dimensions.md)
+- [Model](sml-reference/model.md)
+- [Dimension](sml-reference/dimension.md)
 - [Row Security](sml-reference/row-security.md)
-- [Metric](sml-reference/metrics.md)
-- [Calculation](sml-reference/calculations.md)
-- [Dataset](sml-reference/datasets.md)
-- [Connection](sml-reference/connections.md)
+- [Metric](sml-reference/metric.md)
+- [Calculation](sml-reference/calculation.md)
+- [Dataset](sml-reference/dataset.md)
+- [Connection](sml-reference/connection.md)
 
 ## What's in this repository?
 
