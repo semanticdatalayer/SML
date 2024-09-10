@@ -23,7 +23,7 @@ classDiagram
       String unique_name
       const object_type
       String label
-      int as_version
+      int version
       Boolean aggressive_agg_promotion
       Boolean build_speculative_aggs
       Object dataset_properties
@@ -56,7 +56,7 @@ The type of object defined by the file. For `catalog.yml`, this must be
 The name of the repository, as it appears in the consumption tool. This value does
 not need to be unique.
 
-## as_version
+## version
 
 - **Type:** number
 - **Required:** Y
