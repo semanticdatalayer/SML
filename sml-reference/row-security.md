@@ -44,6 +44,25 @@ How to reference the above `row_security` object in a `dimension`:
     type: embedded
 ```
 
+# Entitity Relationships
+
+```mermaid
+classDiagram
+    class RowSecurity{
+      String unique_name
+      String label
+      const object_type
+      String description
+      String dataset
+      String filter_key_column
+      Boolean use_filter_key
+      String ids_column
+      String id_type
+      String scope
+      Boolean secure_totals
+    }
+```
+
 # Row Security Properties
 
 ## unique_name

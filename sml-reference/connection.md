@@ -19,6 +19,20 @@ database: tutorial_data
 schema: tpcds
 ```
 
+# Entitity Relationships
+
+```mermaid
+classDiagram
+    class Connection{
+      String unique_name
+      String label
+      const object_type
+      String as_connection
+      String database
+      String schema
+    }
+```
+
 # Connection Properties
 
 ## unique_name

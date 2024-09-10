@@ -18,6 +18,23 @@ packages:
     version: 'latest' # 'commit:f35ce2d975cee7c8d95f9e4c93ef4946089950fd', 'tag:v2024.01'
 ```
 
+# Entitity Relationships
+
+```mermaid
+classDiagram
+Packages *-- Package : Contains
+    class Packages{
+      int version
+      Array~Package~ packages
+    }
+    class Package{
+      String name
+      String url
+      String branch
+      int version
+    }
+```
+
 # Package Properties
 
 ## version

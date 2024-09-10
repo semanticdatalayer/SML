@@ -15,6 +15,21 @@ aggressive_agg_promotion: false
 build_speculative_aggs: false
 ```
 
+# Entitity Relationships
+
+```mermaid
+classDiagram
+    class Catalog{
+      String unique_name
+      const object_type
+      String label
+      int as_version
+      Boolean aggressive_agg_promotion
+      Boolean build_speculative_aggs
+      Object dataset_properties
+    }
+```
+
 # Catalog Properties
 
 ## unique_name

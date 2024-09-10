@@ -19,6 +19,21 @@ label: Average Catalog Unit Net Profit
 expression: "[Measures].[m_cs_net_profit_sum]/[Measures].[m_cs_quantity_sum]"
 ```
 
+# Entitity Relationships
+
+```mermaid
+classDiagram
+    class MetricCalc{
+      String unique_name
+      String label
+      String description
+      const object_type
+      String format
+      String expression
+      String default_aggregation
+    }
+```
+
 # Calculation Properties
 
 ## unique_name
