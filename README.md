@@ -96,10 +96,10 @@ as the properties available for each:
 ## Model Library
 
 ### Tutorial Models
-1. [Internet Sales](models/tutorials/internet-sales) - a simple, single-fact model derived from the fictitious AdventureWorks retail dataset.
-2. [World Wide Importers](models/tutorials/world-wide-importers) - a more complex, multi-fact model representing a fictional wholesale and distribution company.
-3. [TPC-DS](models/tutorials/tpc-ds) - a complex, multi-fact model that encodes the [TPC-DS](https://www.tpc.org/tpcds/) benchmark model in SML.
+1. [Internet Sales](https://github.com/semanticdatalayer/sml-tutorials-internet-sales.git) - a simple, single-fact model derived from the fictitious AdventureWorks retail dataset.
+2. [World Wide Importers](https://github.com/semanticdatalayer/sml-tutorials-ww-importers.git) - a more complex, multi-fact model representing a fictional wholesale and distribution company.
+3. [TPC-DS](https://github.com/semanticdatalayer/sml-tutorials-tpc-ds.git) - a complex, multi-fact model that encodes the [TPC-DS](https://www.tpc.org/tpcds/) benchmark model in SML.
 
 ### Marketplace Models
-1. [Snowplow Digital Analytics Model](https://github.com/AtScaleInc/sml-models-snowplow) - Snowplow empowers organizations to create a scalable, first-party data foundation so marketing and data teams can effectively analyze and tackle Customer 360 use cases.
-2. [CRISP CPG Retail and Distributor Data Model](https://github.com/AtScaleInc/sml-models-crisp-cpg-retail) - Crisp connects to over 40 leading U.S. retailers and distributors.
+1. [Snowplow Digital Analytics Model](https://github.com/semanticdatalayer/sml-models-snowplow) - Snowplow empowers organizations to create a scalable, first-party data foundation so marketing and data teams can effectively analyze and tackle Customer 360 use cases.
+2. [CRISP CPG Retail and Distributor Data Model](https://github.com/semanticdatalayer/sml-models-crisp-cpg-retail) - Crisp connects to over 40 leading U.S. retailers and distributors.
