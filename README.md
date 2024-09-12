@@ -72,15 +72,15 @@ erDiagram
 The following sections describe the different SML object types as well
 as the properties available for each:
 
-- [Catalog](sml-reference/catalog.md)
-- [Package](sml-reference/package.md)
-- [Model](sml-reference/model.md)
-- [Dimension](sml-reference/dimension.md)
-- [Row Security](sml-reference/row-security.md)
-- [Metric](sml-reference/metric.md)
-- [Calculation](sml-reference/calculation.md)
-- [Dataset](sml-reference/dataset.md)
-- [Connection](sml-reference/connection.md)
+- [Catalog](sml-reference/catalog.md) - Control file for a SML repository. It contains all repository-level definitions.
+- [Package](sml-reference/package.md) - Defines additional Git repositories references whose objects can be used in the current repository. 
+- [Model](sml-reference/model.md) - Defines the logical, business-friendly representation on top of the physical data.
+- [Dimension](sml-reference/dimension.md) - Defines the logical collection of attributes and hierarchies for supporting drill-down.
+- [Row Security](sml-reference/row-security.md) - Defines row-level data access rules for users and groups.
+- [Metric](sml-reference/metric.md) - Defines a numeric value representing a summarized (or aggregated) column.
+- [Calculation](sml-reference/calculation.md) - Defines custom expression to combine, evaluate, or manipulate other metrics defined in the model.
+- [Dataset](sml-reference/dataset.md) - Defines columns on a physical table or query. Columns can be defined as SQL expressions.
+- [Connection](sml-reference/connection.md) - Defines a database and schema for connecting datasets to the physical data platform.
 
 ## What's in this repository?
 
