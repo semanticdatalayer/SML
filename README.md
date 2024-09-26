@@ -99,7 +99,8 @@ as the properties available for each:
 1. [Internet Sales](https://github.com/semanticdatalayer/sml-models-tutorials-internet-sales) - a simple, single-fact model derived from the fictitious AdventureWorks retail dataset.
 2. [World Wide Importers](https://github.com/semanticdatalayer/sml-models-tutorials-ww-importers) - a more complex, multi-fact model representing a fictional wholesale and distribution company.
 3. [TPC-DS](https://github.com/semanticdatalayer/sml-models-tutorials-tpcds) - a complex, multi-fact model that encodes the [TPC-DS](https://www.tpc.org/tpcds/) benchmark model in SML.
-4. [AdventureWorks2012](https://github.com/semanticdatalayer/sml-models-tutorials-adventureworks2012) -  the standard Microsoft SSAS tutorial in SML.
+4. [TPC-H](https://github.com/semanticdatalayer/sml-models-tutorials-tpch) - a complex, multi-fact model that encodes the [TPC-H](https://www.tpc.org/tpch/) benchmark model in SML.
+5. [AdventureWorks2012](https://github.com/semanticdatalayer/sml-models-tutorials-adventureworks2012) -  the standard Microsoft SSAS tutorial in SML.
 
 ### Marketplace Models
 1. [Snowplow Digital Analytics Model](https://github.com/semanticdatalayer/sml-models-snowplow) - Snowplow empowers organizations to create a scalable, first-party data foundation so marketing and data teams can effectively analyze and tackle Customer 360 use cases.
