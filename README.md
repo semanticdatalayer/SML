@@ -92,6 +92,7 @@ as the properties available for each:
 - [Calculation](sml-reference/calculation.md) - Defines an expression to combine, evaluate, or manipulate other metrics defined in the model.
 - [Dataset](sml-reference/dataset.md) - Defines columns on a physical table or query. Columns can be defined as SQL expressions.
 - [Connection](sml-reference/connection.md) - Defines a database and schema for connecting datasets to the physical data platform.
+- [Composite Model](sml-reference/composite-model.md) - Defines a model made up of multiple other models.
 
 ## Model Library
 

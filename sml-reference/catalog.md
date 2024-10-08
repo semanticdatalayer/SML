@@ -10,7 +10,7 @@ Sample `catalog` file:
 unique_name: sml-models
 object_type: catalog
 label: SML Model Library
-as_version: 1.0
+version: 1.0
 aggressive_agg_promotion: false
 build_speculative_aggs: false
 ```
