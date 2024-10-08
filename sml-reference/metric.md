@@ -154,26 +154,60 @@ Supported values:
 - `first`
 - `last`
 
-### dimension
+### relationships
 
-- **Type:** string
-- **Required:** Y
+- **Type:** Array
+- **Required:** Required if `degenerate_dimensions` is undefined; otherwise, it is optional. 
 
-The dimension with which the semi-additive metric is associated.
+A list of the relationships connecting to the dimensional attributes whose values should not be summarized by the metric. You can define as many as needed in the list.
 
-### hierarchy
+**Note:** This list should not include relationships to degenerate dimensions; those must be defined via the `degenerate_dimensions` property (see below).
 
-- **Type:** string
-- **Required:** Y
+Relationships to embedded dimensions must be defined as indented lists, whose subitems construct the path to the nested dimension:
 
-The hierarchy with which the semi-additive metric is associated.
+```
+position: first
+relationships:
+  - relationship1
+  - relationship2
+  - 
+    - relationship3
+    - relationship4
+  - relationship5
+```
 
-### level
+In the above example, `relationship1`, `relationship2`, and `relationship5` all define relationships to attributes in first-level dimensions. The third item in the list defines the path to an embedded dimension, connected to the fact table via `relationship3` and `relationship4`.
 
-- **Type:** string
-- **Required:** Y
+**Note:** For semi-additive metrics that contain embedded dimensions, the following restrictions apply to the non-additive component of first non-empty/last non-empty value metrics:
+- Only the leaf levels of the embedded dimension hierarchies can be referenced. Note that this does not restrict the ability to query at higher levels of the embedded dimension hierarchy.
+- Embedded dimensions cannot be referenced via many-to-many relationships.
+- Embedded dimensions cannot be referenced through a path that involves role-playing.
 
-The level with which the semi-additive metric is associated.
+
+### degenerate_dimensions
+
+- **Type:** Array
+- **Required:** Required if `relationships` is undefined; otherwise, it is optional. 
+
+A list of degenerate dimensions whose values should not be summarized. 
+
+**Note:** This list must only include degenerate dimensions; non-degenerate dimensions must be defined via the `relationships` property (see above). 
+
+Supported properties:
+
+- `name`: String, required. The unique name of the degenerate dimension.
+- `level`: String, required. The specific level within the degenerate dimension.
+
+For example:
+
+```
+position: first
+degenerate_dimensions:
+  - name: dim1
+    level: level1
+  - name: dim2
+    level: level2
+```
 
 ## compression
 
