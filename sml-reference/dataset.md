@@ -240,6 +240,30 @@ A SQL query used to pull data from a specific connection defined within
 the repository, similar to a database view. This determines whether the
 dataset file defines a query dataset.
 
+If you want to run the query on other types of databases, use
+the `dialects` property to define additional dialects for it to run in.
+
+### dialects
+
+- **Type:** array
+- **Required:** N
+
+Defines alternate dialects for the `sql` statement so that it can run on
+other types of databases. You can define as many alternate dialects as
+needed.
+
+Supported properties:
+
+- `dialect`: String, required. An alternate SQL dialect. Supported
+  values:
+- `Snowflake`
+- `Postgresql`
+- `DatabricksSQL`
+- `BigQuery`
+- `Iris`
+
+- `sql`: String, required. The alternate SQL statement.
+
 ## table
 
 - **Type:** string
