@@ -57,7 +57,7 @@ namespace CompositeModels{
 }
 ```
 
-# Model Properties
+# Composite Model Properties
 
 ## unique_name
 
