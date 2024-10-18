@@ -8,7 +8,56 @@ When you deploy a composite model, all of its referenced objects are deployed as
 - Perspectives
 - Drill-throughs
 
-Composite model files support the following properties.
+Sample `composite_model` file:
+
+```
+unique_name: TPCDS - Composite
+object_type: composite_model
+label: TPCDS - Composite
+description: This is a composite model that combines TPC-DS subject-area models.
+
+models: 
+  - TPC-DS Catalog Sales
+  - TPC-DS Inventory
+  - TPC-DS Store Promotion
+  - TPC-DS Store Returns
+  - TPC-DS Store Sales
+  - TPC-DS Web Sales
+
+metrics:
+  - unique_name: Store and Web Purchased Amount
+    folder: Time Relative
+  - unique_name: Catalog Purchased Amount Growth
+    folder: Time Relative
+  - unique_name: m_ws_cs_ext_sales_price_sum
+    folder: Time Relative
+```
+
+# Entity Relationships
+
+```mermaid
+classDiagram
+    CompositeModel ..> ModelReference
+    CompositeModel ..> MetricReference
+namespace CompositeModels{
+    class CompositeModel{
+      String unique_name
+      const object_type
+      String label
+      Array~ModelReference~ models
+      Array~MetricReference~ metrics
+    }
+    class ModelReference{
+      String unique_name
+    }
+    class MetricReference{
+      String unique_name
+      String folder
+    }
+}
+```
+
+# Model Properties
 
 ## object_type
 
@@ -30,6 +79,13 @@ The unique name of the composite model. This must be unique across all repositor
 - **Required:** Y
 
 The name of the composite model as it appears in the consumption tool. This value does not need to be unique.
+
+## description
+
+- **Type:** string
+- **Required:** N
+
+A description of the composite model.
 
 ## models
 
@@ -56,11 +112,3 @@ The `metrics` property supports the following properties:
 
 - `unique_name`: String, required. The unique name of the calculation.
 - `folder`: String, optional. The name of the folder in which this calculation appears in BI tools.
-
-## description
-
-- **Type:** string
-- **Required:** N
-
-A description of the composite model.
-
