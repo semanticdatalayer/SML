@@ -59,19 +59,19 @@ namespace CompositeModels{
 
 # Model Properties
 
-## object_type
-
-- **Type:** const
-- **Required:** Y
-
-The type of object defined by the file. For composite models, this must be `composite_model`.
-
 ## unique_name
 
 - **Type:** string
 - **Required:** Y
 
 The unique name of the composite model. This must be unique across all repositories and subrepositories.
+
+## object_type
+
+- **Type:** const
+- **Required:** Y
+
+The type of object defined by the file. For composite models, this must be `composite_model`.
 
 ## label
 
