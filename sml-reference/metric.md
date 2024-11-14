@@ -103,6 +103,7 @@ Supported values:
 - `stddev_pop`
 - `stddev_samp`
 - `sum`
+- `sum distinct`
 - `var_pop`
 - `var_samp`
 
@@ -110,7 +111,7 @@ The calculation method you can use depends on the type of metric you're
 creating:
 
 - **Semi-additive:** `average`, `sum`, `minimum`, `maximum`
-- **Non-additive:** `count distinct`, `percentile`
+- **Non-additive:** `count distinct`, `sum distinct`, `percentile`
 - **Additive:** All other options
 
 ## dataset
@@ -224,12 +225,6 @@ Using a higher compression score yields more accurate query results but
 requires more memory from the engine to process. You may need to run
 tests to determine the right level of compression for your needs.
 
-For more information, see [Non-Additive
-Metrics](../../c-creating-and-sharing-cubes/creating-cubes/modeling-cube-measures/types-of-cube-measures/non-additive-measures.md).
-
-:::note
-*Note:* In Design Center, compression is referred to as **Quality**.
-:::
 
 ## named_quantiles
 
@@ -263,9 +258,7 @@ Supported named formats:
 - `standard`
 
 Custom format strings should be in quotes and contain one to four
-sections, separated by semicolons. For more information on defining
-custom format strings, see [Number Format
-Strings](../../c-creating-and-sharing-cubes/creating-cubes/formats-for-data-values/number-format-strings.md).
+sections, separated by semicolons.
 
 ## unrelated_dimensions_handling
 

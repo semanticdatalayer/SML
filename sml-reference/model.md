@@ -6,11 +6,9 @@ datasets stored in a connected database. The model is virtual, meaning
 the data is not moved or processed up front. Instead, it contains the
 logic about how to process and optimize the data at query runtime.
 
-:::note
-*Note:* Some properties can appear in both `catalog.yml` and model
+**Note:** Some properties can appear in both `catalog.yml` and model
 files. Those defined in model files override their counterparts in
 `catalog.yml`.
-:::
 
 Sample `model` file:
 
@@ -316,18 +314,14 @@ need to be unique.
 Defines the relationships between the model's fact datasets and first
 order dimensions. These are called fact relationships.
 
-:::note
-*Note:* These relationships are separate from those defined at the
+**Note:** These relationships are separate from those defined at the
 dimension level: relationships at the model level involve fact datasets,
 while those at the dimension level do not.
-:::
 
-:::note
-*Note:* Degenerate dimensions have relationships to the fact datasets on
+**Note:** Degenerate dimensions have relationships to the fact datasets on
 which they are based. However, these dimensions do not need a
 `relationships` property as they are created by referencing the fact
 dataset columns directly.
-:::
 
 If you do not want to add relationships to the model, the value of this
 property must be `[]`. For example: `relationships: []`
@@ -373,9 +367,8 @@ Supported properties:
   `unique_name` of the level attribute within the `dimension` to use for
   the relationship.
 - `row_security`: String, required if `dimension` and `level` are
-  undefined. For security relationships, the [row
-  security](../../c-creating-and-sharing-cubes/sml-reference/row-security.md)
-  object that the `from` dataset is joined to.
+  undefined. For security relationships, the row
+  security object that the `from` dataset is joined to.
 
 ### role_play
 
@@ -413,10 +406,8 @@ Supported properties:
   metric/calculation is displayed in BI tools. If your model has a lot
   of metrics/calculations, folders are a good way to organize them.
 
-:::note
-*Note:* If you do not want to add metrics to the model, the value of
+**Note:** If you do not want to add metrics to the model, the value of
 this property must be `[]`. For example: `metrics: []`
-:::
 
 ## description
 
@@ -445,19 +436,14 @@ analysts with the entire data model, you can make specific dimensions,
 hierarchies, levels, secondary attributes, measures, and calculated
 measures invisible to them.
 
-:::note
-*Note:* We recommend that you add perspectives *after* a model has
+**Note:** We recommend that you add perspectives *after* a model has
 been fully tested. Although you can edit a model after adding
 perspectives, any changes might require you to update the perspectives
 to hide new objects that would otherwise be visible to all users.
-:::
 
 The semantic engine imposes no limit on the number of perspectives that
 you can add to a model. Perspectives contain no data themselves, but are
 simply virtual views of the data.
-
-For more information on perspectives, see [Modeling
-Perspectives](../../c-creating-and-sharing-cubes/creating-cubes/modeling-perspectives/index.md).
 
 The `perspectives` property in a model file supports the following
 properties.
