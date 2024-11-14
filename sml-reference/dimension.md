@@ -376,10 +376,8 @@ dimensions.
 The `relationships` property in a dimension file defines the
 relationships to embedded and snowflake dimensions.
 
-:::note
-*Note:* The relationships between the model's fact datasets and first
+**Note:** The relationships between the model's fact datasets and first
 order dimensions (fact relationships) are defined in model files.
-:::
 
 ## calculation_groups
 
@@ -441,9 +439,8 @@ Supported properties:
 - `level`: String, required if `row_security` is undefined. The key
   level within the dimension to use for the relationship.
 - `row_security`: String, required if `level` is undefined. For security
-  relationships, the [row
-  security](../../c-creating-and-sharing-cubes/sml-reference/row-security.md)
-  object that the `from` dataset is linked to.
+  relationships, the row
+  security object that the `from` dataset is linked to.
 
 For snowflake relationships (as defined by the `type` property), you
 only need to define `level`.
@@ -494,12 +491,12 @@ For example, if you wanted to use the prefix **Order**, you would set
 The name of the calculation group. This must be unique within the
 dimension.
 
-## description
+## label
 
 - **Type:** string
 - **Required:** Y
 
-A description of the calculation group.
+The name of the calculation group, as it appears in the BI consumer. This value does not need to be unique.
 
 ## calculated_members
 
@@ -507,6 +504,13 @@ A description of the calculation group.
 - **Required:** Y
 
 Defines the individual calculations in the group.
+
+## description
+
+- **Type:** string
+- **Required:** N
+
+A description of the calculation group.
 
 # Calculated Members Properties
 
@@ -520,7 +524,7 @@ The name of the calculation. This must be unique within the dimension.
 ## description
 
 - **Type:** string
-- **Required:** Y
+- **Required:** N
 
 A description of the calculation.
 
@@ -535,7 +539,7 @@ Supported named formats:
 
 `fixed`,`general number`, `none`, `percent`, `scientific`, `standard` 
 
-Custom format strings should be in quotes and contain one to four sections, separated by semicolons. For more information on defining custom format strings.
+Custom format strings should be in quotes and contain one to four sections, separated by semicolons.
 
 ## expression
 
@@ -635,10 +639,8 @@ SML supports the following types of secondary attributes:
   hierarchical expressions without forcing the user to drill down a
   hierarchy.
 
-:::note
-*Note:* Secondary attributes cannot be used to create relationships
+**Note:** Secondary attributes cannot be used to create relationships
 between datasets and dimensions.
-:::
 
 ## aliases
 
@@ -652,7 +654,7 @@ Defines secondary attributes that can be used as aliases for specific hierarchy 
 - **Type:** array
 - **Required:** N
 
-Defines metrics for the level. For more information
+Defines metrics for the level.
 
 # Secondary Attributes Properties
 
@@ -741,7 +743,7 @@ The column used to sort the attribute's values in result sets. (This only applie
 - **Type:** array
 - **Required:** N
 
-A list of the calculation types that can be used to create dimensionally modified aggregates for the secondary attribute. Note that when working with a time dimension, you can only define calculation types if the `time_unit` property for the level is set to `day` or longer. For more information on dimensionally modified aggregates
+A list of the calculation types that can be used to create dimensionally modified aggregates for the secondary attribute. Note that when working with a time dimension, you can only define calculation types if the `time_unit` property for the level is set to `day` or longer.
 
 ## exclude\_from\_dim_agg
 
@@ -805,7 +807,7 @@ Supported named formats:
 
 `fixed`,`general number`, `none`, `percent`, `scientific`, `standard` 
 
-Custom format strings should be in quotes and contain one to four sections, separated by semicolons. For more information on defining custom format strings.
+Custom format strings should be in quotes and contain one to four sections, separated by semicolons.
 
 ## dataset
 
@@ -917,7 +919,7 @@ Supported named formats:
 
 `fixed`,`general number`, `none`, `percent`, `scientific`, `standard` 
 
-Custom format strings should be in quotes and contain one to four sections, separated by semicolons. For more information on defining custom format strings.
+Custom format strings should be in quotes and contain one to four sections, separated by semicolons.
 
 ## dataset
 
@@ -1006,11 +1008,9 @@ Determines how the query engine behaves when all of the following conditions are
 
 Supported values:
 
-> - `error`: Query Engine rejects the query and returns an error message.
-> - `empty`: Query Engine displays empty cells in the query results.
-> - `repeat`: In the query results, Query Engine repeats the values for
->   the secondary metrical attribute at a level of aggregation that
->   is determined from the shared dimensions in the query.
+- `error`: Query Engine rejects the query and returns an error message.
+- `empty`: Query Engine displays empty cells in the query results.
+- `repeat`: In the query results, Query Engine repeats the values for the secondary metrical attribute at a level of aggregation that is determined from the shared dimensions in the query.
 
 # Level Attributes Properties
 
@@ -1143,10 +1143,8 @@ Defines the column to sort query results on. By default, this is the
 `name_column`; however, you can optionally use this property to specify
 a different column.
 
-:::note
-*Note:* This only applies to MDX queries (queries received through the
+**Note:** This only applies to MDX queries (queries received through the
 XMLA interface).
-:::
 
 ## allowed\_calcs\_for_dma
 
