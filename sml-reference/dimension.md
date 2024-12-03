@@ -1027,13 +1027,13 @@ dimension.
 - **Type:** string
 - **Required:** Y
 
-The name of the level attribute, as it appears in the consunmption tool. This value
+The name of the level attribute, as it appears in the consumption tool. This value
 does not need to be unique.
 
 ## dataset
 
 - **Type:** string
-- **Required:** Y
+- **Required:** Required if `shared_degenerate_columns` is not specified.
 
 The source dataset that contains the columns that this level attribute
 is based on.
@@ -1041,7 +1041,7 @@ is based on.
 ## name_column
 
 - **Type:** string
-- **Required:** Y
+- **Required:** Required if `shared_degenerate_columns` is not specified.
 
 The column whose values appear for this level in BI tools. For example,
 the key may be a product ID number, but you want users to see product
@@ -1050,7 +1050,7 @@ names instead.
 ## key_columns
 
 - **Type:** array
-- **Required:** Y
+- **Required:** Required if `shared_degenerate_columns` is not specified.
 
 The dataset column that the level attribute is based on. If the level
 has a compound key, list all columns that make up the key.
@@ -1058,6 +1058,57 @@ has a compound key, list all columns that make up the key.
 If the key consists of one column, the values in that column must be
 unique. If the key is a compound key, the columns together must provide
 unique values.
+
+## shared_degenerate_columns
+
+- **Type:** array
+- **Required:** Required if `dataset`, `name_column`, and `key_columns` are not specified.
+
+Defines the dimension as a shared degenerate dimension (one composed of data from multiple fact datasets).
+
+Shared degenerate dimensions must meet the following requirements:
+
+- You must use the same number of columns from each fact dataset. 
+- The data types across the columns used must be consistent:
+  
+  - The name columns must all have the same data type.
+  - The key columns must all have the same data type.
+
+- If you set a sort column on one dataset, you must set them on all other datasets. Additionally, all sort columns on all datasets must have the same data type.
+- If an order column is selected in one dataset, the order column from each of the other fact datasets must also be selected.
+- For shared degenerate dimensions with multiple levels, all levels must be defined using the same datasets as the other levels.
+- Shared degenerate dimensions cannot contain secondary attributes.
+
+Supported properties:
+
+- `dataset`: String, required. A fact dataset the shared degenerate dimension is based on.
+- `name_column`: String, required. The column from the dataset whose values appear for the dimension in the consumption tool. For example, you can use a product ID column as they `key_columns`, but use a product name column as the `name_column`. All name columns must have the same data type.
+- `key_columns`: Array, required. The column from the dataset that the shared degenerate dimension is based on. You can only include one `key_columns` value per dataset. All key columns must have the same data type. 
+- `sort_column`: String, optional. Defines the column from the dataset that is used to sort query results. If this property is specified for one dataset, it must be specified for all others. Additionally, all sort columns must have the same data type.
+- `is_unique_key`: Boolean, optional. Determines whether values of the `key_columns` column are unique for each row.
+
+For example:
+
+```
+level_attributes:
+
+  - unique_name: Order Degen Shared Level
+    label: Order Degen Shared Level
+    
+    shared_degenerate_columns:
+      - name_column: salesordernumber
+        key_columns:
+          - salesordernumber
+        sort_column: salesordernumber
+        dataset: factinternetsales
+        is_unique: false
+      - name_column: productkey
+        key_columns:
+          - productkey
+        sort_column: productkey
+        dataset: dimproduct
+        is_unique: false
+```
 
 ## description
 
