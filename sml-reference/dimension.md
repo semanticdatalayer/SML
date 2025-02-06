@@ -287,8 +287,7 @@ namespace Dimensions{
       String description
       String format
       String expression
-      Boolean is_default
-      Boolean use_input_measure_format
+      Boolean use_input_metric_format
     }
 }
 ```
@@ -503,7 +502,9 @@ The name of the calculation group, as it appears in the BI consumer. This value 
 - **Type:** array
 - **Required:** Y
 
-Defines the individual calculations in the group.
+Defines the individual calculated members in the group.
+
+**Note:** The first in the list is considered the default member of the group.
 
 ## description
 
@@ -519,14 +520,38 @@ A description of the calculation group.
 - **Type:** string
 - **Required:** Y
  
-The name of the calculation. This must be unique within the dimension.
+The name of the calculated member. This must be unique within the dimension.
 
 ## description
 
 - **Type:** string
 - **Required:** N
 
-A description of the calculation.
+A description of the calculated member.
+
+## template
+
+- **Type:** string
+- **Required:** Required if `expression` is not specified.
+
+Sets the calculation to one of SML's built-in MDX expression templates.
+
+Supported templates:
+
+`Current`, `Previous`, `Current vs Previous`, `Current vs Previous Pct`, `Next`, `Current vs Next`, `Current vs Next Pct`, `Pct of Total`, `Pct of Parent`, `Last Year`, `Current vs Last Year`, `Current vs Last Year Pct`, `Year to Date`, `Quarter to Date`, `Month to Date`, `Month Moving Average 3 Month`, `Moving Average 30 Period`, `Moving Average 5 Period`, `Moving Std Dev 30 Period`, `Moving Std Dev 5 Period`
+
+If you do not want to use a built-in template, you can define a custom expression using the `expression` property (see below).
+
+## expression
+
+- **Type:** string
+- **Required:** Required if `template` is not specified.
+
+The MDX expression for the calculated member. This value should be quoted.
+
+**Note:** If you plan on referencing a calculation via the `Aggregate` MDX function in your calculated member, ensure that the computed metric has an aggregation function set. You can do this by including the `mdx_aggregation_function` property in the calculation file. If you do not set an aggregation function, you may encounter errors at query time.
+
+You can alternatively use the `template` property (see above) to use one of SML's built-in MDX expression templates instead of a custom one.
 
 ## format
 
@@ -541,12 +566,16 @@ Supported named formats:
 
 Custom format strings should be in quotes and contain one to four sections, separated by semicolons.
 
-## expression
+You can alternatively configure the calculated member to return results in the format defined for input metric by including the `use_input_metric_format` property (see below).
 
-- **Type:** string
-- **Required:** Y
+## use_input_metric_format
 
-The MDX expression for the calculation. This must be in quotes. If you plan on referencing a calculated metric via the `Aggregate` MDX function in your calculation, ensure that the computed metric has an aggregation function set. You can do this by including the `mdx_aggregation_function` property in the calculation file. If you do not set an aggregation function, you may encounter errors at query time.
+- **Type:** boolean
+- **Required:** N
+
+When `true`, query results always use the formatting defined for the input metric. This is useful for calculations that can't have a standard output format.
+
+When `false`, the results are formatted according to the `format` property.
 
 # Hierarchy Properties
 
@@ -603,10 +632,22 @@ Supported values:
 
 ## default_member
 
-- **Type:** string
+- **Type:** object
 - **Required:** N
 
-Defines a member of the hierarchy to use as the default filter for MDX queries on the hierarchy. The value must be formatted as an MDX expression and must be in quotes.
+Defines a default member for the hierarchy. Default members of dimensional hierarchies serve together as a default filter for MDX queries on the model.
+
+When adding default hierarchies, be aware of the following:
+
+- If a query specifies a level in a hierarchy that has a default member, the default is not used. 
+- Default hierarchy members are *not* used in queries that populate select fields and filter dialogs in BI clients.
+- You cannot specify secondary attributes as default dimension members. Doing so will cause queries to fail.
+- Setting default members on dimensions with multiple hierarchies can produce unexpected results, as it is easy to forget about the default member filtering on another hierarchy.
+
+`default_member` supports the following properties:
+
+- `expression`: String, required. An MDX expression that specifies the default member. This value must be quoted.
+- `apply_only_when_in_query`: Boolean, optional. When `true`, the default hierarchical member is only applied when it is explicitly included in a query. This enables you to selectively apply default constraints for meta dimensions (calculation groups or similar dimensions) that represent calculations or parameters, rather than data.
 
 ## levels
 

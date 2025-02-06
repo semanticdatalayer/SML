@@ -90,10 +90,7 @@ that it anticipates being useful based on your models. These are
 intended to improve the performance of queries from client BI tools
 faster than with demand-defined aggregates alone.
 
-:::note
-*Note:* Speculative aggregates are also called prediction-defined
-aggregates.
-:::
+**Note:** Speculative aggregates are also called prediction-defined aggregates.
 
 Supported values:
 
@@ -123,8 +120,6 @@ values you want to set for it at the repository level. For example:
     dataset1:
         create_hinted_aggregate: true
 
-:::note
-*Note:* Datasets are typically defined at the repository level, in
+**Note:** Datasets are typically defined at the repository level, in
 `catalog.yml`; however, datasets used by a specific model (typically
 fact datasets) can be defined within the model itself.
-:::

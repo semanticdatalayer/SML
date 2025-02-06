@@ -8,9 +8,9 @@ SML delivers on the following requirements:
 1. **Object-oriented**: SML is an object-oriented language that promotes composability and inheritance. This allows semantic objects to be shared within other semantic objects and across organizations, supporting easy and consistent model-building.
 2. **Comprehensive**: SML is based on more than a decade of modeling experience across various industry verticals and use cases. SML handles multi-dimensional constructs and serves as a superset of all other existing semantic modeling languages.
 3. **Familiar**: SML is based on YAML, a widely adopted, human-readable, industry-standard syntax.
-CI/CD Friendly: SML is code, so it is compatible with Git and CI/CD practices for version control, automated deployment, and software lifecycle management. 
-4. **Extensible**: SML syntax can be enhanced to support additional properties and features.
-Open: SML is Apache open-sourced to support community innovation and is free to use in any application or use case.
+4. **CI/CD Friendly**: SML is code, so it is compatible with Git and CI/CD practices for version control, automated deployment, and software lifecycle management. 
+5. **Extensible**: SML syntax can be enhanced to support additional properties and features.
+6. **Open**: SML is Apache open-sourced to support community innovation and is free to use in any application or use case.
 
 ## What's in this repository?
 
