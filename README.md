@@ -103,6 +103,9 @@ as the properties available for each:
 4. [TPC-H](https://github.com/semanticdatalayer/sml-models-tutorials-tpch) - a complex, multi-fact model that encodes the [TPC-H](https://www.tpc.org/tpch/) benchmark model in SML.
 5. [AdventureWorks2012](https://github.com/semanticdatalayer/sml-models-tutorials-adventureworks2012) -  the standard Microsoft SSAS tutorial in SML.
 
+### Data Warehouse Usage/Cost Models
+1. [snowflake-usage-model](https://github.com/semanticdatalayer/sml-models-usage-snowflake) - a semantic model for analyzing Snowflake credit and data warehouse usage.
+
 ### Marketplace Models
 1. [Snowplow Digital Analytics Model](https://github.com/semanticdatalayer/sml-models-snowplow) - Snowplow empowers organizations to create a scalable, first-party data foundation so marketing and data teams can effectively analyze and tackle Customer 360 use cases.
 2. [CRISP CPG Retail and Distributor Data Model](https://github.com/semanticdatalayer/sml-models-crisp-cpg-retail) - Crisp connects to over 40 leading U.S. retailers and distributors.
