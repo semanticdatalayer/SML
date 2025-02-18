@@ -97,14 +97,14 @@ as the properties available for each:
 ## Model Library
 
 ### Tutorial Models
-1. [Internet Sales](https://github.com/semanticdatalayer/sml-models-tutorials-internet-sales) - a simple, single-fact model derived from the fictitious AdventureWorks retail dataset.
-2. [World Wide Importers](https://github.com/semanticdatalayer/sml-models-tutorials-ww-importers) - a more complex, multi-fact model representing a fictional wholesale and distribution company.
-3. [TPC-DS](https://github.com/semanticdatalayer/sml-models-tutorials-tpcds) - a complex, multi-fact model that encodes the [TPC-DS](https://www.tpc.org/tpcds/) benchmark model in SML.
-4. [TPC-H](https://github.com/semanticdatalayer/sml-models-tutorials-tpch) - a complex, multi-fact model that encodes the [TPC-H](https://www.tpc.org/tpch/) benchmark model in SML.
-5. [AdventureWorks2012](https://github.com/semanticdatalayer/sml-models-tutorials-adventureworks2012) -  the standard Microsoft SSAS tutorial in SML.
+1. [Internet Sales Model](https://github.com/semanticdatalayer/sml-models-tutorials-internet-sales) - a simple, single-fact model derived from the fictitious AdventureWorks retail dataset.
+2. [World Wide Importers Model](https://github.com/semanticdatalayer/sml-models-tutorials-ww-importers) - a more complex, multi-fact model representing a fictional wholesale and distribution company.
+3. [TPC-DS Model](https://github.com/semanticdatalayer/sml-models-tutorials-tpcds) - a complex, multi-fact model that encodes the [TPC-DS](https://www.tpc.org/tpcds/) benchmark model in SML.
+4. [TPC-H Model](https://github.com/semanticdatalayer/sml-models-tutorials-tpch) - a complex, multi-fact model that encodes the [TPC-H](https://www.tpc.org/tpch/) benchmark model in SML.
+5. [AdventureWorks2012 Model](https://github.com/semanticdatalayer/sml-models-tutorials-adventureworks2012) -  the standard Microsoft SSAS tutorial in SML.
 
 ### Data Warehouse Usage/Cost Models
-1. [snowflake-usage-model](https://github.com/semanticdatalayer/sml-models-usage-snowflake) - a semantic model for analyzing Snowflake credit and data warehouse usage.
+1. [Snowflake Usage Model](https://github.com/semanticdatalayer/sml-models-usage-snowflake) - a semantic model for analyzing Snowflake credit and data warehouse usage.
 
 ### Marketplace Models
 1. [Snowplow Digital Analytics Model](https://github.com/semanticdatalayer/sml-models-snowplow) - Snowplow empowers organizations to create a scalable, first-party data foundation so marketing and data teams can effectively analyze and tackle Customer 360 use cases.
