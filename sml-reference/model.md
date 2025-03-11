@@ -230,7 +230,6 @@ namespace Models{
     class Aggregate{
       String unique_name
       String label
-      String target_connection
       enum caching
       Array~String~ metrics
       Array~AttributeReference~ attributes
@@ -596,13 +595,6 @@ user-defined aggregate is used in a query. For example:
 The name of the aggregate, as it appears in the consunmption tool. This value does not
 need to be unique.
 
-### target_connection
-
-- **Type:** string
-- **Required:** Y
-
-The database that the semantic engine writes the aggregate table to.
-
 ### caching
 
 - **Type:** enum
@@ -644,24 +636,19 @@ Supported properties:
 
 - `partition`: String, optional. Adds a partition to the aggregate, and
   determines whether it should be defined on the key column, name
-  column, or both. Supported values:
-- `name`
+  column, or both. Supported values: `name`, `key`, `name+key`
 
-- `key`
+    When the engine builds an instance of this aggregate, it creates
+    a partition for each combination of values in the dimensional
+    attributes. The number of partitions depends on the
+    left-to-right order of the attributes, as well as the number of
+    values for each attribute.
 
-- `name+key`
-
-  > When the engine builds an instance of this aggregate, it creates
-  > a partition for each combination of values in the dimensional
-  > attributes. The number of partitions depends on the
-  > left-to-right order of the attributes, as well as the number of
-  > values for each attribute.
-  >
-  > Essentially, the partitioning key functions as a `GROUP BY`
-  > column. Queries against the aggregate must use this dimensional
-  > attribute in a `WHERE` clause. A good candidate for a
-  > partitioning key is a set of dimensional attributes that
-  > together have a few hundred to under 1000 value combinations.
+    Essentially, the partitioning key functions as a `GROUP BY`
+    column. Queries against the aggregate must use this dimensional
+    attribute in a `WHERE` clause. A good candidate for a
+    partitioning key is a set of dimensional attributes that
+    together have a few hundred to under 1000 value combinations.
 
 - `distribution`: String, optional. The distribution keys to use when
   creating the aggregate table. If your aggregate data warehouse
