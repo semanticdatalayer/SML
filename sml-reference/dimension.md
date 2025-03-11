@@ -697,6 +697,15 @@ Defines secondary attributes that can be used as aliases for specific hierarchy 
 
 Defines metrics for the level.
 
+## parallel_periods
+
+- **Type:** array
+- **Required:** N
+
+For levels in time dimensions only. Defines a custom parallel period for the level. You can use custom parallel periods to compare members in different levels of a time hierarchy that aren't in the same relative child position; for example, the last week of a 53-week year to that of a 52-week year.
+
+You can define as many parallel periods for a level as needed.
+
 # Secondary Attributes Properties
 
 ## unique_name
@@ -788,10 +797,17 @@ A list of the calculation types that can be used to create dimensionally modifie
 
 ## exclude\_from\_dim_agg
 
-- **Type:** Boolean
+- **Type:** boolean
 - **Required:** N
 
 Excludes this attribute from system generated dimension-only aggregates. This is useful if the attribute contains a large number (millions) of distinct values that you don't want to aggregate.
+
+## is_aggregatable
+
+- **Type:** boolean
+- **Required:** N
+
+Determines whether the attribute's member values can be aggregated. When enabled, an `All` member is created for the attribute, whose value is the aggregation of all of the attribute's member values. The `All` member sits at the top of the attribute's hierarchy, though it is not a part of the attribute itself. It often serves as the attribute's default member.
 
 ## exclude\_from\_fact_agg
 
@@ -896,6 +912,13 @@ Supported values:
 
 - `true`
 - `false`
+
+## is_aggregatable
+
+- **Type:** boolean
+- **Required:** N
+
+Determines whether the alias's member values can be aggregated. When enabled, an `All` member is created for the alias, whose value is the aggregation of all of the alias's member values. The `All` member sits at the top of the alias's hierarchy, though it is not a part of the alias itself. It often serves as the alias's default member.
 
 ## exclude\_from\_fact_agg
 
@@ -1013,6 +1036,13 @@ Supported values:
 - `true`
 - `false`
 
+## is_aggregatable
+
+- **Type:** boolean
+- **Required:** N
+
+Determines whether the metrical attribute's member values can be aggregated. When enabled, an `All` member is created for the attribute, whose value is the aggregation of all of the attribute's member values. The `All` member sits at the top of the attribute's hierarchy, though it is not a part of the attribute itself. It often serves as the metrical attribute's default member.
+
 ## exclude\_from\_fact_agg
 
 - **Type:** boolean
@@ -1052,6 +1082,22 @@ Supported values:
 - `error`: Query Engine rejects the query and returns an error message.
 - `empty`: Query Engine displays empty cells in the query results.
 - `repeat`: In the query results, Query Engine repeats the values for the secondary metrical attribute at a level of aggregation that is determined from the shared dimensions in the query.
+
+# Parallel Period Properties
+
+## level
+
+- **Type:** string
+- **Required:** Y
+
+The level to compare the current level to. Both levels must be in the same time hierarchy.
+
+## key_columns
+
+- **Type:** array
+- **Required:** Y
+
+The key column(s) in the dimension's source table that contain key values pointing to the desired parallel period.
 
 # Level Attributes Properties
 
@@ -1211,6 +1257,13 @@ Supported values:
 
 - `true`
 - `false`
+
+## is_aggregatable
+
+- **Type:** boolean
+- **Required:** N
+
+Determines whether the level attribute's member values can be aggregated. When enabled, an `All` member is created for the attribute, whose value is the aggregation of all of the attribute's member values. The `All` member sits at the top of the attribute's hierarchy, though it is not a part of the attribute itself. It often serves as the level attribute's default member.
 
 ## exclude\_from\_fact_agg
 
