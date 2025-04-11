@@ -46,7 +46,6 @@ namespace Metrics{
       SemiAdditive semi_additive
       int compression
       String named_quantiles
-      Array~double~ custom_quantiles
       String format
       enum unrelated_dimensions_handling
       Boolean is_hidden
@@ -123,7 +122,7 @@ The source dataset that contains the column the metric is based on.
 
 ## column
 
-- **Type:** column
+- **Type:** string
 - **Required:** Y
 
 The specific column within the `dataset` that the metric is based on.
