@@ -30,7 +30,8 @@ classDiagram
       const object_type
       String format
       String expression
-      String default_aggregation
+      String mdx_aggregate_function
+      Boolean is_hidden
     }
 ```
 
