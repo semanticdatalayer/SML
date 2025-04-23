@@ -12,7 +12,7 @@ boilerplate calculations that can be used across multiple metrics.
 
 Sample `calculation` file:
 
-```
+```yaml
 unique_name: Average Catalog Unit Net Profit
 object_type: metric_calc
 label: Average Catalog Unit Net Profit
@@ -30,7 +30,8 @@ classDiagram
       const object_type
       String format
       String expression
-      String default_aggregation
+      String mdx_aggregate_function
+      Boolean is_hidden
     }
 ```
 

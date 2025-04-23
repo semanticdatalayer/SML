@@ -20,7 +20,7 @@ SML supports the following types of metrics:
 
 Sample `metric` file:
 
-```
+```yaml
 unique_name: m_catalog_sales_coupon_amount_avg
 object_type: metric
 label: Catalog Sales  Average Coupon Amount
@@ -46,7 +46,6 @@ namespace Metrics{
       SemiAdditive semi_additive
       int compression
       String named_quantiles
-      Array~double~ custom_quantiles
       String format
       enum unrelated_dimensions_handling
       Boolean is_hidden
@@ -123,7 +122,7 @@ The source dataset that contains the column the metric is based on.
 
 ## column
 
-- **Type:** column
+- **Type:** string
 - **Required:** Y
 
 The specific column within the `dataset` that the metric is based on.
@@ -166,7 +165,7 @@ A list of the relationships connecting to the dimensional attributes whose value
 
 Relationships to embedded dimensions must be defined as indented lists, whose subitems construct the path to the nested dimension:
 
-```
+```yaml
 position: first
 relationships:
   - relationship1
@@ -201,7 +200,7 @@ Supported properties:
 
 For example:
 
-```
+```yaml
 position: first
 degenerate_dimensions:
   - name: dim1
