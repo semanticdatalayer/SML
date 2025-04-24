@@ -20,9 +20,9 @@ We are or will be open-sourcing the following:
 
 1. **A YAML-based Language Specification**: The SML specification is documented and encompasses tabular and multidimensional constructs.
 2. **Pre-built Semantic Models**: The GitHub repository contains pre-built semantic models that incorporate standard data models, such as TPC-DS, common training models like Worldwide Importers and AdventureWorks, and marketplace models like Snowplow and CRISP. We expect to add semantic models for SaaS applications such as Salesforce, Google Analytics, and Jira soon.
-3. **SML SDK** *(coming soon)*: We will release an SDK that will facilitate the programmatic reading and writing of SML syntax.
-4. **SML CLIs** *(coming soon)*: We will release command line interfaces (CLIs) for installing SML dependencies and validating SML syntax. We also introduce a reference CLI for deploying SML models to proprietary semantic layer platforms.
-5. **Semantic Translators** *(coming soon)*: We will release a CLI for translating other semantic modeling languages to and from SML, including Snowflake Cortex semantic models, Databricks UC Metrics, and Power BI semantic models.
+3. **SML SDK**: An SDK that facilitates the programmatic reading and writing of SML syntax.
+4. **SML CLIs**: Command line interfaces (CLIs) for installing SML dependencies and validating SML syntax. This includes a reference CLI for deploying SML models to a proprietary semantic layer platform.
+5. **Semantic Translators**: A CLI for translating other semantic modeling languages to and from SML, including Snowflake Cortex semantic models, Databricks UC Metrics, and Power BI semantic models.
 
 ## SML Example
 The following is an example of an SML `model` object:
