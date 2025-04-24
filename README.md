@@ -19,9 +19,10 @@ Open-sourcing SML aims to promote the building of reusable models and semantic o
 We are or will be open-sourcing the following:
 
 1. **A YAML-based Language Specification**: The SML specification is documented and encompasses tabular and multidimensional constructs.
-2. **Pre-built Semantic Models**: The GitHub repository contains pre-built semantic models incorporating standard data models such as TPC-DS, common training models such as Worldwide Importers and AdventureWorks, and marketplace models such as Snowplow and CRISP. We expect to add semantic models for SaaS applications such as Salesforce, Google Analytics, and Jira soon.
-3. **Helper Classes** *(coming soon)*: We will release helper classes that will facilitate the programmatic reading and writing of SML syntax.
-4. **Semantic Translators** *(coming soon)*: We will release converters for migrating other semantic modeling languages to SML, including dbt Lab’s semantic layer and Power BI. Shortly, we expect to release a variety of converters to support the legacy (i.e., Microstrategy, Business Objects, Cognos) and modern (i.e. Looker) semantic modeling tools.
+2. **Pre-built Semantic Models**: The GitHub repository contains pre-built semantic models that incorporate standard data models, such as TPC-DS, common training models like Worldwide Importers and AdventureWorks, and marketplace models like Snowplow and CRISP. We expect to add semantic models for SaaS applications such as Salesforce, Google Analytics, and Jira soon.
+3. **SML SDK** *(coming soon)*: We will release an SDK that will facilitate the programmatic reading and writing of SML syntax.
+4. **SML CLIs** *(coming soon)*: We will release command line interfaces (CLIs) for installing SML dependencies and validating SML syntax. We also introduce a reference CLI for deploying SML models to proprietary semantic layer platforms.
+5. **Semantic Translators** *(coming soon)*: We will release a CLI for translating other semantic modeling languages to and from SML, including Snowflake Cortex semantic models, Databricks UC Metrics, and Power BI semantic models.
 
 ## SML Example
 The following is an example of an SML `model` object:
