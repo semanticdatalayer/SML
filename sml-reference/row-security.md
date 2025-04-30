@@ -16,7 +16,7 @@ dataset/dimension you want secured to the security row file.
 
 Sample `row_security` file:
 
-```
+```yaml
 unique_name: Country Security Filter
 label: Country Security Filter
 object_type: row_security
@@ -24,14 +24,14 @@ dataset: user_country_mapping
 filter_key_column: country
 use_filter_key: true
 ids_column: username
-id_type: groupname
+id_type: group
 scope: related
 secure_totals: true
 ```
 
 How to reference the above `row_security` object in a `dimension`:
 
-```
+```yaml
   - unique_name: GeographyDimension_CustomerDimSecurity
     from:
       hierarchy: Geography City
