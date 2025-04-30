@@ -1188,13 +1188,13 @@ level_attributes:
           - salesordernumber
         sort_column: salesordernumber
         dataset: factinternetsales
-        is_unique: false
+        is_unique_key: false
       - name_column: productkey
         key_columns:
           - productkey
         sort_column: productkey
         dataset: dimproduct
-        is_unique: false
+        is_unique_key: false
 ```
 
 ## description
