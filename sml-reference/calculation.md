@@ -97,9 +97,7 @@ Supported named formats:
 - `standard`
 
 Custom format strings should be in quotes (") and contain one to four
-sections, separated by semicolons. For more information on defining
-custom format strings, see [Number Format
-Strings](../../c-creating-and-sharing-cubes/creating-cubes/formats-for-data-values/number-format-strings.md).
+sections, separated by semicolons.
 
 ## is_hidden
 
