@@ -4,11 +4,9 @@ Dataset files define datasets to use in the repository. Each dataset
 file in your repository must correspond to either a physical table/view
 in your database, or the results of a `SELECT` statement.
 
-:::note
-*Note:* Dataset files must define *all* columns in the physical tables
+**Note:** Dataset files must define *all* columns in the physical tables
 they reference, and can therefore be quite large. Because of this,
 we recommend sharing these files across repositories.
-:::
 
 Sample `dataset` file:
 
@@ -278,11 +276,9 @@ The name of the table in the database that the dataset is based on.
 
 Defines the columns available in the dataset.
 
-:::note
-*Note:* You should define *all* columns available in the dataset. This
+**Note:** You should define *all* columns available in the dataset. This
 is especially important for dataset files that are shared across
 multiple repositories.
-:::
 
 The `columns` property within a dataset file supports the following
 properties.
@@ -329,9 +325,7 @@ Defines the column as a calculated column.
 
 Calculated columns enable you to add simple data transformations to the
 dataset. These can be used as the basis of model attributes, just like
-any other dataset column. For more information, see [Adding Calculated
-Columns To Datasets For Simple Data
-Transformations](../../c-creating-and-sharing-cubes/creating-cubes/working-with-datasets/adding-calculated-columns-to-datasets-for-simple-data-transformations/index.md).
+any other dataset column.
 
 The value of this property should be a valid SQL statement that can be
 run as part of the `SELECT` list of a query.
