@@ -10,7 +10,7 @@ each must be defined in a separate connection file.
 
 Sample `connection` file:
 
-```
+```yaml
 unique_name: Connection - TPCDS
 label: Connection - TPCDS
 object_type: connection
@@ -30,6 +30,7 @@ classDiagram
       String as_connection
       String database
       String schema
+      Boolean override
     }
 ```
 
@@ -79,3 +80,8 @@ The source database used for this connection.
 - **Required:** Y
 
 The source schema used for this connection.
+
+## override
+
+- **Type:** boolean
+- **Required:** N

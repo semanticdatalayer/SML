@@ -10,7 +10,7 @@ we recommend sharing these files across repositories.
 
 Sample `dataset` file:
 
-```
+```yaml
 unique_name: store_sales
 object_type: dataset
 label: store_sales
@@ -169,6 +169,7 @@ namespace Datasets{
       const data_type
       String sql
       Array~Dialect~ dialects
+      String parent_column
       MapColumn map
     }
     class Dialect{
@@ -371,6 +372,7 @@ Supported properties:
   individual keys from their values. This must be in quotes (").
 - `key_type`: String, required. The data type of the map's keys.
 - `value_type`: String, required. The data type of the map's values.
+- `is_prefixed`: Boolean, optional
 
 The mapped columns are defined as separate columns within the dataset
 file. Each of these must have the `parent_column` property.
