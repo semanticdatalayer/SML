@@ -372,7 +372,7 @@ Supported properties:
   individual keys from their values. This must be in quotes (").
 - `key_type`: String, required. The data type of the map's keys.
 - `value_type`: String, required. The data type of the map's values.
-- `is_prefixed`: Boolean, optional
+- `is_prefixed`: Boolean, optional. Is first character delimited.
 
 The mapped columns are defined as separate columns within the dataset
 file. Each of these must have the `parent_column` property.
