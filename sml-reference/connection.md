@@ -30,7 +30,6 @@ classDiagram
       String as_connection
       String database
       String schema
-      Boolean override
     }
 ```
 
@@ -80,8 +79,3 @@ The source database used for this connection.
 - **Required:** Y
 
 The source schema used for this connection.
-
-## override
-
-- **Type:** boolean
-- **Required:** N
