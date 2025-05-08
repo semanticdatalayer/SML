@@ -148,11 +148,13 @@ Defines the metric as a semi-additive metric.
 - **Type:** string
 - **Required:** Y
 
-Determines whether the metric is First Non-Empty or Last Non-Empty.
+Determines whether the metric is First Non-Empty, Last Non-Empty, First Child or Last Child.
 
 Supported values:
 - `first`
 - `last`
+- `first_child`
+- `last_child`
 
 ### relationships
 
