@@ -1146,6 +1146,16 @@ If the key consists of one column, the values in that column must be
 unique. If the key is a compound key, the columns together must provide
 unique values.
 
+## constraint_translation_rank
+
+- **Type:** number
+- **Required:** N
+- **Range:** should be a valid 32 bit integer
+
+Defines the translation of dimension filter constraints into fact table partition column constraints. This can significantly improve query performance for cases where fact-based aggregates are not used.
+
+This property must be used in conjunction with the `constraint_translation` property defined in a model relationship.
+
 ## shared_degenerate_columns
 
 - **Type:** array
