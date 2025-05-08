@@ -390,6 +390,19 @@ marks):
 For example, if you wanted to use the prefix **Order**, you would set
 `role_play` to `"Order {0}"`.
 
+### constraint_translation
+
+- **Type:** object
+- **Required:** N
+
+Defines the translation of dimension filter constraints into fact table partition column constraints. This can significantly improve query performance for cases where fact-based aggregates are not used.
+
+Supported properties:
+- `level`: String, required. Indicates the dimension level to which the constraint translation applies.
+- `from_columns`: Array, required. Lists the column(s) in the dataset that should be used for the join.
+
+If the `constraint_translation` property is defined, a corresponding `constraint_translation_rank` must be present in the associated level.
+
 ## metrics
 
 - **Type:** array
