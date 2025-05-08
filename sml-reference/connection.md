@@ -10,7 +10,7 @@ each must be defined in a separate connection file.
 
 Sample `connection` file:
 
-```
+```yaml
 unique_name: Connection - TPCDS
 label: Connection - TPCDS
 object_type: connection
