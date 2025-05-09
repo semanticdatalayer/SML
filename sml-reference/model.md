@@ -12,7 +12,7 @@ files. Those defined in model files override their counterparts in
 
 Sample `model` file:
 
-```
+```yaml
 unique_name: Internet Sales
 object_type: model
 label: Internet Sales
@@ -217,6 +217,7 @@ namespace Models{
       String role_play
       String type
       Boolean m2m
+      ConstraintTranslation constraint_translation
     }
     class From{
       String dataset
@@ -226,6 +227,10 @@ namespace Models{
       String dimension
       String level
       String row_security
+    }
+    class ConstraintTranslation{
+      String level
+      Array~String~ from_columns
     }
     class Aggregate{
       String unique_name

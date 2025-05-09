@@ -29,7 +29,7 @@ SML supports the following types of dimensions:
 
 Sample `dimension` file:
 
-```
+```yaml
 unique_name: Store Dimension
 object_type: dimension
 label: Store Dimension
@@ -254,6 +254,7 @@ namespace Dimensions{
       Boolean exclude_from_dim_agg
       Boolean exclude_from_fact_agg
       String time_unit
+      Int constraint_translation_rank
       Array~String~ allowed_calcs_for_dma
     }
     class SecondaryAttribute{
@@ -1148,13 +1149,11 @@ unique values.
 
 ## constraint_translation_rank
 
-- **Type:** number
+- **Type:** integer
 - **Required:** N
 - **Range:** should be a valid 32 bit integer
 
 Defines the translation of dimension filter constraints into fact table partition column constraints. This can significantly improve query performance for cases where fact-based aggregates are not used.
-
-This property must be used in conjunction with the `constraint_translation` property defined in a model relationship.
 
 ## shared_degenerate_columns
 
@@ -1186,7 +1185,7 @@ Supported properties:
 
 For example:
 
-```
+```yaml
 level_attributes:
 
   - unique_name: Order Degen Shared Level
