@@ -12,7 +12,7 @@ files. Those defined in model files override their counterparts in
 
 Sample `model` file:
 
-```
+```yaml
 unique_name: Internet Sales
 object_type: model
 label: Internet Sales
@@ -217,6 +217,7 @@ namespace Models{
       String role_play
       String type
       Boolean m2m
+      ConstraintTranslation constraint_translation
     }
     class From{
       String dataset
@@ -226,6 +227,10 @@ namespace Models{
       String dimension
       String level
       String row_security
+    }
+    class ConstraintTranslation{
+      String level
+      Array~String~ from_columns
     }
     class Aggregate{
       String unique_name
@@ -389,6 +394,19 @@ marks):
 
 For example, if you wanted to use the prefix **Order**, you would set
 `role_play` to `"Order {0}"`.
+
+### constraint_translation
+
+- **Type:** object
+- **Required:** N
+
+Defines the translation of dimension filter constraints into fact table partition column constraints. This can significantly improve query performance for cases where fact-based aggregates are not used.
+
+Supported properties:
+- `level`: String, required. Indicates the dimension level to which the constraint translation applies.
+- `from_columns`: Array, required. Lists the column(s) in the dataset that should be used for the join.
+
+If the `constraint_translation` property is defined, a corresponding `constraint_translation_rank` must be present in the associated level.
 
 ## metrics
 
