@@ -12,7 +12,7 @@ files. Those defined in model files override their counterparts in
 
 Sample `model` file:
 
-```
+```yaml
 unique_name: Internet Sales
 object_type: model
 label: Internet Sales
@@ -207,8 +207,9 @@ namespace Models{
       Array~Aggregate~ aggregates
       Array~Perspective~ perspectives
       Array~Drillthrough~ drillthroughs
-      Array~Partition~ partition
+      Array~Partition~ partitions
       Boolean include_default_drillthrough
+      Object overrides
     }
     class Relationship{
       String unique_name
@@ -216,7 +217,6 @@ namespace Models{
       Object to
       String role_play
       String type
-      Boolean m2m
     }
     class From{
       String dataset
@@ -238,13 +238,19 @@ namespace Models{
       String unique_name
       String notes
       Array~String~ metrics
-      Array~AttributeReference~ attributes
+      Array~AttributeReferenceDrillthrough~ attributes
+    }
+    class AttributeReferenceDrillthrough{
+      String name
+      String dimension
+      Array~String~ relationships_path
     }
     class AttributeReference{
       String name
       String dimension
       String partition
       String distribution
+      Array~String~ relationships_path
     }
     class Partition{
       String unique_name
@@ -266,14 +272,12 @@ namespace Models{
     }
     class PerspectiveDimension{
       String name
-      Boolean visible
       Array~PerspectiveHierarchy~ hierarchies
-      Array~String~ secondaryattributes
-      Array~String~ metrics
+      Array~String~ secondary_attributes
+      Array~String~ relationships_path
     }
     class PerspectiveHierarchy{
       String name
-      Boolean visible
       Array~String~ levels
     }
 }
@@ -480,8 +484,6 @@ Supported properties:
 - `name`: String, required. The name of the dimension to include in the
   perspective.
 
-- `prefixes`: Array, optional.
-
 - `hierarchies`: Array, optional. A list of the specific hierarchies
   within the `name` dimension to include in the perspective. Supported
   properties:
@@ -489,8 +491,10 @@ Supported properties:
 - `levels`: Array, optional. A list of the levels within the
   hierarchy to include in the perspective.
 
-- `secondaryattributes`: Array, optional. A list of the dimension's
+- `secondary_attributes`: Array, optional. A list of the dimension's
   secondary attributes to include in the perspective.
+
+- `relationships_path`: Array, optional. A list of relationships path.
 
 ## drillthroughs
 
@@ -545,6 +549,7 @@ Supported properties:
   drillthrough.
 - `dimension`: String, optional. The dimension that the attribute
   defined by `name` appears in.
+- `relationships_path`: Array, optional. A list of relationships path.
 
 ## aggregates
 
@@ -736,3 +741,43 @@ you want to set for it at the model level. For example:
 
     dataset1:
         create_hinted_aggregate: true
+
+## include_default_drillthrough
+
+- **Type:** boolean
+- **Required:** N
+
+TO ADD DESCRIPTION!
+
+## overrides
+
+- **Type:** object
+- **Required:** N
+
+The `overrides` property in a model file enables you to create
+query_name overrides for metrics and dimensions referenced in а model.
+These will come out of imported projects
+where there are metrics or dimensions with the same query name but in different models.
+Since project scope uniqueness is enforced these metrics/dimensions will have different `unique_name`
+and they must have query names overrides.
+
+**Note:** This applies only for degenerate dimensions, NOT the dimensions part of relationships.
+
+- The object key must be a metric or dimension referenced in the model.
+
+### query_name
+
+- **Type:** string
+- **Required:** Y
+
+The query name that the metric or dimension should be resolved to.
+
+Sample `overrides`:
+
+```yaml
+overrides:
+  salesamount: 
+    query_name: real query name for metric
+  Color Dimension:
+    query_name: real query name for dimension
+```
