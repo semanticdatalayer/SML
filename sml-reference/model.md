@@ -195,6 +195,7 @@ classDiagram
     Aggregate *-- AttributeReference
     Perspective *-- PerspectiveDimension
     PerspectiveDimension *-- PerspectiveHierarchy
+    Drillthrough *-- AttributeReferenceDrillthrough
 namespace Models{
     class Model{
       String unique_name
