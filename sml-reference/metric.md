@@ -156,6 +156,8 @@ Supported values:
 - `first_child`
 - `last_child`
 
+**Note:** `first_child` and `last_child` are introduced in version `1.1`.
+
 ### relationships
 
 - **Type:** Array
