@@ -153,10 +153,8 @@ Determines whether the metric is First Non-Empty, Last Non-Empty, First Child or
 Supported values:
 - `first`
 - `last`
-- `first_child`
-- `last_child`
-
-**Note:** `first_child` and `last_child` are introduced in version `1.1`.
+- `first_child` - introduced in version `1.1`
+- `last_child` - introduced in version `1.1`
 
 ### relationships
 
