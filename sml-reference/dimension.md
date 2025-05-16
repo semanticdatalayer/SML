@@ -29,7 +29,7 @@ SML supports the following types of dimensions:
 
 Sample `dimension` file:
 
-```
+```yaml
 unique_name: Store Dimension
 object_type: dimension
 label: Store Dimension
@@ -154,11 +154,13 @@ classDiagram
     Dimension *-- Hierarchy
     Dimension *-- LevelAttribute
     Dimension *-- CalculationGroup
+    Hierarchy *-- DefaultMember
     Hierarchy *-- Level
     LevelAttribute *-- CustomEmptyMember
     Level *-- SecondaryAttribute
     Level *-- MetricalAttribute
     Level *-- Alias
+    Level *-- ParallelPeriods
     CalculationGroup *-- CalculatedMembers
     SecondaryAttribute *-- CustomEmptyMember
     Alias *-- CustomEmptyMember
@@ -196,17 +198,22 @@ namespace Dimensions{
     class Hierarchy{
       String unique_name
       String label
+      String description
       String folder
       enum filter_empty
+      DefaultMember default_member
       Array~Level~ levels
+    }
+    class DefaultMember{
+      String expression
+      Boolean apply_only_when_in_query
     }
     class Level{
       String unique_name
-      String description
       Array~SecondaryAttribute~ secondary_attributes
       Array~Alias~ aliases
       Array~MetricalAttribute~ metrics
-      String default_member
+      Array~ParallelPeriods~ parallel_periods
       Boolean is_hidden
     }
     class Alias{
@@ -239,6 +246,10 @@ namespace Dimensions{
       CustomEmptyMember custom_empty_member
       enum unrelated_dimensions_handling
       Array~String~ allowed_calcs_for_dma
+    }
+    class ParallelPeriods{
+      String level
+      Array~String~ key_columns
     }
     class LevelAttribute{
       String unique_name
@@ -325,14 +336,6 @@ need to be unique.
 
 A description of the dimension.
 
-## folder
-
-- **Type:** string
-- **Required:** N
-
-The name of the folder in which the calculation group appears in BI
-tools.
-
 ## type
 
 - **Type:** enum
@@ -344,6 +347,13 @@ Supported values:
 
 - `standard`: Can have any type of hierarchy.
 - `time`: Must have a time hierarchy.
+
+## is_degenerate
+
+- **Type:** boolean
+- **Required:** N
+
+Determines whether the dimension is degenerate. 
 
 ## hierarchies
 
@@ -705,6 +715,13 @@ Defines metrics for the level.
 For levels in time dimensions only. Defines a custom parallel period for the level. You can use custom parallel periods to compare members in different levels of a time hierarchy that aren't in the same relative child position; for example, the last week of a 53-week year to that of a 52-week year.
 
 You can define as many parallel periods for a level as needed.
+
+## is_hidden
+
+- **Type:** boolean
+- **Required:** N
+
+Determines whether the level is visible in BI tools. 
 
 # Secondary Attributes Properties
 
@@ -1176,7 +1193,7 @@ Supported properties:
 
 For example:
 
-```
+```yaml
 level_attributes:
 
   - unique_name: Order Degen Shared Level
