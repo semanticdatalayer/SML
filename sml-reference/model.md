@@ -743,13 +743,6 @@ you want to set for it at the model level. For example:
     dataset1:
         create_hinted_aggregate: true
 
-## include_default_drillthrough
-
-- **Type:** boolean
-- **Required:** N
-
-TO ADD DESCRIPTION!
-
 ## overrides
 
 - **Type:** object
