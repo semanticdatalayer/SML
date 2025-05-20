@@ -157,6 +157,7 @@ classDiagram
     Hierarchy *-- DefaultMember
     Hierarchy *-- Level
     LevelAttribute *-- CustomEmptyMember
+    LevelAttribute *-- SharedDegenerateColumns
     Level *-- SecondaryAttribute
     Level *-- MetricalAttribute
     Level *-- Alias
@@ -184,11 +185,12 @@ namespace Dimensions{
       Object to
       String role_play
       String type
-      Boolean m2m
     }
     class From{
       String dataset
-      Array~Column~ columns
+      Array~String~ join_columns
+      String hierarchy
+      String level
     }
     class To{
       String dimension
@@ -225,11 +227,11 @@ namespace Dimensions{
       String sort_column
       String folder
       Boolean is_hidden
+      String format
       Boolean exclude_from_dim_agg
+      Boolean is_aggregatable
       Boolean exclude_from_fact_agg
       Array~CustomEmptyMember~ custom_empty_member
-      Array~String~ allowed_calcs_for_dma
-      Object role
     }
     class MetricalAttribute{
       String unique_name
@@ -242,6 +244,7 @@ namespace Dimensions{
       String column
       Boolean is_hidden
       Boolean exclude_from_dim_agg
+      Boolean is_aggregatable
       Boolean exclude_from_fact_agg
       CustomEmptyMember custom_empty_member
       enum unrelated_dimensions_handling
@@ -263,9 +266,20 @@ namespace Dimensions{
       Boolean is_hidden
       Boolean is_unique_key
       Boolean exclude_from_dim_agg
+      Boolean is_aggregatable
       Boolean exclude_from_fact_agg
       String time_unit
       Array~String~ allowed_calcs_for_dma
+      CustomEmptyMember custom_empty_member
+      String folder
+      Array~SharedDegenerateColumns~ shared_degenerate_columns
+    }
+    class SharedDegenerateColumns {
+      String dataset
+      String name_column
+      String sort_column
+      Array~String~ key_columns
+      Boolean is_unique_key
     }
     class SecondaryAttribute{
       String unique_name
@@ -277,9 +291,12 @@ namespace Dimensions{
       String sort_column
       Array~String~ key_columns
       Boolean exclude_from_dim_agg
+      Boolean is_aggregatable
       Boolean exclude_from_fact_agg
       Array~String~ allowed_calcs_for_dma
-      Array~CustomEmptyMember~ custom_empty_member
+      CustomEmptyMember custom_empty_member
+      Boolean is_hidden
+      Boolean contains_unique_names
     }
     class CustomEmptyMember{
       Array~String~ key
@@ -299,6 +316,7 @@ namespace Dimensions{
       String format
       String expression
       Boolean use_input_metric_format
+      String template
     }
 }
 ```
@@ -522,6 +540,13 @@ Defines the individual calculated members in the group.
 - **Required:** N
 
 A description of the calculation group.
+
+## folder
+
+- **Type:** string
+- **Required:** N
+
+The name of the folder in which the calculation group is displayed in BI tools.
 
 # Calculated Members Properties
 
@@ -835,7 +860,7 @@ Excludes this attribute from system generated fact-based aggregates. This is use
 
 ## custom\_empty\_member
 
-- **Type:** array
+- **Type:** object
 - **Required:** N
 
 Defines a custom empty member for the attribute. This feature allows fact data with missing or invalid foreign key values to be isolated and independently aggregated from those with valid foreign key values. Because fact records with invalid foreign keys are aggregated separately from records referencing valid dimension members, analysts can easily spot data integrity problems and further investigate them. Use this feature to ensure that un-joinable values are included in query results and aggregated under a specially designated dimension member called the Custom Empty Member.
