@@ -1377,7 +1377,7 @@ A list of the empty member values to use for key fields.
 
 The empty member value to use for name fields.
 
-## sort
+## sort_name
 
 - **Type:** string
 - **Required:** N
