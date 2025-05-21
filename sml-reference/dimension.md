@@ -520,7 +520,7 @@ A description of the calculation group.
 - **Type:** boolean
 - **Required:** N
 
-Determines whether the attribute is visible in BI tools. 
+Determines whether the calculation group is visible in BI tools. 
 
 Supported values:
 
