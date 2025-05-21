@@ -488,9 +488,9 @@ Supported properties:
 - `hierarchies`: Array, optional. A list of the specific hierarchies
   within the `name` dimension to include in the perspective. Supported
   properties:
-- `name`: String, required. The name of the hierarchy.
-- `levels`: Array, optional. A list of the levels within the
-  hierarchy to include in the perspective.
+    - `name`: String, required. The name of the hierarchy.
+    - `levels`: Array, optional. A list of the levels within the
+    hierarchy to include in the perspective.
 
 - `secondary_attributes`: Array, optional. A list of the dimension's
   secondary attributes to include in the perspective.
@@ -748,16 +748,16 @@ you want to set for it at the model level. For example:
 - **Type:** object
 - **Required:** N
 
-The `overrides` property in a model file enables you to create
-query_name overrides for metrics and dimensions referenced in а model.
-These will come out of imported projects
-where there are metrics or dimensions with the same query name but in different models.
-Since project scope uniqueness is enforced these metrics/dimensions will have different `unique_name`
-and they must have query names overrides.
+The `overrides` property in a model file enables the creation of query name overrides for metrics and degenerate dimensions referenced in а model.
+This scenario arises from legacy projects where metrics or dimensions in different models can use the same `unique_name` when deployed.
+Since project scope uniqueness is enforced these metrics/dimensions are required have a different `unique_name` value in the repo.
+When a model is deployed the overridden `unique_name` is replaced by the original value.
+The best practice is to never use the same `unique_name` for different objects across models so overrides should only be used when migrating
+from a legacy model and wanting to maintain the same query name for existing interfaces.
 
 **Note:** This applies only for degenerate dimensions, NOT the dimensions part of relationships.
 
-- The object key must be a metric or dimension referenced in the model.
+- The object key must be a metric or a dimension referenced in the model.
 
 ### query_name
 
@@ -771,7 +771,7 @@ Sample `overrides`:
 ```yaml
 overrides:
   salesamount: 
-    query_name: real query name for metric
+    query_name: deployed query name for metric
   Color Dimension:
-    query_name: real query name for dimension
+    query_name: deployed query name for dimension
 ```
