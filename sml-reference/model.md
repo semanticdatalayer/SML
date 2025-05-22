@@ -12,7 +12,7 @@ files. Those defined in model files override their counterparts in
 
 Sample `model` file:
 
-```
+```yaml
 unique_name: Internet Sales
 object_type: model
 label: Internet Sales
@@ -195,6 +195,7 @@ classDiagram
     Aggregate *-- AttributeReference
     Perspective *-- PerspectiveDimension
     PerspectiveDimension *-- PerspectiveHierarchy
+    Drillthrough *-- AttributeReferenceDrillthrough
 namespace Models{
     class Model{
       String unique_name
@@ -207,8 +208,9 @@ namespace Models{
       Array~Aggregate~ aggregates
       Array~Perspective~ perspectives
       Array~Drillthrough~ drillthroughs
-      Array~Partition~ partition
+      Array~Partition~ partitions
       Boolean include_default_drillthrough
+      Object overrides
     }
     class Relationship{
       String unique_name
@@ -216,7 +218,6 @@ namespace Models{
       Object to
       String role_play
       String type
-      Boolean m2m
     }
     class From{
       String dataset
@@ -238,13 +239,19 @@ namespace Models{
       String unique_name
       String notes
       Array~String~ metrics
-      Array~AttributeReference~ attributes
+      Array~AttributeReferenceDrillthrough~ attributes
+    }
+    class AttributeReferenceDrillthrough{
+      String name
+      String dimension
+      Array~String~ relationships_path
     }
     class AttributeReference{
       String name
       String dimension
       String partition
       String distribution
+      Array~String~ relationships_path
     }
     class Partition{
       String unique_name
@@ -266,14 +273,12 @@ namespace Models{
     }
     class PerspectiveDimension{
       String name
-      Boolean visible
       Array~PerspectiveHierarchy~ hierarchies
-      Array~String~ secondaryattributes
-      Array~String~ metrics
+      Array~String~ secondary_attributes
+      Array~String~ relationships_path
     }
     class PerspectiveHierarchy{
       String name
-      Boolean visible
       Array~String~ levels
     }
 }
@@ -480,17 +485,17 @@ Supported properties:
 - `name`: String, required. The name of the dimension to include in the
   perspective.
 
-- `prefixes`: Array, optional.
-
 - `hierarchies`: Array, optional. A list of the specific hierarchies
   within the `name` dimension to include in the perspective. Supported
   properties:
-- `name`: String, required. The name of the hierarchy.
-- `levels`: Array, optional. A list of the levels within the
-  hierarchy to include in the perspective.
+    - `name`: String, required. The name of the hierarchy.
+    - `levels`: Array, optional. A list of the levels within the
+    hierarchy to include in the perspective.
 
-- `secondaryattributes`: Array, optional. A list of the dimension's
+- `secondary_attributes`: Array, optional. A list of the dimension's
   secondary attributes to include in the perspective.
+
+- `relationships_path`: Array, optional. A list of relationships path.
 
 ## drillthroughs
 
@@ -545,6 +550,7 @@ Supported properties:
   drillthrough.
 - `dimension`: String, optional. The dimension that the attribute
   defined by `name` appears in.
+- `relationships_path`: Array, optional. A list of relationships path.
 
 ## aggregates
 
@@ -736,3 +742,36 @@ you want to set for it at the model level. For example:
 
     dataset1:
         create_hinted_aggregate: true
+
+## overrides
+
+- **Type:** object
+- **Required:** N
+
+The `overrides` property in a model file enables the creation of query name overrides for metrics and degenerate dimensions referenced in а model.
+This scenario arises from legacy projects where metrics or dimensions in different models can use the same `unique_name` when deployed.
+Since project scope uniqueness is enforced these metrics/dimensions are required have a different `unique_name` value in the repo.
+When a model is deployed the overridden `unique_name` is replaced by the original value.
+The best practice is to never use the same `unique_name` for different objects across models so overrides should only be used when migrating
+from a legacy model and wanting to maintain the same query name for existing interfaces.
+
+**Note:** This applies only for degenerate dimensions, NOT the dimensions part of relationships.
+
+- The object key must be a metric or a dimension referenced in the model.
+
+### query_name
+
+- **Type:** string
+- **Required:** Y
+
+The query name that the metric or dimension should be resolved to.
+
+Sample `overrides`:
+
+```yaml
+overrides:
+  salesamount: 
+    query_name: deployed query name for metric
+  Color Dimension:
+    query_name: deployed query name for dimension
+```
