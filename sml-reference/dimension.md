@@ -308,6 +308,7 @@ namespace Dimensions{
       String label
       String description
       String folder
+      Number precedence
       Array~CalculatedMembers~ calculated_members
     }
     class CalculatedMembers{
@@ -547,6 +548,17 @@ A description of the calculation group.
 - **Required:** N
 
 The name of the folder in which the calculation group is displayed in BI tools.
+
+## precedence
+
+- **Type:** number
+- **Required:** N
+
+The value of the precedence explicitly define the order of Calculation Group evaluation and is consistent across BI tools.
+
+Supported values:
+
+- Integer and floating point numbers
 
 # Calculated Members Properties
 
