@@ -554,7 +554,7 @@ The name of the folder in which the calculation group is displayed in BI tools.
 - **Type:** number
 - **Required:** N
 
-The value of the precedence explicitly define the order of Calculation Group evaluation and is consistent across BI tools.
+Update to "Precedence" explicitly defines the order of Calculation Group evaluation, making it consistent across BI tools.
 
 Supported values:
 
