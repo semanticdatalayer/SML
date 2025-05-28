@@ -97,7 +97,7 @@ as the properties available for each:
 
 ## SML Converters
 
-[SML Converters and Tooling](sml-converters) - SML CLI converters and tooling.
+[SML Converters and Tooling](https://github.com/semanticdatalayer/sml-converters) - Library of bi-directional SML converters and tooling for different semantic layer platforms.
 
 ## Model Library
 
