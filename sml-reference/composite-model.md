@@ -10,7 +10,7 @@ When you deploy a composite model, all of its referenced objects are deployed as
 
 Sample `composite_model` file:
 
-```
+```yaml
 unique_name: TPCDS - Composite
 object_type: composite_model
 label: TPCDS - Composite
