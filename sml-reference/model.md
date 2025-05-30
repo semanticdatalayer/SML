@@ -465,7 +465,7 @@ file.
 - **Type:** array
 - **Required:** N
 
-A list of the specific metrics and calculations available in the
+A list of the specific metrics and calculations to be hidden in the
 perspective.
 
 ### dimensions
@@ -473,27 +473,27 @@ perspective.
 - **Type:** array
 - **Required:** N
 
-A list of the specific dimensions and their hierarchies available in the
+A list of the specific dimensions and their hierarchies to be hidden in the
 perspective.
 
 By default, all objects within a dimension are visible. Hiding a level
-in a hierarchy hides all levels below it, as well as their secondary
-attributes.
+in a hierarchy hides all levels below it. Secondary
+attributes can be hidden as well.
 
 Supported properties:
 
-- `name`: String, required. The name of the dimension to include in the
+- `name`: String, required. The name of the dimension to hidden in the
   perspective.
 
 - `hierarchies`: Array, optional. A list of the specific hierarchies
-  within the `name` dimension to include in the perspective. Supported
+  within the `name` dimension to hide in the perspective. Supported
   properties:
     - `name`: String, required. The name of the hierarchy.
     - `levels`: Array, optional. A list of the levels within the
-    hierarchy to include in the perspective.
+    hierarchy to hide in the perspective. All levels below the specified level will be hidden as well.
 
 - `secondary_attributes`: Array, optional. A list of the dimension's
-  secondary attributes to include in the perspective.
+  secondary attributes to hide in the perspective.
 
 - `relationships_path`: Array, optional. A list of relationships path.
 
