@@ -734,6 +734,8 @@ Supported properties:
 - `allow_peer_aggs`: Boolean, optional. Enables aggregation on data
   derived from datasets in data warehouses that are different from the
   source dataset.
+- `allow_preferred_aggs`: Boolean, optional. Allow aggregates to be built 
+  in preferred storage.
 - `create_hinted_aggregate`: Boolean, options. Enables the creation of
   hinted aggregates for the dataset.
 

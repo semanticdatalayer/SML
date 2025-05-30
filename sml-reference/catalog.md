@@ -6,7 +6,8 @@ repository name and settings for building aggregates. Each repository
 must contain a file called `catalog.yml` at the root level.
 
 Sample `catalog` file:
-```
+
+```yaml
 unique_name: sml-models
 object_type: catalog
 label: SML Model Library
@@ -113,12 +114,14 @@ Supported properties:
 - `allow_peer_aggs`: Boolean, optional. Enables aggregation on data
   derived from datasets in data warehouses that are different from the
   source dataset.
+- `allow_preferred_aggs`: Boolean, optional. Allow aggregates to be built 
+  in preferred storage.
 
 Specify the `unique_name` of the dataset followed by the properties and
 values you want to set for it at the repository level. For example:
 
     dataset1:
-        create_hinted_aggregate: true
+        allow_peer_aggs: true
 
 **Note:** Datasets are typically defined at the repository level, in
 `catalog.yml`; however, datasets used by a specific model (typically
