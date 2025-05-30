@@ -482,7 +482,7 @@ attributes can be hidden as well.
 
 Supported properties:
 
-- `name`: String, required. The name of the dimension to hidden in the
+- `name`: String, required. The name of the dimension to be hidden in the
   perspective.
 
 - `hierarchies`: Array, optional. A list of the specific hierarchies
