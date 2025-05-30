@@ -489,8 +489,7 @@ Supported properties:
 - `hierarchies`: Array, optional. A list of the specific hierarchies
   within the dimension to hide in the perspective. Supported properties:
     - `name`: String, required. The name of the hierarchy.
-    - `levels`: Array, optional. A list of the levels within the
-    hierarchy to hide in the perspective. All levels below the specified level will be hidden as well.
+    - `levels`: Array, optional. Defines a single level in the hierarchy to be hidden in the perspective. All levels below the specified level will also be hidden. Only one level should be provided.
 
 - `secondary_attributes`: Array, optional. A list of the dimension's
   secondary attributes to hide in the perspective.
