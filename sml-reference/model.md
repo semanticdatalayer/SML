@@ -476,9 +476,10 @@ perspective.
 A list of the specific dimensions and their hierarchies to be hidden in the
 perspective.
 
-By default, all objects within a dimension are visible. Hiding a level
-in a hierarchy hides all levels below it. Secondary
-attributes can be hidden as well.
+By default, all objects within a dimension are visible. The lowest granularity objects specified are 
+hidden and the objects above it are not. Hiding a level in a hierarchy hides all levels below it. 
+Hiding a hierarchy hides all levels in it. Hiding a dimension hides all objects within it including hierarchies 
+and secondary attributes. If a dimension is not hidden, secondary attributes can be hidden individually.
 
 Supported properties:
 
@@ -486,8 +487,7 @@ Supported properties:
   perspective.
 
 - `hierarchies`: Array, optional. A list of the specific hierarchies
-  within the `name` dimension to hide in the perspective. Supported
-  properties:
+  within the dimension to hide in the perspective. Supported properties:
     - `name`: String, required. The name of the hierarchy.
     - `levels`: Array, optional. A list of the levels within the
     hierarchy to hide in the perspective. All levels below the specified level will be hidden as well.
@@ -495,7 +495,7 @@ Supported properties:
 - `secondary_attributes`: Array, optional. A list of the dimension's
   secondary attributes to hide in the perspective.
 
-- `relationships_path`: Array, optional. A list of relationships path.
+- `relationships_path`: Array, optional. A list of relationships used to specify role-playing.
 
 ## drillthroughs
 
