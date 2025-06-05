@@ -127,8 +127,7 @@ perspectives:
   - unique_name: Internet Sales - No PII
     dimensions:
       - hierarchies:
-          - levels:
-              - Customer Name
+          - level: Customer Name
             name: Customer Hierarchy
         name: Customer Dimension
         secondaryattributes:
@@ -279,6 +278,7 @@ namespace Models{
     }
     class PerspectiveHierarchy{
       String name
+      String level
       Array~String~ levels
     }
 }
@@ -489,7 +489,8 @@ Supported properties:
 - `hierarchies`: Array, optional. A list of the specific hierarchies
   within the dimension to hide in the perspective. Supported properties:
     - `name`: String, required. The name of the hierarchy.
-    - `levels`: Array, optional. Defines a single level in the hierarchy to be hidden in the perspective. All levels below the specified level will also be hidden. Only one level should be provided.
+    - `level`: String, optional. Defines a single level in the hierarchy to be hidden in the perspective. All levels below the specified level will also be hidden.
+    - `levels`: Array, optional. ⚠️ **DEPRECATED** use `level` instead.
 
 - `secondary_attributes`: Array, optional. A list of the dimension's
   secondary attributes to hide in the perspective.
