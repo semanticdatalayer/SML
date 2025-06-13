@@ -64,6 +64,14 @@ not need to be unique.
 
 The version of SML being used.
 
+## hidden_models
+
+- **Type:** array<string>
+- **Required:** Y
+- **Added in** v1.2
+
+A list of the models that will be excluded from the deploy. Cannot reference composite models, onli
+
 ## aggressive_agg_promotion
 
 - **Type:** boolean
@@ -114,7 +122,7 @@ Supported properties:
 - `allow_peer_aggs`: Boolean, optional. Enables aggregation on data
   derived from datasets in data warehouses that are different from the
   source dataset.
-- `allow_preferred_aggs`: Boolean, optional. Allow aggregates to be built 
+- `allow_preferred_aggs`: Boolean, optional. Allow aggregates to be built
   in preferred storage.
 
 Specify the `unique_name` of the dataset followed by the properties and
