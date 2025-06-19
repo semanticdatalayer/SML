@@ -69,13 +69,13 @@ The name of the database connection itself, excluding the schema.
 ## database
 
 - **Type:** string
-- **Required:** Y
+- **Required:** N
 
 The source database used for this connection.
 
 ## schema
 
 - **Type:** string
-- **Required:** Y
+- **Required:** N
 
 The source schema used for this connection.
