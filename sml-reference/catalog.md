@@ -14,6 +14,9 @@ label: SML Model Library
 version: 1.0
 aggressive_agg_promotion: false
 build_speculative_aggs: false
+hidden_models:
+  - Supply Model
+  - Sales Model
 ```
 
 # Entitity Relationships
@@ -28,6 +31,7 @@ classDiagram
       Boolean aggressive_agg_promotion
       Boolean build_speculative_aggs
       Object dataset_properties
+      Object hidden_models
     }
 ```
 
@@ -70,7 +74,7 @@ The version of SML being used.
 - **Required:** Y
 - **Added in** v1.2
 
-A list of the models that will be excluded from the deploy. Cannot reference composite models, onli
+A list of the models that will be excluded from the deploy. Cannot reference composite models, only regular models
 
 ## aggressive_agg_promotion
 
