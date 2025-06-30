@@ -73,8 +73,9 @@ The version of SML being used.
 - **Type:** array<string>
 - **Required:** Y
 - **Added in** v1.2
+- **Use case:** When deploying a composite model the referenced component models may not need to be accessible as separate models.
 
-A list of the models that will be excluded from the deploy. Cannot reference composite models, only regular models
+A list of the models that will be excluded from the deploy. Cannot reference composite models, only regular models.
 
 ## aggressive_agg_promotion
 
