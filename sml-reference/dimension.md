@@ -185,6 +185,7 @@ namespace Dimensions{
       Object to
       String role_play
       String type
+      Boolean m2m
     }
     class From{
       String dataset
@@ -507,6 +508,13 @@ marks):
 
 For example, if you wanted to use the prefix **Order**, you would set
 `role_play` to `"Order {0}"`.
+
+## m2m
+
+- **Type:** boolean
+- **Required:** N
+
+Defines a many-to-many relationship. The property is supported only for embedded relationships.
 
 # Calculation Group Properties
 
