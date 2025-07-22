@@ -269,6 +269,7 @@ namespace Dimensions{
       Boolean is_aggregatable
       Boolean exclude_from_fact_agg
       String time_unit
+      Int constraint_translation_rank
       Array~String~ allowed_calcs_for_dma
       CustomEmptyMember custom_empty_member
       String folder
@@ -1187,6 +1188,14 @@ has a compound key, list all columns that make up the key.
 If the key consists of one column, the values in that column must be
 unique. If the key is a compound key, the columns together must provide
 unique values.
+
+## constraint_translation_rank
+
+- **Type:** integer
+- **Required:** N
+- **Range:** should be a valid 32 bit integer
+
+Defines the translation of dimension filter constraints into fact table partition column constraints. This can significantly improve query performance for cases where fact-based aggregates are not used.
 
 ## shared_degenerate_columns
 
