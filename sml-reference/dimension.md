@@ -309,6 +309,7 @@ namespace Dimensions{
       String label
       String description
       String folder
+      Number precedence
       Array~CalculatedMembers~ calculated_members
       Boolean is_hidden
     }
@@ -562,6 +563,17 @@ Supported values:
 - **Required:** N
 
 The name of the folder in which the calculation group is displayed in BI tools.
+
+## precedence
+
+- **Type:** number
+- **Required:** N
+
+Update to "Precedence" explicitly defines the order of Calculation Group evaluation, making it consistent across BI tools.
+
+Supported values:
+
+- Integer and floating point numbers
 
 # Calculated Members Properties
 
