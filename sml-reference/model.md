@@ -484,7 +484,7 @@ file.
 - **Type:** array
 - **Required:** N
 
-A list of the specific metrics and calculations available in the
+A list of the specific metrics and calculations to be hidden in the
 perspective.
 
 ### dimensions
@@ -492,29 +492,28 @@ perspective.
 - **Type:** array
 - **Required:** N
 
-A list of the specific dimensions and their hierarchies available in the
+A list of the specific dimensions and their hierarchies to be hidden in the
 perspective.
 
-By default, all objects within a dimension are visible. Hiding a level
-in a hierarchy hides all levels below it, as well as their secondary
-attributes.
+By default, all objects within a dimension are visible. The lowest granularity objects specified are 
+hidden and the objects above it are not. Hiding a level in a hierarchy hides all levels below it. 
+Hiding a hierarchy hides all levels in it. Hiding a dimension hides all objects within it including hierarchies 
+and secondary attributes. If a dimension is not hidden, secondary attributes can be hidden individually.
 
 Supported properties:
 
-- `name`: String, required. The name of the dimension to include in the
+- `name`: String, required. The name of the dimension to be hidden in the
   perspective.
 
 - `hierarchies`: Array, optional. A list of the specific hierarchies
-  within the `name` dimension to include in the perspective. Supported
-  properties:
+  within the dimension to hide in the perspective. Supported properties:
     - `name`: String, required. The name of the hierarchy.
-    - `levels`: Array, optional. A list of the levels within the
-    hierarchy to include in the perspective.
+    - `levels`: Array, optional. Defines a single level in the hierarchy to be hidden in the perspective. All levels below the specified level will also be hidden. Only one level should be provided.
 
 - `secondary_attributes`: Array, optional. A list of the dimension's
-  secondary attributes to include in the perspective.
+  secondary attributes to hide in the perspective.
 
-- `relationships_path`: Array, optional. A list of relationships path.
+- `relationships_path`: Array, optional. A list of relationships used to specify role-playing.
 
 ## drillthroughs
 
@@ -753,6 +752,8 @@ Supported properties:
 - `allow_peer_aggs`: Boolean, optional. Enables aggregation on data
   derived from datasets in data warehouses that are different from the
   source dataset.
+- `allow_preferred_aggs`: Boolean, optional. Allow aggregates to be built 
+  in preferred storage.
 - `create_hinted_aggregate`: Boolean, options. Enables the creation of
   hinted aggregates for the dataset.
 

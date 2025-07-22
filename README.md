@@ -22,7 +22,7 @@ We are or will be open-sourcing the following:
 2. **Pre-built Semantic Models**: The GitHub repository contains pre-built semantic models that incorporate standard data models, such as TPC-DS, common training models like Worldwide Importers and AdventureWorks, and marketplace models like Snowplow and CRISP. We expect to add semantic models for SaaS applications such as Salesforce, Google Analytics, and Jira soon.
 3. **SML SDK**: An SDK that facilitates the programmatic reading and writing of SML syntax.
 4. **SML CLIs**: Command line interfaces (CLIs) for installing SML dependencies and validating SML syntax. This includes a reference CLI for deploying SML models to a proprietary semantic layer platform.
-5. **Semantic Translators**: A CLI for translating other semantic modeling languages to and from SML, including Snowflake Cortex semantic models, Databricks UC Metrics, and Power BI semantic models.
+5. **Semantic Converters**: A CLI for translating other semantic modeling languages to and from SML, including Snowflake Cortex semantic models, Databricks UC Metrics, and Power BI semantic models.
 
 ## SML Example
 The following is an example of an SML `model` object:
@@ -94,6 +94,10 @@ as the properties available for each:
 - [Dataset](sml-reference/dataset.md) - Defines columns on a physical table or query. Columns can be defined as SQL expressions.
 - [Connection](sml-reference/connection.md) - Defines a database and schema for connecting datasets to the physical data platform.
 - [Composite Model](sml-reference/composite-model.md) - Defines a model made up of multiple other models.
+
+## SML Converters
+
+[SML Converters and Tooling](https://github.com/semanticdatalayer/sml-converters) - Library of bi-directional SML converters and tooling for different semantic layer platforms.
 
 ## Model Library
 

@@ -6,7 +6,7 @@ individual objects (such as dimensions) across multiple models.
 
 Sample `package` file:
 
-```
+```yaml
 packages:
   - name: shared
     url: https://github.com/company/shared
