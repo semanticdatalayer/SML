@@ -19,7 +19,6 @@ label: Internet Sales
 visible: true
 
 relationships:
-
   - unique_name: factinternetsales_Date_Dimension_Order
     from:
       dataset: factinternetsales
@@ -116,7 +115,6 @@ dimensions:
   - Weight
 
 metrics:
-
   - unique_name: orderquantity
     folder: Sales Metrics
 
@@ -135,10 +133,8 @@ perspectives:
           - d_lastname
 
 drillthroughs:
-
   - unique_name: Customer Details
     attributes:
-
       - name: State
         dimension: Geography Dimension
 
@@ -157,7 +153,6 @@ drillthroughs:
 
   - unique_name: Shipping Details
     attributes:
-
       - name: Size
         dimension: Size Dimension
 
@@ -217,6 +212,7 @@ namespace Models{
       Object to
       String role_play
       String type
+      ConstraintTranslation constraint_translation
     }
     class From{
       String dataset
@@ -226,6 +222,10 @@ namespace Models{
       String dimension
       String level
       String row_security
+    }
+    class ConstraintTranslation{
+      String level
+      Array~String~ from_columns
     }
     class Aggregate{
       String unique_name
@@ -395,6 +395,20 @@ marks):
 For example, if you wanted to use the prefix **Order**, you would set
 `role_play` to `"Order {0}"`.
 
+### constraint_translation
+
+- **Type:** object
+- **Required:** N
+
+Defines the translation of dimension filter constraints into fact table partition column constraints. This can significantly improve query performance for cases where fact-based aggregates are not used.
+
+Supported properties:
+
+- `level`: String, required. Indicates the dimension level to which the constraint translation applies.
+- `from_columns`: Array, required. Lists the column(s) in the dataset that should be used for the join.
+
+If the `constraint_translation` property is defined, a corresponding `constraint_translation_rank` must be present in the associated level.
+
 ## metrics
 
 - **Type:** array
@@ -440,7 +454,7 @@ analysts with the entire data model, you can make specific dimensions,
 hierarchies, levels, secondary attributes, measures, and calculated
 measures invisible to them.
 
-**Note:** We recommend that you add perspectives *after* a model has
+**Note:** We recommend that you add perspectives _after_ a model has
 been fully tested. Although you can edit a model after adding
 perspectives, any changes might require you to update the perspectives
 to hide new objects that would otherwise be visible to all users.
@@ -476,9 +490,9 @@ perspective.
 A list of the specific dimensions and their hierarchies to be hidden in the
 perspective.
 
-By default, all objects within a dimension are visible. The lowest granularity objects specified are 
-hidden and the objects above it are not. Hiding a level in a hierarchy hides all levels below it. 
-Hiding a hierarchy hides all levels in it. Hiding a dimension hides all objects within it including hierarchies 
+By default, all objects within a dimension are visible. The lowest granularity objects specified are
+hidden and the objects above it are not. Hiding a level in a hierarchy hides all levels below it.
+Hiding a hierarchy hides all levels in it. Hiding a dimension hides all objects within it including hierarchies
 and secondary attributes. If a dimension is not hidden, secondary attributes can be hidden individually.
 
 Supported properties:
@@ -488,9 +502,10 @@ Supported properties:
 
 - `hierarchies`: Array, optional. A list of the specific hierarchies
   within the dimension to hide in the perspective. Supported properties:
-    - `name`: String, required. The name of the hierarchy.
-    - `level`: String, optional. Defines a single level in the hierarchy to be hidden in the perspective. All levels below the specified level will also be hidden.
-    - `levels`: Array, optional. ⚠️ **DEPRECATED** use `level` instead.
+
+  - `name`: String, required. The name of the hierarchy.
+  - `level`: String, optional. Defines a single level in the hierarchy to be hidden in the perspective. All levels below the specified level will also be hidden.
+  - `levels`: Array, optional. ⚠️ **DEPRECATED** use `level` instead.
 
 - `secondary_attributes`: Array, optional. A list of the dimension's
   secondary attributes to hide in the perspective.
@@ -644,22 +659,22 @@ Supported properties:
   determines whether it should be defined on the key column, name
   column, or both. Supported values: `name`, `key`, `name+key`
 
-    When the engine builds an instance of this aggregate, it creates
-    a partition for each combination of values in the dimensional
-    attributes. The number of partitions depends on the
-    left-to-right order of the attributes, as well as the number of
-    values for each attribute.
+  When the engine builds an instance of this aggregate, it creates
+  a partition for each combination of values in the dimensional
+  attributes. The number of partitions depends on the
+  left-to-right order of the attributes, as well as the number of
+  values for each attribute.
 
-    Essentially, the partitioning key functions as a `GROUP BY`
-    column. Queries against the aggregate must use this dimensional
-    attribute in a `WHERE` clause. A good candidate for a
-    partitioning key is a set of dimensional attributes that
-    together have a few hundred to under 1000 value combinations.
+  Essentially, the partitioning key functions as a `GROUP BY`
+  column. Queries against the aggregate must use this dimensional
+  attribute in a `WHERE` clause. A good candidate for a
+  partitioning key is a set of dimensional attributes that
+  together have a few hundred to under 1000 value combinations.
 
 - `distribution`: String, optional. The distribution keys to use when
   creating the aggregate table. If your aggregate data warehouse
   supports distribution keys, then the semantic engine uses the specified keys when
-  creating the aggregate table. 
+  creating the aggregate table.
 
 ## partitions
 
@@ -734,7 +749,7 @@ Supported properties:
 - `allow_peer_aggs`: Boolean, optional. Enables aggregation on data
   derived from datasets in data warehouses that are different from the
   source dataset.
-- `allow_preferred_aggs`: Boolean, optional. Allow aggregates to be built 
+- `allow_preferred_aggs`: Boolean, optional. Allow aggregates to be built
   in preferred storage.
 - `create_hinted_aggregate`: Boolean, options. Enables the creation of
   hinted aggregates for the dataset.
@@ -772,7 +787,7 @@ Sample `overrides`:
 
 ```yaml
 overrides:
-  salesamount: 
+  salesamount:
     query_name: deployed query name for metric
   Color Dimension:
     query_name: deployed query name for dimension
