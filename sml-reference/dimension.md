@@ -310,11 +310,13 @@ namespace Dimensions{
       String description
       String folder
       Array~CalculatedMembers~ calculated_members
+      Boolean is_hidden
     }
     class CalculatedMembers{
       String unique_name
       String description
       String format
+      Boolean is_hidden
       String expression
       Boolean use_input_metric_format
       String template
@@ -542,6 +544,18 @@ Defines the individual calculated members in the group.
 
 A description of the calculation group.
 
+## is_hidden
+
+- **Type:** boolean
+- **Required:** N
+
+Determines whether the calculation group is visible in BI tools. 
+
+Supported values:
+
+- `false` (default)
+- `true`
+
 ## folder
 
 - **Type:** string
@@ -577,6 +591,18 @@ Supported templates:
 `Current`, `Previous`, `Current vs Previous`, `Current vs Previous Pct`, `Next`, `Current vs Next`, `Current vs Next Pct`, `Pct of Total`, `Pct of Parent`, `Last Year`, `Current vs Last Year`, `Current vs Last Year Pct`, `Year to Date`, `Quarter to Date`, `Month to Date`, `Month Moving Average 3 Month`, `Moving Average 30 Period`, `Moving Average 5 Period`, `Moving Std Dev 30 Period`, `Moving Std Dev 5 Period`
 
 If you do not want to use a built-in template, you can define a custom expression using the `expression` property (see below).
+
+## is_hidden
+
+- **Type:** boolean
+- **Required:** N
+
+Determines whether the attribute is visible in BI tools. 
+
+Supported values:
+
+- `false` (default)
+- `true`
 
 ## expression
 
