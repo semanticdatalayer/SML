@@ -6,7 +6,9 @@ into your repository.
 
 Each connection file should define a single database connection *and*
 its schema. If you need to use additional schemas for the same database,
-each must be defined in a separate connection file.
+each must be defined in a separate connection file. If a dataset uses a query
+instead of tables, the database and schema do not need to be specified in the
+connection file.
 
 Sample `connection` file:
 
@@ -69,13 +71,13 @@ The name of the database connection itself, excluding the schema.
 ## database
 
 - **Type:** string
-- **Required:** Y
+- **Required:** N
 
-The source database used for this connection.
+The source database is required when used in the table datasets, but it is not necessary for query datasets.
 
 ## schema
 
 - **Type:** string
-- **Required:** Y
+- **Required:** N
 
-The source schema used for this connection.
+The source schema is required when used in the table datasets, but it is not necessary for query datasets.
