@@ -14,6 +14,9 @@ label: SML Model Library
 version: 1.0
 aggressive_agg_promotion: false
 build_speculative_aggs: false
+hidden_models:
+  - Supply Model
+  - Sales Model
 ```
 
 # Entitity Relationships
@@ -28,6 +31,7 @@ classDiagram
       Boolean aggressive_agg_promotion
       Boolean build_speculative_aggs
       Object dataset_properties
+      Array~String hidden_models
     }
 ```
 
@@ -63,6 +67,15 @@ not need to be unique.
 - **Required:** Y
 
 The version of SML being used.
+
+## hidden_models
+
+- **Type:** array<string>
+- **Required:** Y
+- **Added in** v1.2
+- **Use case:** When deploying a composite model the referenced component models may not need to be accessible as separate models.
+
+A list of the models that will be excluded from the deploy. Cannot reference composite models, only regular models.
 
 ## aggressive_agg_promotion
 
@@ -114,7 +127,7 @@ Supported properties:
 - `allow_peer_aggs`: Boolean, optional. Enables aggregation on data
   derived from datasets in data warehouses that are different from the
   source dataset.
-- `allow_preferred_aggs`: Boolean, optional. Allow aggregates to be built 
+- `allow_preferred_aggs`: Boolean, optional. Allow aggregates to be built
   in preferred storage.
 
 Specify the `unique_name` of the dataset followed by the properties and
