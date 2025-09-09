@@ -1,10 +1,11 @@
 ![logo](images/sml-logo-large.png)
 
-# SML version 1.1
+# SML version 1.2
 
-This is documentation for SML spec version `1.1`. For earlier versions browse the repository tags. Examples:
+This is documentation for SML spec version `1.2`. For earlier versions browse the repository tags. Examples:
 
 - [SML version 1.0](https://github.com/semanticdatalayer/SML/tree/v1.0)
+- [SML version 1.1](https://github.com/semanticdatalayer/SML/tree/v1.1)
 
 # What is SML?
 
@@ -28,7 +29,7 @@ We are or will be open-sourcing the following:
 1. **A YAML-based Language Specification**: The SML specification is documented and encompasses tabular and multidimensional constructs.
 2. **Pre-built Semantic Models**: The GitHub repository contains pre-built semantic models that incorporate standard data models, such as TPC-DS, common training models like Worldwide Importers and AdventureWorks, and marketplace models like Snowplow and CRISP. We expect to add semantic models for SaaS applications such as Salesforce, Google Analytics, and Jira soon.
 3. **SML SDK**: An SDK that facilitates the programmatic reading and writing of SML syntax.
-4. **SML CLIs**: Command line interfaces (CLIs) for installing SML dependencies and validating SML syntax. This includes a reference CLI for deploying SML models to a proprietary semantic layer platform.
+4. **SML CLI**: Command line interface (CLI) for installing SML dependencies and validating SML syntax. This includes a reference CLI for deploying SML models to a proprietary semantic layer platform.
 5. **Semantic Converters**: A CLI for translating other semantic modeling languages to and from SML, including Snowflake Cortex semantic models, Databricks UC Metrics, and Power BI semantic models.
 
 ## SML Example
@@ -104,9 +105,11 @@ as the properties available for each:
 - [Connection](sml-reference/connection.md) - Defines a database and schema for connecting datasets to the physical data platform.
 - [Composite Model](sml-reference/composite-model.md) - Defines a model made up of multiple other models.
 
-## SML Converters
+## SML Tools and Converters
 
-[SML Converters and Tooling](https://github.com/semanticdatalayer/sml-converters) - Library of bi-directional SML converters and tooling for different semantic layer platforms.
+- SML SDK [(npm download)](https://www.npmjs.com/package/sml-sdk) - SDK for creating and updating SML objects. Used by converters.
+- SML CLI [(npm download)](https://www.npmjs.com/package/sml-cli) - Command line interface (CLI) for installing SML dependencies, validating SML syntax, and a reference implementation for deploying SML models to a proprietary semantic layer platform.
+- [SML Converters](https://github.com/semanticdatalayer/sml-converters) [(npm download)](https://www.npmjs.com/package/sml-converters)- Library of bi-directional SML converters for different semantic layer platforms.
 
 ## Model Library
 
