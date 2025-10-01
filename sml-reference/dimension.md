@@ -228,6 +228,8 @@ namespace Dimensions{
       Boolean is_aggregatable
       Boolean exclude_from_fact_agg
       Array~CustomEmptyMember~ custom_empty_member
+      Boolean is_excel_pivot_table_property
+      Boolean is_user_defined_property
     }
     class MetricalAttribute{
       String unique_name
@@ -907,6 +909,7 @@ Defines a custom empty member for the attribute. This feature allows fact data w
 - **Type:** boolean
 - **Required:** N
 - **Default:** true
+- **Added in** v1.5
 
 If set to true (or not set at all) - this enables Excel users from using the Secondary Attribute in the Pivot Table Designer but allow Excel Users to add the Attribute to the Report using the “Properties” Context Menu.
 
@@ -915,6 +918,7 @@ If set to true (or not set at all) - this enables Excel users from using the Sec
 - **Type:** boolean
 - **Required:** N
 - **Default:** true
+- **Added in** v1.5
 
 If set to true (or not set at all) Excel and MDX Users will be able to retrieve this attribute as a Member Property using the .Properties function and Property MDX syntax.
 
@@ -1035,6 +1039,24 @@ Supported values:
 - **Required:** N
 
 Defines custom empty member values for the alias. This feature allows fact data with missing or invalid foreign key values to be isolated and independently aggregated from those with valid foreign key values. Because fact records with invalid foreign keys are aggregated separately from records referencing valid dimension members, analysts can easily spot data integrity problems and further investigate them. Use this feature to ensure that un-joinable values are included in query results and aggregated under a specially designated dimension member called the Custom Empty Member.
+
+## is_excel_pivot_table_property
+
+- **Type:** boolean
+- **Required:** N
+- **Default:** true
+- **Added in** v1.5
+
+If set to true (or not set at all) - this enables Excel users from using the Secondary Attribute in the Pivot Table Designer but allow Excel Users to add the Attribute to the Report using the “Properties” Context Menu.
+
+## is_user_defined_property
+
+- **Type:** boolean
+- **Required:** N
+- **Default:** true
+- **Added in** v1.5
+
+If set to true (or not set at all) Excel and MDX Users will be able to retrieve this attribute as a Member Property using the .Properties function and Property MDX syntax.
 
 # Metrical Attribute Properties
 
