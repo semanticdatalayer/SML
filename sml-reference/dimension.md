@@ -1,6 +1,6 @@
 # Dimension
 
-Dimension files define the dimensions used in the model. A *dimension*
+Dimension files define the dimensions used in the model. A _dimension_
 is a logical collection of attributes that are bound to specific columns
 in a source dataset. These attributes are in turn used to group and
 filter metric data at query time.
@@ -36,14 +36,12 @@ label: Store Dimension
 type: standard
 
 hierarchies:
-
   - unique_name: Store Dimension
     label: Store Dimension
     folder: Store Attributes
     filter_empty: "yes"
 
     levels:
-
       - unique_name: d_store_country
 
       - unique_name: d_store_state
@@ -55,7 +53,6 @@ hierarchies:
       - unique_name: Store Dimension
 
         secondary_attributes:
-
           - unique_name: d_s_floor_space
             label: Store Floor Space
             folder: Store Attributes
@@ -102,7 +99,6 @@ hierarchies:
             sort_column: s_store_name
 
 level_attributes:
-
   - unique_name: d_store_city
     label: Store City
     dataset: store
@@ -165,7 +161,7 @@ classDiagram
     CalculationGroup *-- CalculatedMembers
     SecondaryAttribute *-- CustomEmptyMember
     Alias *-- CustomEmptyMember
-    MetricalAttribute *-- CustomEmptyMember    
+    MetricalAttribute *-- CustomEmptyMember
 namespace Dimensions{
     class Dimension{
       String unique_name
@@ -185,6 +181,7 @@ namespace Dimensions{
       Object to
       String role_play
       String type
+      Boolean m2m
     }
     class From{
       String dataset
@@ -375,7 +372,7 @@ Supported values:
 - **Type:** boolean
 - **Required:** N
 
-Determines whether the dimension is degenerate. 
+Determines whether the dimension is degenerate.
 
 ## hierarchies
 
@@ -512,6 +509,15 @@ marks):
 For example, if you wanted to use the prefix **Order**, you would set
 `role_play` to `"Order {0}"`.
 
+## m2m
+
+- **Type:** boolean
+- **Required:** N
+- **Added in** v1.2
+- **Default** false
+
+Defines a many-to-many relationship. The property is supported only for embedded relationships.
+
 # Calculation Group Properties
 
 ## unique_name
@@ -550,7 +556,7 @@ A description of the calculation group.
 - **Type:** boolean
 - **Required:** N
 
-Determines whether the calculation group is visible in BI tools. 
+Determines whether the calculation group is visible in BI tools.
 
 Supported values:
 
@@ -581,7 +587,7 @@ Supported values:
 
 - **Type:** string
 - **Required:** Y
- 
+
 The name of the calculated member. This must be unique within the dimension.
 
 ## description
@@ -609,7 +615,7 @@ If you do not want to use a built-in template, you can define a custom expressio
 - **Type:** boolean
 - **Required:** N
 
-Determines whether the attribute is visible in BI tools. 
+Determines whether the attribute is visible in BI tools.
 
 Supported values:
 
@@ -632,11 +638,11 @@ You can alternatively use the `template` property (see above) to use one of SML'
 - **Type:** String
 - **Required:** N
 
-The format in which query results are returned. You can use one of SML's built-in named formats or a custom format string. 
+The format in which query results are returned. You can use one of SML's built-in named formats or a custom format string.
 
-Supported named formats: 
+Supported named formats:
 
-`fixed`,`general number`, `none`, `percent`, `scientific`, `standard` 
+`fixed`,`general number`, `none`, `percent`, `scientific`, `standard`
 
 Custom format strings should be in quotes and contain one to four sections, separated by semicolons.
 
@@ -686,8 +692,8 @@ The name of the folder in which to display this hierarchy in BI tools. If your m
 - **Type:** string
 - **Required:** N
 
-Configures the join behavior for the hierarchy, which determines how empty values are handled in client BI tools. The value you specify must be in quotes. 
-  
+Configures the join behavior for the hierarchy, which determines how empty values are handled in client BI tools. The value you specify must be in quotes.
+
 Supported values:
 
 - `yes`: Query results in BI tools only include members that join to
@@ -713,8 +719,8 @@ Defines a default member for the hierarchy. Default members of dimensional hiera
 
 When adding default hierarchies, be aware of the following:
 
-- If a query specifies a level in a hierarchy that has a default member, the default is not used. 
-- Default hierarchy members are *not* used in queries that populate select fields and filter dialogs in BI clients.
+- If a query specifies a level in a hierarchy that has a default member, the default is not used.
+- Default hierarchy members are _not_ used in queries that populate select fields and filter dialogs in BI clients.
 - You cannot specify secondary attributes as default dimension members. Doing so will cause queries to fail.
 - Setting default members on dimensions with multiple hierarchies can produce unexpected results, as it is easy to forget about the default member filtering on another hierarchy.
 
@@ -729,7 +735,7 @@ When adding default hierarchies, be aware of the following:
 - **Required:** Y
 
 Defines the levels within the hierarchy. You can include as many levels as needed in the list.
-  
+
 # Level Properties
 
 ## unique_name
@@ -785,7 +791,7 @@ You can define as many parallel periods for a level as needed.
 - **Type:** boolean
 - **Required:** N
 
-Determines whether the level is visible in BI tools. 
+Determines whether the level is visible in BI tools.
 
 # Secondary Attributes Properties
 
@@ -822,19 +828,19 @@ The name of the folder in which the attribute is displayed in BI tools.
 - **Type:** boolean
 - **Required:** N
 
-Determines whether the attribute is visible in BI tools. 
+Determines whether the attribute is visible in BI tools.
 
 Supported values:
 
 - `false` (default)
 - `true`
 
-## contains\_unique\_names
+## contains_unique_names
 
 - **Type:** boolean
 - **Required:** N
 
-Determines whether each member of this attribute has a unique name. Do not enable this functionality if two members have different keys but the same name. 
+Determines whether each member of this attribute has a unique name. Do not enable this functionality if two members have different keys but the same name.
 
 Supported values:
 
@@ -845,7 +851,7 @@ Supported values:
 
 - **Type:** string
 - **Required:** Y
- 
+
 The dataset that contains the `key_columns` the secondary attribute is based on.
 
 ## name_column
@@ -869,14 +875,14 @@ A list of the key columns that the attribute is based on. If the attribute has a
 
 The column used to sort the attribute's values in result sets. (This only applies to MDX queries.)
 
-## allowed\_calcs\_for_dma
+## allowed_calcs_for_dma
 
 - **Type:** array
 - **Required:** N
 
 A list of the calculation types that can be used to create dimensionally modified aggregates for the secondary attribute. Note that when working with a time dimension, you can only define calculation types if the `time_unit` property for the level is set to `day` or longer.
 
-## exclude\_from\_dim_agg
+## exclude_from_dim_agg
 
 - **Type:** boolean
 - **Required:** N
@@ -890,14 +896,14 @@ Excludes this attribute from system generated dimension-only aggregates. This is
 
 Determines whether the attribute's member values can be aggregated. When enabled, an `All` member is created for the attribute, whose value is the aggregation of all of the attribute's member values. The `All` member sits at the top of the attribute's hierarchy, though it is not a part of the attribute itself. It often serves as the attribute's default member.
 
-## exclude\_from\_fact_agg
+## exclude_from_fact_agg
 
 - **Type:** boolean
 - **Required:** N
 
 Excludes this attribute from system generated fact-based aggregates. This is useful if the attribute contains a large number (millions) of distinct values that you don't want to aggregate.
 
-## custom\_empty\_member
+## custom_empty_member
 
 - **Type:** object
 - **Required:** N
@@ -933,17 +939,17 @@ A description of the alias.
 - **Required:** N
 
 The name of the folder in which the alias appears in BI tools.
- 
+
 ## format
 
 - **Type:** String
 - **Required:** N
 
-The format in which query results are returned. You can use one of SML's built-in named formats or a custom format string. 
+The format in which query results are returned. You can use one of SML's built-in named formats or a custom format string.
 
-Supported named formats: 
+Supported named formats:
 
-`fixed`,`general number`, `none`, `percent`, `scientific`, `standard` 
+`fixed`,`general number`, `none`, `percent`, `scientific`, `standard`
 
 Custom format strings should be in quotes and contain one to four sections, separated by semicolons.
 
@@ -980,7 +986,7 @@ Supported values:
 - `true`
 - `false`
 
-## exclude\_from\_dim_agg
+## exclude_from_dim_agg
 
 - **Type:** boolean
 - **Required:** N
@@ -1001,7 +1007,7 @@ Supported values:
 
 Determines whether the alias's member values can be aggregated. When enabled, an `All` member is created for the alias, whose value is the aggregation of all of the alias's member values. The `All` member sits at the top of the alias's hierarchy, though it is not a part of the alias itself. It often serves as the alias's default member.
 
-## exclude\_from\_fact_agg
+## exclude_from_fact_agg
 
 - **Type:** boolean
 - **Required:** N
@@ -1015,13 +1021,12 @@ Supported values:
 - `true`
 - `false`
 
-## custom\_empty\_member
+## custom_empty_member
 
 - **Type:** object
 - **Required:** N
 
 Defines custom empty member values for the alias. This feature allows fact data with missing or invalid foreign key values to be isolated and independently aggregated from those with valid foreign key values. Because fact records with invalid foreign keys are aggregated separately from records referencing valid dimension members, analysts can easily spot data integrity problems and further investigate them. Use this feature to ensure that un-joinable values are included in query results and aggregated under a specially designated dimension member called the Custom Empty Member.
-
 
 # Metrical Attribute Properties
 
@@ -1058,11 +1063,11 @@ The name of the folder in which the metrical attribute appears in BI tools.
 - **Type:** String
 - **Required:** N
 
-The format in which query results are returned. You can use one of SML's built-in named formats or a custom format string. 
+The format in which query results are returned. You can use one of SML's built-in named formats or a custom format string.
 
-Supported named formats: 
+Supported named formats:
 
-`fixed`,`general number`, `none`, `percent`, `scientific`, `standard` 
+`fixed`,`general number`, `none`, `percent`, `scientific`, `standard`
 
 Custom format strings should be in quotes and contain one to four sections, separated by semicolons.
 
@@ -1081,16 +1086,17 @@ The source dataset that contains the column that the metrical attribute is based
 The dataset column that the metrical attribute is based on.
 
 ## calculation_method
+
 - **Type:** string
 - **Required:** Y
 
-The calculation to apply to the data. 
+The calculation to apply to the data.
 
-Supported values: 
+Supported values:
 
 `average`, `count distinct`,`count non-null`, `estimated count distinct`, `maximum`, `minimum`,
-  `percentile`, `stddev_pop`, `stddev_samp`, `sum`, `var_pop`,`var_samp`
-  
+`percentile`, `stddev_pop`, `stddev_samp`, `sum`, `var_pop`,`var_samp`
+
 ## is_hidden
 
 - **Type:** boolean
@@ -1103,7 +1109,7 @@ Supported values:
 - `true`
 - `false`
 
-## exclude\_from\_dim_agg
+## exclude_from_dim_agg
 
 - **Type:** boolean
 - **Required:** N
@@ -1124,7 +1130,7 @@ Supported values:
 
 Determines whether the metrical attribute's member values can be aggregated. When enabled, an `All` member is created for the attribute, whose value is the aggregation of all of the attribute's member values. The `All` member sits at the top of the attribute's hierarchy, though it is not a part of the attribute itself. It often serves as the metrical attribute's default member.
 
-## exclude\_from\_fact_agg
+## exclude_from_fact_agg
 
 - **Type:** boolean
 - **Required:** N
@@ -1138,14 +1144,14 @@ Supported values:
 - `true`
 - `false`
 
-## custom\_empty\_member
+## custom_empty_member
 
 - **Type:** object
 - **Required:** N
 
 Defines custom empty member values for the metrical attribute. This feature allows fact data with missing or invalid foreign key values to be isolated and independently aggregated from those with valid foreign key values. Because fact records with invalid foreign keys are aggregated separately from records referencing valid dimension members, analysts can easily spot data integrity problems and further investigate them. Use this feature to ensure that un-joinable values are included in query results and aggregated under a specially designated dimension member called the Custom Empty Member.
 
-## unrelated\_dimensions\_handling
+## unrelated_dimensions_handling
 
 - **Type:** enum
 - **Required:** N
@@ -1244,9 +1250,9 @@ Defines the dimension as a shared degenerate dimension (one composed of data fro
 
 Shared degenerate dimensions must meet the following requirements:
 
-- You must use the same number of columns from each fact dataset. 
+- You must use the same number of columns from each fact dataset.
 - The data types across the columns used must be consistent:
-  
+
   - The name columns must all have the same data type.
   - The key columns must all have the same data type.
 
@@ -1259,7 +1265,7 @@ Supported properties:
 
 - `dataset`: String, required. A fact dataset the shared degenerate dimension is based on.
 - `name_column`: String, required. The column from the dataset whose values appear for the dimension in the consumption tool. For example, you can use a product ID column as they `key_columns`, but use a product name column as the `name_column`. All name columns must have the same data type.
-- `key_columns`: Array, required. The column from the dataset that the shared degenerate dimension is based on. You can only include one `key_columns` value per dataset. All key columns must have the same data type. 
+- `key_columns`: Array, required. The column from the dataset that the shared degenerate dimension is based on. You can only include one `key_columns` value per dataset. All key columns must have the same data type.
 - `sort_column`: String, optional. Defines the column from the dataset that is used to sort query results. If this property is specified for one dataset, it must be specified for all others. Additionally, all sort columns must have the same data type.
 - `is_unique_key`: Boolean, optional. Determines whether values of the `key_columns` column are unique for each row.
 
@@ -1267,10 +1273,9 @@ For example:
 
 ```yaml
 level_attributes:
-
   - unique_name: Order Degen Shared Level
     label: Order Degen Shared Level
-    
+
     shared_degenerate_columns:
       - name_column: salesordernumber
         key_columns:
@@ -1305,7 +1310,7 @@ Supported values:
 - `true`
 - `false`
 
-## is\_unique\_key
+## is_unique_key
 
 - **Type:** boolean
 - **Required:** N
@@ -1319,7 +1324,7 @@ Supported values:
 - `false`: The key column values are multi-valued. The join behavior
   considers all matching rows at query runtime.
 
-## contains\_unique\_names
+## contains_unique_names
 
 - **Type:** boolean
 - **Required:** N
@@ -1333,7 +1338,7 @@ Supported values:
 - `true`
 - `false`
 
-## exclude\_from\_dim_agg
+## exclude_from_dim_agg
 
 - **Type:** boolean
 - **Required:** N
@@ -1354,7 +1359,7 @@ Supported values:
 
 Determines whether the level attribute's member values can be aggregated. When enabled, an `All` member is created for the attribute, whose value is the aggregation of all of the attribute's member values. The `All` member sits at the top of the attribute's hierarchy, though it is not a part of the attribute itself. It often serves as the level attribute's default member.
 
-## exclude\_from\_fact_agg
+## exclude_from_fact_agg
 
 - **Type:** boolean
 - **Required:** N
@@ -1380,7 +1385,7 @@ a different column.
 **Note:** This only applies to MDX queries (queries received through the
 XMLA interface).
 
-## allowed\_calcs\_for_dma
+## allowed_calcs_for_dma
 
 - **Type:** array
 - **Required:** N
@@ -1403,7 +1408,7 @@ tools.
 
 For time dimensions only. The unit of time to use.
 
-Supported values: 
+Supported values:
 
 `year`, `halfyear`, `trimester`, `quarter`, `month`,
 `week`, `day`, `hour`, `minute`, `second`, `undefined`
@@ -1414,7 +1419,7 @@ Supported values:
 
 - **Type:** array
 - **Required:** Y
- 
+
 A list of the empty member values to use for key fields.
 
 ## name
@@ -1430,4 +1435,3 @@ The empty member value to use for name fields.
 - **Required:** N
 
 The empty member value to use for the attribute's sort column, if one is specified.
-
