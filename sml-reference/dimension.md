@@ -270,6 +270,7 @@ namespace Dimensions{
       Boolean is_aggregatable
       Boolean exclude_from_fact_agg
       String time_unit
+      Int constraint_translation_rank
       Array~String~ allowed_calcs_for_dma
       CustomEmptyMember custom_empty_member
       String folder
@@ -309,12 +310,15 @@ namespace Dimensions{
       String label
       String description
       String folder
+      Number precedence
       Array~CalculatedMembers~ calculated_members
+      Boolean is_hidden
     }
     class CalculatedMembers{
       String unique_name
       String description
       String format
+      Boolean is_hidden
       String expression
       Boolean use_input_metric_format
       String template
@@ -549,12 +553,35 @@ Defines the individual calculated members in the group.
 
 A description of the calculation group.
 
+## is_hidden
+
+- **Type:** boolean
+- **Required:** N
+
+Determines whether the calculation group is visible in BI tools. 
+
+Supported values:
+
+- `false` (default)
+- `true`
+
 ## folder
 
 - **Type:** string
 - **Required:** N
 
 The name of the folder in which the calculation group is displayed in BI tools.
+
+## precedence
+
+- **Type:** number
+- **Required:** N
+
+Update to "Precedence" explicitly defines the order of Calculation Group evaluation, making it consistent across BI tools.
+
+Supported values:
+
+- Integer and floating point numbers
 
 # Calculated Members Properties
 
@@ -584,6 +611,18 @@ Supported templates:
 `Current`, `Previous`, `Current vs Previous`, `Current vs Previous Pct`, `Next`, `Current vs Next`, `Current vs Next Pct`, `Pct of Total`, `Pct of Parent`, `Last Year`, `Current vs Last Year`, `Current vs Last Year Pct`, `Year to Date`, `Quarter to Date`, `Month to Date`, `Month Moving Average 3 Month`, `Moving Average 30 Period`, `Moving Average 5 Period`, `Moving Std Dev 30 Period`, `Moving Std Dev 5 Period`
 
 If you do not want to use a built-in template, you can define a custom expression using the `expression` property (see below).
+
+## is_hidden
+
+- **Type:** boolean
+- **Required:** N
+
+Determines whether the attribute is visible in BI tools. 
+
+Supported values:
+
+- `false` (default)
+- `true`
 
 ## expression
 
@@ -1195,6 +1234,14 @@ has a compound key, list all columns that make up the key.
 If the key consists of one column, the values in that column must be
 unique. If the key is a compound key, the columns together must provide
 unique values.
+
+## constraint_translation_rank
+
+- **Type:** integer
+- **Required:** N
+- **Range:** should be a valid 32 bit integer
+
+Defines the translation of dimension filter constraints into fact table partition column constraints. This can significantly improve query performance for cases where fact-based aggregates are not used.
 
 ## shared_degenerate_columns
 
