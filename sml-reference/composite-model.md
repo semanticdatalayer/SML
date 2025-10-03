@@ -119,6 +119,7 @@ The `metrics` property supports the following properties:
 
 - **Type:** array
 - **Required:** N
+- **Added in** v1.4
 
 > [!WARNING]
 > Any UDA's defined on the models referenced by the composite will not be used. They will not be automatically added
