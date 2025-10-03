@@ -1,12 +1,13 @@
 ![logo](images/sml-logo-large.png)
 
-# SML version 1.3
+# SML version 1.4
 
-This is documentation for SML spec version `1.3`. For earlier versions browse the repository tags. Examples:
+This is documentation for SML spec version `1.4`. For earlier versions browse the repository tags. Examples:
 
 - [SML version 1.0](https://github.com/semanticdatalayer/SML/tree/v1.0)
 - [SML version 1.1](https://github.com/semanticdatalayer/SML/tree/v1.1)
 - [SML version 1.2](https://github.com/semanticdatalayer/SML/tree/v1.2)
+- [SML version 1.3](https://github.com/semanticdatalayer/SML/tree/v1.3)
 
 # What is SML?
 
