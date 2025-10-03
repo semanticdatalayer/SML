@@ -3,6 +3,7 @@
 Composite models are made up of multiple other models that all share a dimension, as well as calculations specific to the composite model itself. They are defined by `composite_model` files in SML.
 
 When you deploy a composite model, all of its referenced objects are deployed as a single model. Note, however, that deployed composite models do not include the following objects from their referenced models:
+
 - Partitions
 - Perspectives
 - Drill-throughs
@@ -15,7 +16,7 @@ object_type: composite_model
 label: TPCDS - Composite
 description: This is a composite model that combines TPC-DS subject-area models.
 
-models: 
+models:
   - TPC-DS Catalog Sales
   - TPC-DS Inventory
   - TPC-DS Store Promotion
@@ -118,6 +119,9 @@ The `metrics` property supports the following properties:
 
 - **Type:** array
 - **Required:** N
+
+> [!WARNING]
+> Any UDA's defined on the models referenced by the composite will not be used. They will not be automatically added
 
 The `aggregates` property in a composite model file enables you to add
 user-defined aggregates (UDAs).They include metrics or attributes from different
