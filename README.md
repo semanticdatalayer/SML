@@ -86,6 +86,7 @@ erDiagram
     MODEL ||--|{ ROW_SECURITY : "may reference"
     DIMENSION ||--|{ ROW_SECURITY : "may reference"
     METRIC ||--|{ DATASET : references
+    METRIC_CALC ||--|{ METRIC_CALC : "may reference"
     METRIC_CALC ||--|{ METRIC : "may reference"
     METRIC_CALC ||--|{ DIMENSION : "may reference"
     DATASET ||--|{ CONNECTION : references
