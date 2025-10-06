@@ -921,7 +921,7 @@ Defines a custom empty member for the attribute. This feature allows fact data w
 - **Default:** true
 - **Added in** v1.5
 
-If set to true (or not set at all) - this enables Excel users from using the Secondary Attribute in the Pivot Table Designer but allow Excel Users to add the Attribute to the Report using the “Properties” Context Menu.
+If set to true (or not set at all) - this prohibits Excel users from using the Secondary Attribute in the Pivot Table Designer but allows Excel Users to add the Attribute to the Report using the “Properties” Context Menu.
 
 ## is_user_defined_property
 
@@ -1057,7 +1057,7 @@ Defines custom empty member values for the alias. This feature allows fact data 
 - **Default:** true
 - **Added in** v1.5
 
-If set to true (or not set at all) - this enables Excel users from using the Secondary Attribute in the Pivot Table Designer but allow Excel Users to add the Attribute to the Report using the “Properties” Context Menu.
+If set to true (or not set at all) - this prohibits Excel users from using the Secondary Attribute in the Pivot Table Designer but allows Excel Users to add the Attribute to the Report using the “Properties” Context Menu.
 
 ## is_user_defined_property
 
