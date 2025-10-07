@@ -921,7 +921,7 @@ Defines a custom empty member for the attribute. This feature allows fact data w
 - **Default:** true
 - **Added in** v1.5
 
-If set to true (or not set at all) - this prohibits Excel users from using the Secondary Attribute in the Pivot Table Designer but allows Excel Users to add the Attribute to the Report using the “Properties” Context Menu.
+If set to false (default true) Excel users are not able to use the attribute in the Pivot Table Designer. Note: The attribute will still be usable with other interfaces like SQL and DAX if the "visible" property is true.
 
 ## is_user_defined_property
 
@@ -930,7 +930,7 @@ If set to true (or not set at all) - this prohibits Excel users from using the S
 - **Default:** true
 - **Added in** v1.5
 
-If set to true (or not set at all) Excel and MDX Users will be able to retrieve this attribute as a Member Property using the .Properties function and Property MDX syntax.
+If set to true Excel and MDX users can retrieve the attribute as a Member Property using the .Properties function and Property MDX syntax
 
 # Alias Properties
 
@@ -1057,7 +1057,7 @@ Defines custom empty member values for the alias. This feature allows fact data 
 - **Default:** true
 - **Added in** v1.5
 
-If set to true (or not set at all) - this prohibits Excel users from using the Secondary Attribute in the Pivot Table Designer but allows Excel Users to add the Attribute to the Report using the “Properties” Context Menu.
+If set to false (default true) Excel users are not able to use the attribute in the Pivot Table Designer. Note: The attribute will still be usable with other interfaces like SQL and DAX if the "visible" property is true.
 
 ## is_user_defined_property
 
@@ -1066,7 +1066,7 @@ If set to true (or not set at all) - this prohibits Excel users from using the S
 - **Default:** true
 - **Added in** v1.5
 
-If set to true (or not set at all) Excel and MDX Users will be able to retrieve this attribute as a Member Property using the .Properties function and Property MDX syntax.
+If set to true Excel and MDX users can retrieve the attribute as a Member Property using the .Properties function and Property MDX syntax
 
 # Metrical Attribute Properties
 
