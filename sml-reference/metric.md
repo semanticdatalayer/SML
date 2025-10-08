@@ -214,7 +214,8 @@ degenerate_dimensions:
 ## compression
 
 - **Type:** number
-- **Required:** N
+- **Required:** Required if `calculation_method` is `percentile`
+- **Added in:** v1.5
 
 Only for non-additive metrics using a `calulation_method` of
 `percentile`. Defines the compression score the semantic engine uses when
@@ -231,6 +232,7 @@ tests to determine the right level of compression for your needs.
 
 - **Type:** string
 - **Required:** Required if `calculation_method` is `percentile`
+- **Added in:** v1.5
 
 Only for non-additive metrics using a `calulation_method` of
 `percentile`. Defines the quantile to use for query results.
@@ -240,6 +242,16 @@ Supported values:
 - `quartiles`
 - `median`
 - `deciles`
+
+## custom_quantiles
+
+- **Type:** array
+- **Required:** Required if `calculation_method` is `percentile`
+- **Added in:** v1.5
+
+Only for non-additive metrics using a `calulation_method` of
+`percentile`. Defines custom quantile to use for query results.
+Array values must be numbers between 0 and 1.
 
 ## format
 
