@@ -153,7 +153,7 @@ Supported values:
   degenerate dimension derived from the secured Fact dataset.
   If a Model contains a Security dimension used inside of a 
   Dimension and it’s scope is set to “Fact Only”. 
-  > ###Then the model fails to publish with the error message: 
+  > ### Then the model fails to publish with the error message: 
   > - Dimension “Customer” has an unsupported Security dimension configuration.
   > - Security Dimension “mySecDim” has scope “Fact Only” but is not connected to a fact dataset.
 - `all`: The security constraint is applied to all queries, unless there
