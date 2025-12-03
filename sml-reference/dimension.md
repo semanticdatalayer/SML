@@ -269,7 +269,6 @@ namespace Dimensions{
       Int constraint_translation_rank
       Array~String~ allowed_calcs_for_dma
       CustomEmptyMember custom_empty_member
-      String folder
       Array~SharedDegenerateColumns~ shared_degenerate_columns
     }
     class SharedDegenerateColumns {
@@ -1392,14 +1391,6 @@ XMLA interface).
 
 A list of the calculations that can be used when creating dimensionally
 modified aggregates for the level attribute.
-
-## folder
-
-- **Type:** string
-- **Required:** N
-
-The name of the folder in which this level attribute appears in BI
-tools.
 
 ## time_unit
 
