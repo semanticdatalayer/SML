@@ -146,6 +146,16 @@ Supported values:
   multi-dimension-only queries do have security applied because they are
   joined using a synthetic measure from the fact table that relates
   them.
+- `fact-only`: Security is applied when a query selects a Measure or a 
+  Calculated Measure derived from the connected Fact dataset.
+  Security is *not* applied when a dim-only query uses the secured Fact dataset.
+  Security is *not* applied when a dim-only query selects a 
+  degenerate dimension derived from the secured Fact dataset.
+  If a Model contains a Security dimension used inside of a 
+  Dimension and it’s scope is set to “Fact Only”. 
+  > ### Then the model fails to publish with the error message: 
+  > - Dimension “Customer” has an unsupported Security dimension configuration.
+  > - Security Dimension “mySecDim” has scope “Fact Only” but is not connected to a fact dataset.
 - `all`: The security constraint is applied to all queries, unless there
   is no path to the security dimension. This is the case with two
   separate fact tables, each with their own unrelated dimensions.
