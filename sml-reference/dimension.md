@@ -229,6 +229,8 @@ namespace Dimensions{
       Boolean is_aggregatable
       Boolean exclude_from_fact_agg
       Array~CustomEmptyMember~ custom_empty_member
+      Boolean is_excel_pivot_table_property
+      Boolean is_user_defined_property
     }
     class MetricalAttribute{
       String unique_name
@@ -294,6 +296,8 @@ namespace Dimensions{
       CustomEmptyMember custom_empty_member
       Boolean is_hidden
       Boolean contains_unique_names
+      Boolean is_excel_pivot_table_property
+      Boolean is_user_defined_property
     }
     class CustomEmptyMember{
       Array~String~ key
@@ -909,6 +913,24 @@ Excludes this attribute from system generated fact-based aggregates. This is use
 
 Defines a custom empty member for the attribute. This feature allows fact data with missing or invalid foreign key values to be isolated and independently aggregated from those with valid foreign key values. Because fact records with invalid foreign keys are aggregated separately from records referencing valid dimension members, analysts can easily spot data integrity problems and further investigate them. Use this feature to ensure that un-joinable values are included in query results and aggregated under a specially designated dimension member called the Custom Empty Member.
 
+## is_excel_pivot_table_property
+
+- **Type:** boolean
+- **Required:** N
+- **Default:** true
+- **Added in** v1.5
+
+If set to false (default true) Excel users are not able to use the attribute in the Pivot Table Designer. Note: The attribute will still be usable with other interfaces like SQL and DAX if the "visible" property is true.
+
+## is_user_defined_property
+
+- **Type:** boolean
+- **Required:** N
+- **Default:** true
+- **Added in** v1.5
+
+If set to true Excel and MDX users can retrieve the attribute as a Member Property using the .Properties function and Property MDX syntax
+
 # Alias Properties
 
 ## unique_name
@@ -1026,6 +1048,24 @@ Supported values:
 - **Required:** N
 
 Defines custom empty member values for the alias. This feature allows fact data with missing or invalid foreign key values to be isolated and independently aggregated from those with valid foreign key values. Because fact records with invalid foreign keys are aggregated separately from records referencing valid dimension members, analysts can easily spot data integrity problems and further investigate them. Use this feature to ensure that un-joinable values are included in query results and aggregated under a specially designated dimension member called the Custom Empty Member.
+
+## is_excel_pivot_table_property
+
+- **Type:** boolean
+- **Required:** N
+- **Default:** true
+- **Added in** v1.5
+
+If set to false (default true) Excel users are not able to use the attribute in the Pivot Table Designer. Note: The attribute will still be usable with other interfaces like SQL and DAX if the "visible" property is true.
+
+## is_user_defined_property
+
+- **Type:** boolean
+- **Required:** N
+- **Default:** true
+- **Added in** v1.5
+
+If set to true Excel and MDX users can retrieve the attribute as a Member Property using the .Properties function and Property MDX syntax
 
 # Metrical Attribute Properties
 
