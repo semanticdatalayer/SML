@@ -656,7 +656,7 @@ Supported properties:
 - `dimension`: String, required if `row_security` is undefined. The dimension to which the attribute
   defined by `name` belongs.
 
-  - `row_security`: String, required if `dimension` and `name` are
+- `row_security`: String, required if `dimension` and `name` are
   undefined. Allows to include row security in the user defined aggregate.
 
 - `partition`: String, optional. Adds a partition to the aggregate, and
