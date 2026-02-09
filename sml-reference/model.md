@@ -657,7 +657,7 @@ Supported properties:
   defined by `name` belongs.
 
 - `row_security`: String, required if `dimension` and `name` are
-  undefined. Allows to include row security in the user defined aggregate.
+  undefined. Allows row security to be included in a user defined aggregate.
 
 - `partition`: String, optional. Adds a partition to the aggregate, and
   determines whether it should be defined on the key column, name
