@@ -248,6 +248,7 @@ namespace Models{
     class AttributeReference{
       String name
       String dimension
+      String row_security
       String partition
       String distribution
       Array~String~ relationships_path
@@ -646,14 +647,17 @@ definition.
 
 Supported properties:
 
-- `name`: String, required. The name of the dimension attribute to
+- `name`: String, required if `row_security` is undefined. The name of the dimension attribute to
   include. These values are used to group the summarized metric data in
   the resulting aggregate table. Note that user-defined aggregate
   definitions are fixed: they do not include every level of a hierarchy
   unless they are explicitly defined.
 
-- `dimension`: String, required. The dimension to which the attribute
+- `dimension`: String, required if `row_security` is undefined. The dimension to which the attribute
   defined by `name` belongs.
+
+- `row_security`: String, required if `dimension` and `name` are
+  undefined. Allows row security to be included in a user defined aggregate.
 
 - `partition`: String, optional. Adds a partition to the aggregate, and
   determines whether it should be defined on the key column, name
