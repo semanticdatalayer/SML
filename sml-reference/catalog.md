@@ -32,6 +32,7 @@ classDiagram
       Boolean build_speculative_aggs
       Object dataset_properties
       Array~String hidden_models
+      String description
     }
 ```
 
@@ -139,3 +140,15 @@ values you want to set for it at the repository level. For example:
 **Note:** Datasets are typically defined at the repository level, in
 `catalog.yml`; however, datasets used by a specific model (typically
 fact datasets) can be defined within the model itself.
+
+## description
+
+- **Type:** string
+- **Required:** N
+- **Added in** v1.6
+
+A description of the catalog.
+
+Supported values:
+
+- String (optional)
