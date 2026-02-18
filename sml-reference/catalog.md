@@ -145,9 +145,10 @@ fact datasets) can be defined within the model itself.
 
 - **Type:** string
 - **Required:** N
+- **Added in** v1.6
 
 A description of the catalog.
 
 Supported values:
 
-- String (optional) - introduced in version `1.6`
+- String (optional)
