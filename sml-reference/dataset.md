@@ -4,7 +4,7 @@ Dataset files define datasets to use in the repository. Each dataset
 file in your repository must correspond to either a physical table/view
 in your database, or the results of a `SELECT` statement.
 
-**Note:** Dataset files must define *all* columns in the physical tables
+**Note:** Dataset files must define _all_ columns in the physical tables
 they reference, and can therefore be quite large. Because of this,
 we recommend sharing these files across repositories.
 
@@ -20,48 +20,48 @@ table: store_sales
 columns:
   - name: Net Profit Tier
     data_type: string
-    sql: "CASE WHEN \"ss_net_profit\" > 25000 THEN 'More than 25000' 
-        WHEN \"ss_net_profit\" BETWEEN 3000 AND 25000 THEN '3000-25000'
-        WHEN \"ss_net_profit\" BETWEEN 2000 AND 3000 THEN '2000-3000'  
-        WHEN \"ss_net_profit\" BETWEEN 300 AND 2000 THEN '300-2000'  
-        WHEN \"ss_net_profit\" BETWEEN 250 AND 300 THEN '250-300'  
-        WHEN \"ss_net_profit\" BETWEEN 200 AND 250 THEN '200-250'
-        WHEN \"ss_net_profit\" BETWEEN 150 AND 200 THEN '150-200'
-        WHEN \"ss_net_profit\" BETWEEN 100 AND 150 THEN '100-150' 
-        WHEN \"ss_net_profit\" BETWEEN 50 AND 100 THEN ' 50-100'
-        WHEN \"ss_net_profit\" BETWEEN 0 AND 50 THEN '  0- 50' 
-        ELSE ' 50 or Less'
-        END"
+    sql: 'CASE WHEN "ss_net_profit" > 25000 THEN ''More than 25000''
+      WHEN "ss_net_profit" BETWEEN 3000 AND 25000 THEN ''3000-25000''
+      WHEN "ss_net_profit" BETWEEN 2000 AND 3000 THEN ''2000-3000''
+      WHEN "ss_net_profit" BETWEEN 300 AND 2000 THEN ''300-2000''
+      WHEN "ss_net_profit" BETWEEN 250 AND 300 THEN ''250-300''
+      WHEN "ss_net_profit" BETWEEN 200 AND 250 THEN ''200-250''
+      WHEN "ss_net_profit" BETWEEN 150 AND 200 THEN ''150-200''
+      WHEN "ss_net_profit" BETWEEN 100 AND 150 THEN ''100-150''
+      WHEN "ss_net_profit" BETWEEN 50 AND 100 THEN '' 50-100''
+      WHEN "ss_net_profit" BETWEEN 0 AND 50 THEN ''  0- 50''
+      ELSE '' 50 or Less''
+      END'
     dialects:
       - dialect: DatabricksSQL
-        sql: "CASE WHEN ss_net_profit > 25000 THEN 'More than 25000' 
-            WHEN ss_net_profit BETWEEN 3000 AND 25000 THEN '3000-25000'
-            WHEN ss_net_profit BETWEEN 2000 AND 3000 THEN '2000-3000'  
-            WHEN ss_net_profit BETWEEN 300 AND 2000 THEN '300-2000'  
-            WHEN ss_net_profit BETWEEN 250 AND 300 THEN '250-300'  
-            WHEN ss_net_profit BETWEEN 200 AND 250 THEN '200-250'
-            WHEN ss_net_profit BETWEEN 150 AND 200 THEN '150-200'
-            WHEN ss_net_profit BETWEEN 100 AND 150 THEN '100-150' 
-            WHEN ss_net_profit BETWEEN 50 AND 100 THEN ' 50-100'
-            WHEN ss_net_profit BETWEEN 0 AND 50 THEN '  0- 50' 
-            ELSE ' 50 or Less'
-            END"
+        sql: "CASE WHEN ss_net_profit > 25000 THEN 'More than 25000'
+          WHEN ss_net_profit BETWEEN 3000 AND 25000 THEN '3000-25000'
+          WHEN ss_net_profit BETWEEN 2000 AND 3000 THEN '2000-3000'
+          WHEN ss_net_profit BETWEEN 300 AND 2000 THEN '300-2000'
+          WHEN ss_net_profit BETWEEN 250 AND 300 THEN '250-300'
+          WHEN ss_net_profit BETWEEN 200 AND 250 THEN '200-250'
+          WHEN ss_net_profit BETWEEN 150 AND 200 THEN '150-200'
+          WHEN ss_net_profit BETWEEN 100 AND 150 THEN '100-150'
+          WHEN ss_net_profit BETWEEN 50 AND 100 THEN ' 50-100'
+          WHEN ss_net_profit BETWEEN 0 AND 50 THEN '  0- 50'
+          ELSE ' 50 or Less'
+          END"
       - dialect: BigQuery
-        sql: "CASE WHEN ss_net_profit > 25000 THEN 'More than 25000' 
-            WHEN ss_net_profit BETWEEN 3000 AND 25000 THEN '3000-25000'
-            WHEN ss_net_profit BETWEEN 2000 AND 3000 THEN '2000-3000'  
-            WHEN ss_net_profit BETWEEN 300 AND 2000 THEN '300-2000'  
-            WHEN ss_net_profit BETWEEN 250 AND 300 THEN '250-300'  
-            WHEN ss_net_profit BETWEEN 200 AND 250 THEN '200-250'
-            WHEN ss_net_profit BETWEEN 150 AND 200 THEN '150-200'
-            WHEN ss_net_profit BETWEEN 100 AND 150 THEN '100-150' 
-            WHEN ss_net_profit BETWEEN 50 AND 100 THEN ' 50-100'
-            WHEN ss_net_profit BETWEEN 0 AND 50 THEN '  0- 50' 
-            ELSE ' 50 or Less'
-            END"
+        sql: "CASE WHEN ss_net_profit > 25000 THEN 'More than 25000'
+          WHEN ss_net_profit BETWEEN 3000 AND 25000 THEN '3000-25000'
+          WHEN ss_net_profit BETWEEN 2000 AND 3000 THEN '2000-3000'
+          WHEN ss_net_profit BETWEEN 300 AND 2000 THEN '300-2000'
+          WHEN ss_net_profit BETWEEN 250 AND 300 THEN '250-300'
+          WHEN ss_net_profit BETWEEN 200 AND 250 THEN '200-250'
+          WHEN ss_net_profit BETWEEN 150 AND 200 THEN '150-200'
+          WHEN ss_net_profit BETWEEN 100 AND 150 THEN '100-150'
+          WHEN ss_net_profit BETWEEN 50 AND 100 THEN ' 50-100'
+          WHEN ss_net_profit BETWEEN 0 AND 50 THEN '  0- 50'
+          ELSE ' 50 or Less'
+          END"
   - name: Purchased Amount in Store
     data_type: "decimal(16,8)"
-    sql: "((\"ss_ext_list_price\"-\"ss_ext_wholesale_cost\"-\"ss_ext_discount_amt\")+\"ss_ext_sales_price\")/2"
+    sql: '(("ss_ext_list_price"-"ss_ext_wholesale_cost"-"ss_ext_discount_amt")+"ss_ext_sales_price")/2'
     dialects:
       - dialect: DatabricksSQL
         sql: "((ss_ext_list_price-ss_ext_wholesale_cost-ss_ext_discount_amt)+ss_ext_sales_price)/2"
@@ -118,24 +118,24 @@ columns:
     data_type: "decimal(7,2)"
   - name: sales price tier
     data_type: string
-    sql: "CASE WHEN \"ss_sales_price\" > 200 THEN '200 and More' 
-        WHEN \"ss_sales_price\" BETWEEN 150 AND 200 THEN '150-200' 
-        WHEN \"ss_sales_price\" BETWEEN 100 AND 150 THEN '100-150' 
-        WHEN \"ss_sales_price\" BETWEEN 50 AND 100 THEN ' 50-100'
-        ELSE ' 50 and Less' END"
+    sql: 'CASE WHEN "ss_sales_price" > 200 THEN ''200 and More''
+      WHEN "ss_sales_price" BETWEEN 150 AND 200 THEN ''150-200''
+      WHEN "ss_sales_price" BETWEEN 100 AND 150 THEN ''100-150''
+      WHEN "ss_sales_price" BETWEEN 50 AND 100 THEN '' 50-100''
+      ELSE '' 50 and Less'' END'
     dialects:
       - dialect: DatabricksSQL
-        sql: "CASE WHEN ss_sales_price > 200 THEN '200 and More' 
-            WHEN ss_sales_price BETWEEN 150 AND 200 THEN '150-200' 
-            WHEN ss_sales_price BETWEEN 100 AND 150 THEN '100-150' 
-            WHEN ss_sales_price BETWEEN 50 AND 100 THEN ' 50-100'
-            ELSE ' 50 and Less' END"
+        sql: "CASE WHEN ss_sales_price > 200 THEN '200 and More'
+          WHEN ss_sales_price BETWEEN 150 AND 200 THEN '150-200'
+          WHEN ss_sales_price BETWEEN 100 AND 150 THEN '100-150'
+          WHEN ss_sales_price BETWEEN 50 AND 100 THEN ' 50-100'
+          ELSE ' 50 and Less' END"
       - dialect: BigQuery
-        sql: "CASE WHEN ss_sales_price > 200 THEN '200 and More' 
-            WHEN ss_sales_price BETWEEN 150 AND 200 THEN '150-200' 
-            WHEN ss_sales_price BETWEEN 100 AND 150 THEN '100-150' 
-            WHEN ss_sales_price BETWEEN 50 AND 100 THEN ' 50-100'
-            ELSE ' 50 and Less' END"
+        sql: "CASE WHEN ss_sales_price > 200 THEN '200 and More'
+          WHEN ss_sales_price BETWEEN 150 AND 200 THEN '150-200'
+          WHEN ss_sales_price BETWEEN 100 AND 150 THEN '100-150'
+          WHEN ss_sales_price BETWEEN 50 AND 100 THEN ' 50-100'
+          ELSE ' 50 and Less' END"
 ```
 
 # Entity Relationships
@@ -149,7 +149,7 @@ classDiagram
     Column *-- MapColumn
     Dataset *-- Dialect
     Column *-- Dialect
-namespace Datasets{    
+namespace Datasets{
     class Dataset{
       String unique_name
       const object_type
@@ -180,7 +180,7 @@ namespace Datasets{
       String type
       String connection_id
       String table
-      String sql      
+      String sql
     }
     class Incremental{
       String column
@@ -277,7 +277,7 @@ The name of the table in the database that the dataset is based on.
 
 Defines the columns available in the dataset.
 
-**Note:** You should define *all* columns available in the dataset. This
+**Note:** You should define _all_ columns available in the dataset. This
 is especially important for dataset files that are shared across
 multiple repositories.
 
@@ -315,7 +315,6 @@ Supported values:
 - `boolean`
 - `date`
 - `datetime`
-- `timestamp`
 
 ### sql
 
