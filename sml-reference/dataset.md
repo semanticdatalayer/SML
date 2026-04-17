@@ -186,7 +186,7 @@ namespace Datasets{
     class Incremental{
       String column
       String grace_period
-      Partition partition
+      Partition agg_partition
     }
     class Partition{
       String column
@@ -445,7 +445,7 @@ unit. The time unit can be any of the following: `s` (second), `m`
 For example, setting the value to `'100s'` sets the grace period to 100
 seconds. Setting it to `'1w'` sets the grace period to one week.
 
-### partition
+### agg_partition
 
 - **Type:** object
 - **Required:** N
@@ -475,7 +475,7 @@ Supported properties:
 incremental:
   column: UNIX_TIMESTAMP
   grace_period: "86400"
-  partition:
+  agg_partition:
     column: CalculatedMonth
     dimension: Dates
     hierarchy: ByMonth
