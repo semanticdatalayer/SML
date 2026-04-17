@@ -145,6 +145,7 @@ classDiagram
     Dataset *-- Column
     Dataset *-- Alternate
     Dataset *-- Incremental
+    Incremental *-- Partition
     Incremental ..> Column
     Column *-- MapColumn
     Dataset *-- Dialect
@@ -185,6 +186,13 @@ namespace Datasets{
     class Incremental{
       String column
       String grace_period
+      Partition agg_partition
+    }
+    class Partition{
+      String column
+      String dimension
+      String hierarchy
+      String level
     }
     class MapColumn{
       String field_terminator
@@ -436,6 +444,43 @@ unit. The time unit can be any of the following: `s` (second), `m`
 
 For example, setting the value to `'100s'` sets the grace period to 100
 seconds. Setting it to `'1w'` sets the grace period to one week.
+
+### agg_partition
+
+- **Type:** object
+- **Required:** N
+
+Specifies how the incremental indicator maps to a partition key via a
+dimension level. When configured, the engine uses partition-level
+granularity to determine which segments of an aggregate table to rebuild
+during an incremental build.
+
+Supported properties:
+
+- `column`: String, required. The name of a column in the dataset whose
+  values correspond to partition key values at the specified dimension
+  level. The column must not be of type `string`.
+- `dimension`: String, required. The `unique_name` of the dimension that
+  contains the partition level. This dimension must be reachable from
+  every model that uses the dataset.
+- `hierarchy`: String, required. The `unique_name` of the hierarchy
+  within the partition dimension that contains the partition level.
+- `level`: String, required. The `unique_name` of the level within the
+  partition hierarchy. The partition column values must correspond to
+  key values at this level.
+
+**Example:**
+
+```yaml
+incremental:
+  column: UNIX_TIMESTAMP
+  grace_period: "86400"
+  agg_partition:
+    column: CalculatedMonth
+    dimension: Dates
+    hierarchy: ByMonth
+    level: Month
+```
 
 ## immutable
 
