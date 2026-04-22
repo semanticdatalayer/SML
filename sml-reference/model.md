@@ -680,6 +680,18 @@ Supported properties:
   supports distribution keys, then the semantic engine uses the specified keys when
   creating the aggregate table.
 
+- `partition_rank`: Integer, optional. An integer between 1 and 128 that
+  controls the independent ordering priority of partition keys. Lower
+  values indicate higher priority. When multiple attributes define a
+  `partition`, the engine uses `partition_rank` to determine the order
+  in which partition keys are applied.
+
+- `distribution_rank`: Integer, optional. An integer between 1 and 128
+  that controls the independent ordering priority of distribution keys.
+  Lower values indicate higher priority. When multiple attributes define
+  a `distribution`, the engine uses `distribution_rank` to determine
+  the order in which distribution keys are applied.
+
 ## partitions
 
 - **Type:** array
