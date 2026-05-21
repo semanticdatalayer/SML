@@ -1134,7 +1134,7 @@ The calculation to apply to the data.
 Supported values:
 
 `average`, `count distinct`,`count non-null`, `estimated count distinct`, `maximum`, `minimum`,
-`percentile`, `stddev_pop`, `stddev_samp`, `sum`, `var_pop`,`var_samp`
+`percentile`, `stddev_pop`, `stddev_samp`, `sum`, `var_pop`, `var_samp`, `count_if` (**Added in:** v1.8)
 
 ## is_hidden
 
