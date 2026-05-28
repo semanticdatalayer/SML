@@ -451,6 +451,7 @@ use joins on dimensions that do not change often.
 
 - **Type:** boolean
 - **Required:** N
+- **Added in:** v1.8
 
 Enables QDS (Query Data Store) materialization for the dataset. When set
 to `true`, the engine can materialize query results in the Query Data
