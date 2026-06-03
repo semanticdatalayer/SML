@@ -453,9 +453,8 @@ use joins on dimensions that do not change often.
 - **Required:** N
 - **Added in:** v1.8
 
-Enables QDS (Query Data Store) materialization for the dataset. When set
-to `true`, the engine can materialize query results in the Query Data
-Store for improved query performance.
+Enables QDS (Query Dataset) materialization for the dataset. When set
+to `true`, the engine can materialize query results as an aggregate table for improved query performance.
 
 Only applicable to query datasets (those defined with `sql` rather than
 `table`).
