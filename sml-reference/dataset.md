@@ -161,6 +161,7 @@ namespace Datasets{
       Array~Column~ columns
       Array~Dialect~ dialects
       Boolean immutable
+      Boolean qds_materialization
       Alternate alternate
       Incremental incremental
     }
@@ -445,3 +446,15 @@ seconds. Setting it to `'1w'` sets the grace period to one week.
 Determines whether the dataset changes often or not. The semantic engine
 uses this information when running incremental builds of aggregates that
 use joins on dimensions that do not change often.
+
+## qds_materialization
+
+- **Type:** boolean
+- **Required:** N
+- **Added in:** v1.8
+
+Enables QDS (Query Dataset) materialization for the dataset. When set
+to `true`, the engine can materialize query results as an aggregate table for improved query performance.
+
+Only applicable to query datasets (those defined with `sql` rather than
+`table`).
