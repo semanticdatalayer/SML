@@ -162,6 +162,7 @@ namespace Datasets{
       Array~Dialect~ dialects
       Boolean immutable
       Boolean qds_materialization
+      Boolean is_readiness_gated
       Alternate alternate
       Incremental incremental
     }
@@ -458,3 +459,23 @@ to `true`, the engine can materialize query results as an aggregate table for im
 
 Only applicable to query datasets (those defined with `sql` rather than
 `table`).
+
+## is_readiness_gated
+
+- **Type:** boolean
+- **Required:** N
+- **Added in:** v1.9
+- **Default:** `false`
+
+Only valid on table datasets; setting it on a dataset defined by `sql`
+produces a validation error.
+
+When `true`, the dataset is treated as gated on an external readiness
+signal: aggregates that depend on it are held in a waiting state until
+the signal is received (or a timeout elapses), instead of being built as
+soon as source data changes. When `false` or omitted, aggregates build
+immediately, with no waiting.
+
+This property is independent of `immutable`, which describes whether the
+table's structure changes, not whether the engine should wait for a
+readiness signal before building from it.
