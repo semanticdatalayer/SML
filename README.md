@@ -1,8 +1,8 @@
 ![logo](images/sml-logo-large.png)
 
-# SML version 1.6
+# SML version 1.8
 
-This is documentation for SML spec version `1.6`. For earlier versions browse the repository tags. Examples:
+This is documentation for SML spec version `1.8. For earlier versions browse the repository tags. Examples:
 
 - [SML version 1.0](https://github.com/semanticdatalayer/SML/tree/v1.0)
 - [SML version 1.1](https://github.com/semanticdatalayer/SML/tree/v1.1)
@@ -10,6 +10,8 @@ This is documentation for SML spec version `1.6`. For earlier versions browse th
 - [SML version 1.3](https://github.com/semanticdatalayer/SML/tree/v1.3)
 - [SML version 1.4](https://github.com/semanticdatalayer/SML/tree/v1.4)
 - [SML version 1.5](https://github.com/semanticdatalayer/SML/tree/v1.5)
+- [SML version 1.6](https://github.com/semanticdatalayer/SML/tree/v1.6)
+- [SML version 1.7](https://github.com/semanticdatalayer/SML/tree/v1.7)
 
 # What is SML?
 

@@ -105,6 +105,7 @@ Supported values:
 - `sum distinct`
 - `var_pop`
 - `var_samp`
+- `count_if` - **Added in:** v1.8
 
 The calculation method you can use depends on the type of metric you're
 creating:
