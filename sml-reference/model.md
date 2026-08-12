@@ -665,20 +665,60 @@ Supported properties:
 
   When the engine builds an instance of this aggregate, it creates
   a partition for each combination of values in the dimensional
-  attributes. The number of partitions depends on the
-  left-to-right order of the attributes, as well as the number of
-  values for each attribute.
+  attributes. Essentially, the partitioning key functions as a
+  `GROUP BY` column. Queries against the aggregate must use this
+  dimensional attribute in a `WHERE` clause. A good candidate for a
+  partitioning key is a set of dimensional attributes that together
+  have a few hundred to under 1000 value combinations.
 
-  Essentially, the partitioning key functions as a `GROUP BY`
-  column. Queries against the aggregate must use this dimensional
-  attribute in a `WHERE` clause. A good candidate for a
-  partitioning key is a set of dimensional attributes that
-  together have a few hundred to under 1000 value combinations.
+  By default, the order of partition keys follows the left-to-right
+  order of the attributes in the `attributes` array. Use
+  `partition_rank` to control partition key order independently of
+  the distribution key order.
 
 - `distribution`: String, optional. The distribution keys to use when
   creating the aggregate table. If your aggregate data warehouse
-  supports distribution keys, then the semantic engine uses the specified keys when
-  creating the aggregate table.
+  supports distribution keys, then the semantic engine uses the
+  specified keys when creating the aggregate table. By default, the
+  order of distribution keys follows the left-to-right order of the
+  attributes in the `attributes` array. Use `distribution_rank` to
+  control distribution key order independently of the partition key
+  order.
+
+- `partition_rank`: Integer, optional. An integer between 1 and 128
+  that explicitly controls the order of partition keys, independently
+  of the distribution key order. Lower values indicate higher
+  priority. When set, `partition_rank` overrides the default
+  left-to-right attribute order for partitioning. Rank values across
+  all attributes that define a `partition` in the same aggregate must
+  form a consecutive sequence starting from 1 (e.g. `1, 2, 3`).
+
+- `distribution_rank`: Integer, optional. An integer between 1 and 128
+  that explicitly controls the order of distribution keys,
+  independently of the partition key order. Lower values indicate
+  higher priority. When set, `distribution_rank` overrides the
+  default left-to-right attribute order for distributions. Rank
+  values across all attributes that define a `distribution` in the
+  same aggregate must form a consecutive sequence starting from 1
+  (e.g. `1, 2, 3`).
+
+**Example** — partition order and distribution order defined independently:
+
+```yaml
+attributes:
+  - name: Year
+    dimension: Date Dimension
+    partition: key
+    partition_rank: 1      # partition order: Year first
+    distribution: key
+    distribution_rank: 2   # distribution order: Year second
+  - name: Month
+    dimension: Date Dimension
+    partition: key
+    partition_rank: 2      # partition order: Month second
+    distribution: key
+    distribution_rank: 1   # distribution order: Month first
+```
 
 ## partitions
 
