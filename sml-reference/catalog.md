@@ -125,9 +125,6 @@ Supported properties:
   create aggregates for datasets in the repository.
 - `allow_local_aggs`: Boolean, optional. Enables local aggregation for
   datasets in the repository.
-- `allow_peer_aggs`: Boolean, optional. Enables aggregation on data
-  derived from datasets in data warehouses that are different from the
-  source dataset.
 - `allow_preferred_aggs`: Boolean, optional. Allow aggregates to be built
   in preferred storage.
 
@@ -135,7 +132,7 @@ Specify the `unique_name` of the dataset followed by the properties and
 values you want to set for it at the repository level. For example:
 
     dataset1:
-        allow_peer_aggs: true
+        allow_aggregates: true
 
 **Note:** Datasets are typically defined at the repository level, in
 `catalog.yml`; however, datasets used by a specific model (typically
