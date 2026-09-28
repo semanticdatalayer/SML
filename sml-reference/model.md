@@ -211,6 +211,7 @@ namespace Models{
       Object from
       Object to
       String role_play
+      Boolean is_active
       String type
       ConstraintTranslation constraint_translation
     }
@@ -395,6 +396,23 @@ marks):
 
 For example, if you wanted to use the prefix **Order**, you would set
 `role_play` to `"Order {0}"`.
+
+### is_active
+
+- **Type:** boolean
+- **Required:** N
+- **Default:** `true`
+- **Added in:** v1.10
+
+Defines whether the relationship is active. Set `is_active` to `false`
+to make the relationship inactive.
+
+Queries use the active relationship by default. A calculated metric
+uses an inactive relationship only when it references the relationship
+`unique_name` in the `USERELATIONSHIP` function, in MDX or DAX.
+
+To add an inactive relationship between a dataset and a dimension,
+you need one active relationship between them.
 
 ### constraint_translation
 
