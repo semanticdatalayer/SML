@@ -1,0 +1,26 @@
+# TEMPORARY (DEVOPS-11496): proves the semanticautomate app token can read sml-cla. Delete before merge.
+name: "CLA token test"
+
+on:
+  pull_request:
+    paths: [".github/workflows/cla-token-test.yml"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Get app token"
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: "${{ secrets.SEMANTIC_AUTOMATE_CLIENT_ID }}"
+          private-key: "${{ secrets.SEMANTIC_AUTOMATE_CLIENT_SECRET }}"
+          owner: "semanticdatalayer"
+          repositories: "sml-cla"
+      - name: "Read signatures file"
+        env:
+          GH_TOKEN: "${{ steps.app-token.outputs.token }}"
+        run: gh api repos/semanticdatalayer/sml-cla/contents/signatures/version1/cla.json --jq '.name,.size'
