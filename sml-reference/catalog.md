@@ -27,7 +27,7 @@ classDiagram
       String unique_name
       const object_type
       String label
-      int version
+      String version
       Boolean aggressive_agg_promotion
       Boolean build_speculative_aggs
       Object dataset_properties
@@ -64,10 +64,19 @@ not need to be unique.
 
 ## version
 
-- **Type:** number
+- **Type:** string or number
 - **Required:** Y
 
-The version of SML being used.
+The version of SML being used, in `"major.minor"` format. For example:
+`version: "1.10"`.
+
+From v1.10, write the version as a string, with quotation marks. YAML
+reads the number `1.10` as `1.1`, so `version: 1.10` without quotation
+marks means version 1.1.
+
+For versions up to 1.9, you can still use a number, such as
+`version: 1.9`. Existing catalogs with a numeric version do not need
+any changes.
 
 ## hidden_models
 
