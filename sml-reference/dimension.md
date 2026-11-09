@@ -231,6 +231,7 @@ namespace Dimensions{
       Array~CustomEmptyMember~ custom_empty_member
       Boolean is_excel_pivot_table_property
       Boolean is_user_defined_property
+      Boolean exclude_from_excel_filter
     }
     class MetricalAttribute{
       String unique_name
@@ -267,6 +268,7 @@ namespace Dimensions{
       Boolean exclude_from_dim_agg
       Boolean is_aggregatable
       Boolean exclude_from_fact_agg
+      Boolean exclude_from_excel_filter
       String time_unit
       Int constraint_translation_rank
       Array~String~ allowed_calcs_for_dma
@@ -298,6 +300,7 @@ namespace Dimensions{
       Boolean contains_unique_names
       Boolean is_excel_pivot_table_property
       Boolean is_user_defined_property
+      Boolean exclude_from_excel_filter
     }
     class CustomEmptyMember{
       Array~String~ key
@@ -931,6 +934,15 @@ If set to false (default true) Excel users are not able to use the attribute in 
 
 If set to true Excel and MDX users can retrieve the attribute as a Member Property using the .Properties function and Property MDX syntax
 
+## exclude_from_excel_filter
+
+- **Type:** boolean
+- **Required:** N
+- **Default:** false
+- **Added in:** v1.10
+
+If set to true, the attribute is left out of the **Filter Data** list in the AtScale Excel add-in. It stays available everywhere else: on PivotTable rows and columns, in Excel's native filters, and in other BI tools. A filter applied to the attribute before it was excluded can still be edited and removed.
+
 # Alias Properties
 
 ## unique_name
@@ -1066,6 +1078,15 @@ If set to false (default true) Excel users are not able to use the attribute in 
 - **Added in** v1.5
 
 If set to true Excel and MDX users can retrieve the attribute as a Member Property using the .Properties function and Property MDX syntax
+
+## exclude_from_excel_filter
+
+- **Type:** boolean
+- **Required:** N
+- **Default:** false
+- **Added in:** v1.10
+
+If set to true, the attribute is left out of the **Filter Data** list in the AtScale Excel add-in. It stays available everywhere else: on PivotTable rows and columns, in Excel's native filters, and in other BI tools. A filter applied to the attribute before it was excluded can still be edited and removed.
 
 # Metrical Attribute Properties
 
@@ -1411,6 +1432,15 @@ Supported values:
 
 - `true`
 - `false`
+
+## exclude_from_excel_filter
+
+- **Type:** boolean
+- **Required:** N
+- **Default:** false
+- **Added in:** v1.10
+
+If set to true, the attribute is left out of the **Filter Data** list in the AtScale Excel add-in. It stays available everywhere else: on PivotTable rows and columns, in Excel's native filters, and in other BI tools. A filter applied to the attribute before it was excluded can still be edited and removed.
 
 ## sort_column
 
