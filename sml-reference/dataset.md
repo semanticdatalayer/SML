@@ -467,8 +467,9 @@ Only applicable to query datasets (those defined with `sql` rather than
 - **Added in:** v1.9
 - **Default:** `false`
 
-Only valid on table datasets; setting it on a dataset defined by `sql`
-produces a validation error.
+Valid on table datasets from v1.9, and also on query datasets (those
+defined with `sql`) from v1.10. It has no effect on a query dataset
+with `qds_materialization: true`.
 
 When `true`, the dataset is treated as gated on an external readiness
 signal: aggregates that depend on it are held in a waiting state until
