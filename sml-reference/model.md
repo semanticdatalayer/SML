@@ -189,6 +189,7 @@ classDiagram
     Aggregate *-- AttributeReference
     Perspective *-- PerspectiveDimension
     PerspectiveDimension *-- PerspectiveHierarchy
+    Perspective *-- PerspectiveDataFilter
     Drillthrough *-- AttributeReferenceDrillthrough
 namespace Models{
     class Model{
@@ -264,6 +265,7 @@ namespace Models{
       String unique_name
       Array~String~ metrics
       Array~PerspectiveDimension~ dimensions
+      Array~PerspectiveDataFilter~ data_filters
     }
     class MetricReference{
       String unique_name
@@ -282,6 +284,12 @@ namespace Models{
       String name
       String level
       Array~String~ levels
+    }
+    class PerspectiveDataFilter{
+      String attribute
+      String key
+      enum mode
+      Array~String~ members
     }
 }
 ```
@@ -530,6 +538,57 @@ Supported properties:
   secondary attributes to hide in the perspective.
 
 - `relationships_path`: Array, optional. A list of relationships used to specify role-playing.
+
+### data_filters
+
+- **Type:** array
+- **Required:** N
+- **Added in:** v1.10
+
+A list of rules that limit the rows a perspective returns. Every query
+against the perspective is filtered by all of its rules, in addition to
+any row security that applies. Queries against the model itself, or
+against another perspective, are not affected.
+
+Supported properties:
+
+- `attribute`: String, required unless `key` is set. The name of a
+  dimension level attribute to filter on. Each rule needs exactly one
+  of `attribute` or `key`.
+
+- `key`: String, required unless `attribute` is set. The name of a key
+  to filter on. Keys in models compiled
+  from SML do not have names yet, so a model with a `key` rule fails
+  when it is published. Use `attribute` instead.
+
+- `mode`: String, optional. Either `inclusive` (the default), which
+  keeps only rows whose value is in `members`, or `exclusive`, which
+  removes rows whose value is in `members`.
+
+- `members`: Array, required. The values to keep or remove, with at
+  least one value. Each value is a string, number or boolean.
+
+Unquoted numbers and booleans are read as YAML values and passed to
+the semantic engine in their canonical form, so `02134` becomes `2134`,
+`1.50` becomes `1.5` and `True` becomes `true`. Quote codes and other
+values whose spelling matters.
+
+For example, the following perspective returns only rows for customers
+in the United States and Canada, and leaves out the Internet channel:
+
+```yaml
+perspectives:
+  - unique_name: North America Sales
+    data_filters:
+      - attribute: Customer Country
+        members:
+          - United States
+          - Canada
+      - attribute: Sales Channel
+        mode: exclusive
+        members:
+          - Internet
+```
 
 ## drillthroughs
 
